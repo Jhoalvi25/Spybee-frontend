@@ -4,6 +4,7 @@ import { useEffect, useRef, useState, useCallback, useId } from 'react';
 import { useMapbox } from '@/hooks/useMapbox';
 import { MapContext } from './MapContext';
 import { IncidentMarker, IncidentPopup } from './IncidentMarker';
+import { FilterBar } from '@/components/layout/FilterBar';
 import {
   useFilteredIncidents,
   useSelectIncident,
@@ -46,6 +47,7 @@ export function MapView() {
   return (
     <MapContext.Provider value={map}>
       <div ref={containerRef} className={styles.map}>
+        <div className={styles.filterBar}><FilterBar /></div>
         {error && <div className={styles.overlay}><span className={styles.error}>{error}</span></div>}
         {!isLoaded && !error && <div className={styles.overlay}><span className={styles.loading}>Cargando mapa…</span></div>}
         {isLoaded && isLoading && <div className={styles.overlay}><span className={styles.loading}>Cargando incidencias…</span></div>}

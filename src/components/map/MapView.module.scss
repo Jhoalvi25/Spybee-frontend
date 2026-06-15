@@ -4,6 +4,19 @@
   position: relative;
 }
 
+.filterBar {
+  position: absolute;
+  top: 0.75rem;
+  left: 0.75rem;
+  right: 0.75rem;
+  z-index: 2;
+  background: #fff;
+  border-radius: 12px;
+  padding: 0.625rem 1rem;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  pointer-events: auto;
+}
+
 .overlay {
   position: absolute;
   inset: 0;

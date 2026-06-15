@@ -1,5 +1,5 @@
 import { useMemo } from 'react';
-import { useIncidents } from '@/domain/incident/hooks';
+import { useFilteredIncidents } from '@/domain/incident/hooks';
 import type { Incident, IncidentStatus, IncidentPriority } from '@/domain/incident/types';
 
 const MONTHS_SHORT = [
@@ -75,7 +75,7 @@ function avgResolutionLabel(incidents: Incident[]): string {
 }
 
 export function useDashboardData(): DashboardData {
-  const incidents = useIncidents();
+  const incidents = useFilteredIncidents();
 
   return useMemo(() => {
     const now = new Date();

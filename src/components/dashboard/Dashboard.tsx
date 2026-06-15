@@ -3,6 +3,7 @@
 import { useEffect } from 'react';
 import { useDashboardData } from '@/hooks/useDashboardData';
 import { useLoadIncidents, useIsLoading } from '@/domain/incident/hooks';
+import { FilterBar } from '@/components/layout/FilterBar';
 import { KPIGrid } from './KPIGrid';
 import { StatusDonut } from './StatusDonut';
 import { PriorityDonut } from './PriorityDonut';
@@ -37,6 +38,8 @@ export function Dashboard() {
         <h1 className={styles.title}>Dashboard</h1>
         <p className={styles.subtitle}>Resumen general de incidencias</p>
       </header>
+
+      <FilterBar />
 
       <KPIGrid data={data} />
 

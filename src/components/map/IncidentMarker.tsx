@@ -32,6 +32,7 @@ function popupHTML(incident: Incident): string {
       <p class="incident-popup__detail"><strong>Tipo:</strong> ${incident.type.name}</p>
       <p class="incident-popup__detail"><strong>Proyecto:</strong> ${incident.project.name}</p>
       <span class="incident-popup__id">${incident.sequenceId}</span>
+      <a href="/incidents/${incident.id}" class="incident-popup__link">Ver detalle →</a>
     </div>
   `;
 }

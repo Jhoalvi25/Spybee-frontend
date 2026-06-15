@@ -85,3 +85,18 @@
   font-size: 0.6875rem;
   color: #9ca3af;
 }
+
+.incident-popup__link {
+  display: inline-block;
+  margin-top: 0.5rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: #2563eb;
+  text-decoration: none;
+  transition: color 0.15s;
+}
+
+.incident-popup__link:hover {
+  color: #1d4ed8;
+  text-decoration: underline;
+}
