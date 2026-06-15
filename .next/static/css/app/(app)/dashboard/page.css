@@ -1,0 +1,203 @@
+/*!****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[14].oneOf[7].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[14].oneOf[7].use[3]!./node_modules/next/dist/build/webpack/loaders/resolve-url-loader/index.js??ruleSet[1].rules[14].oneOf[7].use[4]!./node_modules/next/dist/compiled/sass-loader/cjs.js??ruleSet[1].rules[14].oneOf[7].use[5]!./src/components/dashboard/KPICard.module.scss ***!
+  \****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+@charset "UTF-8";
+.KPICard_card__DEmYT {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.25rem;
+  border-radius: 12px;
+  background: #fff;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06), 0 1px 2px rgba(0, 0, 0, 0.04);
+  transition: box-shadow 0.2s, transform 0.2s;
+}
+.KPICard_card__DEmYT:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  transform: translateY(-2px);
+}
+
+.KPICard_iconWrap__cAiRw {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  flex-shrink: 0;
+}
+
+.KPICard_icon__ci5T_ {
+  font-size: 1.25rem;
+  line-height: 1;
+}
+
+.KPICard_body__goc0n {
+  display: flex;
+  flex-direction: column;
+  gap: 0.125rem;
+  min-width: 0;
+}
+
+.KPICard_value__Z23CL {
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 1.2;
+  color: #111827;
+}
+
+.KPICard_label__z7buI {
+  font-size: 0.8125rem;
+  color: #6b7280;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ─── Variants ──────────────────────────── */
+.KPICard_blue__Qf1bz .KPICard_iconWrap__cAiRw {
+  background: #eff6ff;
+}
+.KPICard_blue__Qf1bz .KPICard_icon__ci5T_ {
+  color: #2563eb;
+}
+
+.KPICard_green___q5Ie .KPICard_iconWrap__cAiRw {
+  background: #f0fdf4;
+}
+.KPICard_green___q5Ie .KPICard_icon__ci5T_ {
+  color: #16a34a;
+}
+
+.KPICard_gray__nw7pk .KPICard_iconWrap__cAiRw {
+  background: #f9fafb;
+}
+.KPICard_gray__nw7pk .KPICard_icon__ci5T_ {
+  color: #6b7280;
+}
+
+.KPICard_red__wGkTb .KPICard_iconWrap__cAiRw {
+  background: #fef2f2;
+}
+.KPICard_red__wGkTb .KPICard_icon__ci5T_ {
+  color: #dc2626;
+}
+
+.KPICard_purple__J7w_t .KPICard_iconWrap__cAiRw {
+  background: #f5f3ff;
+}
+.KPICard_purple__J7w_t .KPICard_icon__ci5T_ {
+  color: #7c3aed;
+}
+/*!****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[14].oneOf[7].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[14].oneOf[7].use[3]!./node_modules/next/dist/build/webpack/loaders/resolve-url-loader/index.js??ruleSet[1].rules[14].oneOf[7].use[4]!./node_modules/next/dist/compiled/sass-loader/cjs.js??ruleSet[1].rules[14].oneOf[7].use[5]!./src/components/dashboard/KPIGrid.module.scss ***!
+  \****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+.KPIGrid_grid__9emSO {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-gap: 1rem;
+  gap: 1rem;
+}
+
+@media (max-width: 1024px) {
+  .KPIGrid_grid__9emSO {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+@media (max-width: 640px) {
+  .KPIGrid_grid__9emSO {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 400px) {
+  .KPIGrid_grid__9emSO {
+    grid-template-columns: 1fr;
+  }
+}
+/*!******************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[14].oneOf[7].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[14].oneOf[7].use[3]!./node_modules/next/dist/build/webpack/loaders/resolve-url-loader/index.js??ruleSet[1].rules[14].oneOf[7].use[4]!./node_modules/next/dist/compiled/sass-loader/cjs.js??ruleSet[1].rules[14].oneOf[7].use[5]!./src/components/dashboard/ChartCard.module.scss ***!
+  \******************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+.ChartCard_card__kWnCt {
+  background: #fff;
+  border-radius: 12px;
+  padding: 1.25rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06), 0 1px 2px rgba(0, 0, 0, 0.04);
+}
+
+.ChartCard_full__MzBdB {
+  grid-column: 1/-1;
+}
+
+.ChartCard_title__om6pN {
+  margin: 0 0 1rem;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: #374151;
+}
+
+.ChartCard_body__xsv1g {
+  width: 100%;
+}
+/*!******************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[14].oneOf[7].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[14].oneOf[7].use[3]!./node_modules/next/dist/build/webpack/loaders/resolve-url-loader/index.js??ruleSet[1].rules[14].oneOf[7].use[4]!./node_modules/next/dist/compiled/sass-loader/cjs.js??ruleSet[1].rules[14].oneOf[7].use[5]!./src/components/dashboard/Dashboard.module.scss ***!
+  \******************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+.Dashboard_page__1zgUQ {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem;
+}
+
+.Dashboard_header__7kRZg {
+  margin-bottom: 2rem;
+}
+
+.Dashboard_title___2qIl {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #111827;
+}
+
+.Dashboard_subtitle__RRb69 {
+  margin: 0.25rem 0 0;
+  font-size: 0.875rem;
+  color: #6b7280;
+}
+
+.Dashboard_charts____g6W {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 1.25rem;
+  gap: 1.25rem;
+  margin-top: 1.5rem;
+}
+
+.Dashboard_skeleton__CA_oE {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 300px;
+  font-size: 0.9375rem;
+  color: #9ca3af;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+  animation: Dashboard_pulse__LIsiO 1.5s ease-in-out infinite;
+}
+
+@keyframes Dashboard_pulse__LIsiO {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+@media (max-width: 768px) {
+  .Dashboard_charts____g6W {
+    grid-template-columns: 1fr;
+  }
+  .Dashboard_page__1zgUQ {
+    padding: 1.5rem 1rem;
+  }
+}

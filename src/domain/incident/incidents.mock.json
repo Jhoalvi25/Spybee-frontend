@@ -1,0 +1,1179 @@
+[
+  {
+    "id": "673c832c6f24063e770710c6",
+    "sequenceId": "INC-202401-001",
+    "order": 1,
+    "title": "Fisura en muro de contención sector A",
+    "description": "Se detectó una fisura vertical de aproximadamente 2 metros en el muro de contención del sector A, entre los pilares 12 y 13. La fisura tiene una apertura estimada de 3mm y requiere evaluación estructural urgente.",
+    "type": {
+      "id": "01",
+      "key": "structural",
+      "name": "Estructural",
+      "name_en": "Structural"
+    },
+    "priority": "high",
+    "status": "open",
+    "approval": false,
+    "project": {
+      "id": "01",
+      "name": "Edificio Torres del Parque"
+    },
+    "owner": {
+      "id": "usr_001",
+      "name": "Carlos Muñoz",
+      "email": "carlos.munoz@constructoraspybee.cl",
+      "avatarUrl": "https://i.pravatar.cc/150?u=carlos.munoz@constructoraspybee.cl"
+    },
+    "whatsappOwner": null,
+    "assignees": [
+      {
+        "id": "usr_004",
+        "name": "María Soto",
+        "email": "maria.soto@constructoraspybee.cl",
+        "avatarUrl": "https://i.pravatar.cc/150?u=maria.soto@constructoraspybee.cl"
+      },
+      {
+        "id": "usr_007",
+        "name": "Pedro Ramírez",
+        "email": "pedro.ramirez@constructoraspybee.cl",
+        "avatarUrl": "https://i.pravatar.cc/150?u=pedro.ramirez@constructoraspybee.cl"
+      }
+    ],
+    "observers": [
+      {
+        "id": "usr_010",
+        "name": "Ana Martínez",
+        "email": "ana.martinez@constructoraspybee.cl",
+        "avatarUrl": "https://i.pravatar.cc/150?u=ana.martinez@constructoraspybee.cl"
+      }
+    ],
+    "coordinates": {
+      "lat": -33.4489,
+      "lng": -70.6693
+    },
+    "locationDescription": "Sector A, entre pilares 12 y 13, nivel -1",
+    "dueDate": "2024-02-15T00:00:00.000Z",
+    "closingDate": null,
+    "media": [
+      {
+        "id": "med_001",
+        "name": "fisura_muro_contencion.jpg",
+        "type": "image",
+        "format": "image/jpeg",
+        "size": 2457600,
+        "status": "approved",
+        "url": "https://picsum.photos/seed/fisura1/800/600"
+      },
+      {
+        "id": "med_002",
+        "name": "panoramico_sector_a.jpg",
+        "type": "image",
+        "format": "image/jpeg",
+        "size": 4194304,
+        "status": "approved",
+        "url": "https://picsum.photos/seed/panoramico1/800/600"
+      }
+    ],
+    "tags": [
+      {
+        "id": "tag_001",
+        "name": "estructural",
+        "color": "#EF4444"
+      },
+      {
+        "id": "tag_003",
+        "name": "urgente",
+        "color": "#F97316"
+      }
+    ],
+    "deleted": null,
+    "createdAt": "2024-01-15T08:30:00.000Z",
+    "updatedAt": "2024-01-15T08:30:00.000Z"
+  },
+  {
+    "id": "673c832c6f24063e770710c7",
+    "sequenceId": "INC-202401-002",
+    "order": 2,
+    "title": "Fallo en tablero eléctrico principal",
+    "description": "El tablero eléctrico principal del piso 5 presenta sobrecalentamiento en el disyuntor general. Se detectó olor a quemado y la protección térmica se ha disparado en 3 ocasiones durante la semana.",
+    "type": {
+      "id": "02",
+      "key": "electrical",
+      "name": "Eléctrica",
+      "name_en": "Electrical"
+    },
+    "priority": "high",
+    "status": "open",
+    "approval": true,
+    "project": {
+      "id": "01",
+      "name": "Edificio Torres del Parque"
+    },
+    "owner": {
+      "id": "usr_002",
+      "name": "Laura González",
+      "email": "laura.gonzalez@constructoraspybee.cl",
+      "avatarUrl": "https://i.pravatar.cc/150?u=laura.gonzalez@constructoraspybee.cl"
+    },
+    "whatsappOwner": null,
+    "assignees": [
+      {
+        "id": "usr_005",
+        "name": "Jorge Faúndez",
+        "email": "jorge.faundez@constructoraspybee.cl",
+        "avatarUrl": "https://i.pravatar.cc/150?u=jorge.faundez@constructoraspybee.cl"
+      }
+    ],
+    "observers": [],
+    "coordinates": {
+      "lat": -33.4492,
+      "lng": -70.6689
+    },
+    "locationDescription": "Piso 5, shafts eléctricos, tablero TG-05",
+    "dueDate": "2024-01-25T00:00:00.000Z",
+    "closingDate": null,
+    "media": [
+      {
+        "id": "med_003",
+        "name": "tablero_electrico.jpg",
+        "type": "image",
+        "format": "image/jpeg",
+        "size": 1835008,
+        "status": "approved",
+        "url": "https://picsum.photos/seed/tablero1/800/600"
+      }
+    ],
+    "tags": [
+      {
+        "id": "tag_005",
+        "name": "eléctrico",
+        "color": "#F59E0B"
+      },
+      {
+        "id": "tag_003",
+        "name": "urgente",
+        "color": "#F97316"
+      },
+      {
+        "id": "tag_008",
+        "name": "seguridad",
+        "color": "#DC2626"
+      }
+    ],
+    "deleted": null,
+    "createdAt": "2024-01-16T10:15:00.000Z",
+    "updatedAt": "2024-01-17T09:00:00.000Z"
+  },
+  {
+    "id": "673c832c6f24063e770710c8",
+    "sequenceId": "INC-202401-003",
+    "order": 3,
+    "title": "Filtración en baños piso 3",
+    "description": "Filtración de agua desde el baño del departamento 302 hacia el cielorraso del departamento 202. El agua ha comenzado a afectar la pintura y se observa una mancha de humedad de aproximadamente 1m².",
+    "type": {
+      "id": "03",
+      "key": "plumbing",
+      "name": "Fontanería",
+      "name_en": "Plumbing"
+    },
+    "priority": "medium",
+    "status": "on_pause",
+    "approval": false,
+    "project": {
+      "id": "01",
+      "name": "Edificio Torres del Parque"
+    },
+    "owner": {
+      "id": "usr_003",
+      "name": "Roberto Vargas",
+      "email": "roberto.vargas@constructoraspybee.cl",
+      "avatarUrl": "https://i.pravatar.cc/150?u=roberto.vargas@constructoraspybee.cl"
+    },
+    "whatsappOwner": null,
+    "assignees": [
+      {
+        "id": "usr_006",
+        "name": "Daniela Rojas",
+        "email": "daniela.rojas@constructoraspybee.cl",
+        "avatarUrl": "https://i.pravatar.cc/150?u=daniela.rojas@constructoraspybee.cl"
+      }
+    ],
+    "observers": [
+      {
+        "id": "usr_010",
+        "name": "Ana Martínez",
+        "email": "ana.martinez@constructoraspybee.cl",
+        "avatarUrl": "https://i.pravatar.cc/150?u=ana.martinez@constructoraspybee.cl"
+      },
+      {
+        "id": "usr_001",
+        "name": "Carlos Muñoz",
+        "email": "carlos.munoz@constructoraspybee.cl",
+        "avatarUrl": "https://i.pravatar.cc/150?u=carlos.munoz@constructoraspybee.cl"
+      }
+    ],
+    "coordinates": {
+      "lat": -33.4487,
+      "lng": -70.6695
+    },
+    "locationDescription": "Edificio A, departamento 302, baño principal",
+    "dueDate": null,
+    "closingDate": null,
+    "media": [
+      {
+        "id": "med_004",
+        "name": "filtracion_cielo.jpg",
+        "type": "image",
+        "format": "image/jpeg",
+        "size": 2097152,
+        "status": "approved",
+        "url": "https://picsum.photos/seed/filtracion1/800/600"
+      },
+      {
+        "id": "med_005",
+        "name": "mancha_humedad.mp4",
+        "type": "video",
+        "format": "video/mp4",
+        "size": 5242880,
+        "status": "pending",
+        "url": "https://www.w3schools.com/html/mov_bbb.mp4"
+      }
+    ],
+    "tags": [
+      {
+        "id": "tag_002",
+        "name": "fontanería",
+        "color": "#3B82F6"
+      },
+      {
+        "id": "tag_006",
+        "name": "humedad",
+        "color": "#06B6D4"
+      }
+    ],
+    "deleted": null,
+    "createdAt": "2024-01-18T14:00:00.000Z",
+    "updatedAt": "2024-01-20T11:30:00.000Z"
+  },
+  {
+    "id": "673c832c6f24063e770710c9",
+    "sequenceId": "INC-202401-004",
+    "order": 4,
+    "title": "Baranda de seguridad suelta en terraza",
+    "description": "La baranda metálica de la terraza comunitaria del piso 12 presenta pernos sueltos en la base. Representa un riesgo de caída para los trabajadores que acceden a la terraza para instalaciones.",
+    "type": {
+      "id": "04",
+      "key": "safety",
+      "name": "Seguridad",
+      "name_en": "Safety"
+    },
+    "priority": "high",
+    "status": "open",
+    "approval": false,
+    "project": {
+      "id": "01",
+      "name": "Edificio Torres del Parque"
+    },
+    "owner": {
+      "id": "usr_004",
+      "name": "María Soto",
+      "email": "maria.soto@constructoraspybee.cl",
+      "avatarUrl": "https://i.pravatar.cc/150?u=maria.soto@constructoraspybee.cl"
+    },
+    "whatsappOwner": null,
+    "assignees": [
+      {
+        "id": "usr_007",
+        "name": "Pedro Ramírez",
+        "email": "pedro.ramirez@constructoraspybee.cl",
+        "avatarUrl": "https://i.pravatar.cc/150?u=pedro.ramirez@constructoraspybee.cl"
+      }
+    ],
+    "observers": [],
+    "coordinates": {
+      "lat": -33.4495,
+      "lng": -70.6685
+    },
+    "locationDescription": "Terraza comunitaria piso 12, sector norponiente",
+    "dueDate": "2024-01-22T00:00:00.000Z",
+    "closingDate": null,
+    "media": [],
+    "tags": [
+      {
+        "id": "tag_008",
+        "name": "seguridad",
+        "color": "#DC2626"
+      },
+      {
+        "id": "tag_003",
+        "name": "urgente",
+        "color": "#F97316"
+      }
+    ],
+    "deleted": null,
+    "createdAt": "2024-01-19T07:45:00.000Z",
+    "updatedAt": "2024-01-19T07:45:00.000Z"
+  },
+  {
+    "id": "673c832c6f24063e770710ca",
+    "sequenceId": "INC-202401-005",
+    "order": 5,
+    "title": "Grieta en losa estacionamiento subterráneo",
+    "description": "Se detectó una grieta transversal en la losa del estacionamiento subterráneo nivel -2, con un ancho de 5mm y una longitud de 4 metros. La grieta cruza toda la losa y presenta desnivel de 2mm entre ambos bordes.",
+    "type": {
+      "id": "01",
+      "key": "structural",
+      "name": "Estructural",
+      "name_en": "Structural"
+    },
+    "priority": "high",
+    "status": "closed",
+    "approval": true,
+    "project": {
+      "id": "02",
+      "name": "Centro Comercial Los Dominicos"
+    },
+    "owner": {
+      "id": "usr_001",
+      "name": "Carlos Muñoz",
+      "email": "carlos.munoz@constructoraspybee.cl",
+      "avatarUrl": "https://i.pravatar.cc/150?u=carlos.munoz@constructoraspybee.cl"
+    },
+    "whatsappOwner": null,
+    "assignees": [
+      {
+        "id": "usr_007",
+        "name": "Pedro Ramírez",
+        "email": "pedro.ramirez@constructoraspybee.cl",
+        "avatarUrl": "https://i.pravatar.cc/150?u=pedro.ramirez@constructoraspybee.cl"
+      },
+      {
+        "id": "usr_004",
+        "name": "María Soto",
+        "email": "maria.soto@constructoraspybee.cl",
+        "avatarUrl": "https://i.pravatar.cc/150?u=maria.soto@constructoraspybee.cl"
+      }
+    ],
+    "observers": [
+      {
+        "id": "usr_010",
+        "name": "Ana Martínez",
+        "email": "ana.martinez@constructoraspybee.cl",
+        "avatarUrl": "https://i.pravatar.cc/150?u=ana.martinez@constructoraspybee.cl"
+      }
+    ],
+    "coordinates": {
+      "lat": -33.3825,
+      "lng": -70.5432
+    },
+    "locationDescription": "Estacionamiento subterráneo nivel -2, sector D, fila 8",
+    "dueDate": "2024-01-30T00:00:00.000Z",
+    "closingDate": "2024-02-10T16:30:00.000Z",
+    "media": [
+      {
+        "id": "med_006",
+        "name": "grieta_losa.jpg",
+        "type": "image",
+        "format": "image/jpeg",
+        "size": 3145728,
+        "status": "approved",
+        "url": "https://picsum.photos/seed/grieta2/800/600"
+      },
+      {
+        "id": "med_007",
+        "name": "reparacion_completada.jpg",
+        "type": "image",
+        "format": "image/jpeg",
+        "size": 2726297,
+        "status": "approved",
+        "url": "https://picsum.photos/seed/reparacion1/800/600"
+      }
+    ],
+    "tags": [
+      {
+        "id": "tag_001",
+        "name": "estructural",
+        "color": "#EF4444"
+      },
+      {
+        "id": "tag_004",
+        "name": "reparado",
+        "color": "#22C55E"
+      }
+    ],
+    "deleted": null,
+    "createdAt": "2024-01-10T09:00:00.000Z",
+    "updatedAt": "2024-02-10T16:30:00.000Z"
+  },
+  {
+    "id": "673c832c6f24063e770710cb",
+    "sequenceId": "INC-202402-006",
+    "order": 6,
+    "title": "Corte de suministro eléctrico en grúa torre",
+    "description": "La grúa torre ubicada en el sector B ha sufrido 3 cortes de suministro eléctrico en los últimos 2 días. Se sospecha de una falla en el cableado de alimentación temporal.",
+    "type": {
+      "id": "02",
+      "key": "electrical",
+      "name": "Eléctrica",
+      "name_en": "Electrical"
+    },
+    "priority": "high",
+    "status": "open",
+    "approval": true,
+    "project": {
+      "id": "02",
+      "name": "Centro Comercial Los Dominicos"
+    },
+    "owner": {
+      "id": "usr_002",
+      "name": "Laura González",
+      "email": "laura.gonzalez@constructoraspybee.cl",
+      "avatarUrl": "https://i.pravatar.cc/150?u=laura.gonzalez@constructoraspybee.cl"
+    },
+    "whatsappOwner": null,
+    "assignees": [
+      {
+        "id": "usr_005",
+        "name": "Jorge Faúndez",
+        "email": "jorge.faundez@constructoraspybee.cl",
+        "avatarUrl": "https://i.pravatar.cc/150?u=jorge.faundez@constructoraspybee.cl"
+      }
+    ],
+    "observers": [],
+    "coordinates": {
+      "lat": -33.3828,
+      "lng": -70.5435
+    },
+    "locationDescription": "Sector B, base grúa torre Liebherr 125 HC",
+    "dueDate": "2024-02-20T00:00:00.000Z",
+    "closingDate": null,
+    "media": [],
+    "tags": [
+      {
+        "id": "tag_005",
+        "name": "eléctrico",
+        "color": "#F59E0B"
+      },
+      {
+        "id": "tag_009",
+        "name": "grúa",
+        "color": "#8B5CF6"
+      },
+      {
+        "id": "tag_003",
+        "name": "urgente",
+        "color": "#F97316"
+      }
+    ],
+    "deleted": null,
+    "createdAt": "2024-02-05T11:20:00.000Z",
+    "updatedAt": "2024-02-06T08:15:00.000Z"
+  },
+  {
+    "id": "673c832c6f24063e770710cc",
+    "sequenceId": "INC-202402-007",
+    "order": 7,
+    "title": "Tubería de agua potable reventada",
+    "description": "La tubería de agua potable de 110mm en el sector de faenas se ha reventado debido a presión excesiva. El agua está inundando parte del terreno y afectando el tránsito de maquinaria.",
+    "type": {
+      "id": "03",
+      "key": "plumbing",
+      "name": "Fontanería",
+      "name_en": "Plumbing"
+    },
+    "priority": "high",
+    "status": "closed",
+    "approval": true,
+    "project": {
+      "id": "02",
+      "name": "Centro Comercial Los Dominicos"
+    },
+    "owner": {
+      "id": "usr_003",
+      "name": "Roberto Vargas",
+      "email": "roberto.vargas@constructoraspybee.cl",
+      "avatarUrl": "https://i.pravatar.cc/150?u=roberto.vargas@constructoraspybee.cl"
+    },
+    "whatsappOwner": null,
+    "assignees": [
+      {
+        "id": "usr_006",
+        "name": "Daniela Rojas",
+        "email": "daniela.rojas@constructoraspybee.cl",
+        "avatarUrl": "https://i.pravatar.cc/150?u=daniela.rojas@constructoraspybee.cl"
+      }
+    ],
+    "observers": [
+      {
+        "id": "usr_001",
+        "name": "Carlos Muñoz",
+        "email": "carlos.munoz@constructoraspybee.cl",
+        "avatarUrl": "https://i.pravatar.cc/150?u=carlos.munoz@constructoraspybee.cl"
+      }
+    ],
+    "coordinates": {
+      "lat": -33.3822,
+      "lng": -70.5430
+    },
+    "locationDescription": "Sector de faenas, costado poniente, junto a bodega de materiales",
+    "dueDate": "2024-02-12T00:00:00.000Z",
+    "closingDate": "2024-02-14T13:45:00.000Z",
+    "media": [
+      {
+        "id": "med_008",
+        "name": "tuberia_reventada.jpg",
+        "type": "image",
+        "format": "image/jpeg",
+        "size": 2988441,
+        "status": "approved",
+        "url": "https://picsum.photos/seed/tuberia1/800/600"
+      },
+      {
+        "id": "med_009",
+        "name": "inundacion_sector.jpg",
+        "type": "image",
+        "format": "image/jpeg",
+        "size": 3512729,
+        "status": "approved",
+        "url": "https://picsum.photos/seed/inundacion1/800/600"
+      }
+    ],
+    "tags": [
+      {
+        "id": "tag_002",
+        "name": "fontanería",
+        "color": "#3B82F6"
+      },
+      {
+        "id": "tag_003",
+        "name": "urgente",
+        "color": "#F97316"
+      }
+    ],
+    "deleted": null,
+    "createdAt": "2024-02-08T06:00:00.000Z",
+    "updatedAt": "2024-02-14T13:45:00.000Z"
+  },
+  {
+    "id": "673c832c6f24063e770710cd",
+    "sequenceId": "INC-202402-008",
+    "order": 8,
+    "title": "Falta extintores en piso 8",
+    "description": "Durante la inspección de seguridad semanal se detectó que el piso 8 no cuenta con extintores instalados. Se requiere la instalación urgente de al menos 2 extintores tipo ABC de 10kg.",
+    "type": {
+      "id": "04",
+      "key": "safety",
+      "name": "Seguridad",
+      "name_en": "Safety"
+    },
+    "priority": "medium",
+    "status": "open",
+    "approval": false,
+    "project": {
+      "id": "01",
+      "name": "Edificio Torres del Parque"
+    },
+    "owner": {
+      "id": "usr_004",
+      "name": "María Soto",
+      "email": "maria.soto@constructoraspybee.cl",
+      "avatarUrl": "https://i.pravatar.cc/150?u=maria.soto@constructoraspybee.cl"
+    },
+    "whatsappOwner": null,
+    "assignees": [
+      {
+        "id": "usr_007",
+        "name": "Pedro Ramírez",
+        "email": "pedro.ramirez@constructoraspybee.cl",
+        "avatarUrl": "https://i.pravatar.cc/150?u=pedro.ramirez@constructoraspybee.cl"
+      }
+    ],
+    "observers": [],
+    "coordinates": {
+      "lat": -33.4490,
+      "lng": -70.6691
+    },
+    "locationDescription": "Piso 8, pasillo central y sala de máquinas",
+    "dueDate": "2024-02-25T00:00:00.000Z",
+    "closingDate": null,
+    "media": [],
+    "tags": [
+      {
+        "id": "tag_008",
+        "name": "seguridad",
+        "color": "#DC2626"
+      }
+    ],
+    "deleted": null,
+    "createdAt": "2024-02-10T15:30:00.000Z",
+    "updatedAt": "2024-02-10T15:30:00.000Z"
+  },
+  {
+    "id": "673c832c6f24063e770710ce",
+    "sequenceId": "INC-202402-009",
+    "order": 9,
+    "title": "Desprendimiento de revestimiento en fachada",
+    "description": "Parte del revestimiento cerámico de la fachada sur se ha desprendido en un área de 1.5m x 1m. Existe riesgo de caída de material a la vía pública.",
+    "type": {
+      "id": "01",
+      "key": "structural",
+      "name": "Estructural",
+      "name_en": "Structural"
+    },
+    "priority": "high",
+    "status": "open",
+    "approval": false,
+    "project": {
+      "id": "03",
+      "name": "Hospital Clínico La Florida"
+    },
+    "owner": {
+      "id": "usr_001",
+      "name": "Carlos Muñoz",
+      "email": "carlos.munoz@constructoraspybee.cl",
+      "avatarUrl": "https://i.pravatar.cc/150?u=carlos.munoz@constructoraspybee.cl"
+    },
+    "whatsappOwner": null,
+    "assignees": [
+      {
+        "id": "usr_004",
+        "name": "María Soto",
+        "email": "maria.soto@constructoraspybee.cl",
+        "avatarUrl": "https://i.pravatar.cc/150?u=maria.soto@constructoraspybee.cl"
+      },
+      {
+        "id": "usr_007",
+        "name": "Pedro Ramírez",
+        "email": "pedro.ramirez@constructoraspybee.cl",
+        "avatarUrl": "https://i.pravatar.cc/150?u=pedro.ramirez@constructoraspybee.cl"
+      }
+    ],
+    "observers": [
+      {
+        "id": "usr_010",
+        "name": "Ana Martínez",
+        "email": "ana.martinez@constructoraspybee.cl",
+        "avatarUrl": "https://i.pravatar.cc/150?u=ana.martinez@constructoraspybee.cl"
+      },
+      {
+        "id": "usr_002",
+        "name": "Laura González",
+        "email": "laura.gonzalez@constructoraspybee.cl",
+        "avatarUrl": "https://i.pravatar.cc/150?u=laura.gonzalez@constructoraspybee.cl"
+      }
+    ],
+    "coordinates": {
+      "lat": -33.5342,
+      "lng": -70.5843
+    },
+    "locationDescription": "Fachada sur, altura piso 4, frente a calle principal",
+    "dueDate": "2024-03-01T00:00:00.000Z",
+    "closingDate": null,
+    "media": [
+      {
+        "id": "med_010",
+        "name": "desprendimiento_fachada.jpg",
+        "type": "image",
+        "format": "image/jpeg",
+        "size": 3670016,
+        "status": "approved",
+        "url": "https://picsum.photos/seed/fachada1/800/600"
+      },
+      {
+        "id": "med_011",
+        "name": "vista_aerea_fachada.mp4",
+        "type": "video",
+        "format": "video/mp4",
+        "size": 8388608,
+        "status": "pending",
+        "url": "https://www.w3schools.com/html/movie.mp4"
+      }
+    ],
+    "tags": [
+      {
+        "id": "tag_001",
+        "name": "estructural",
+        "color": "#EF4444"
+      },
+      {
+        "id": "tag_008",
+        "name": "seguridad",
+        "color": "#DC2626"
+      },
+      {
+        "id": "tag_003",
+        "name": "urgente",
+        "color": "#F97316"
+      }
+    ],
+    "deleted": null,
+    "createdAt": "2024-02-12T09:15:00.000Z",
+    "updatedAt": "2024-02-12T09:15:00.000Z"
+  },
+  {
+    "id": "673c832c6f24063e770710cf",
+    "sequenceId": "INC-202403-010",
+    "order": 10,
+    "title": "Instalación de ascensor con especificaciones incorrectas",
+    "description": "El ascensor panorámico instalado no corresponde a las especificaciones del proyecto. Se instaló un modelo de 6 pasajeros en lugar del modelo de 8 pasajeros especificado en los planos aprobados.",
+    "type": {
+      "id": "05",
+      "key": "quality",
+      "name": "Calidad",
+      "name_en": "Quality"
+    },
+    "priority": "medium",
+    "status": "open",
+    "approval": false,
+    "project": {
+      "id": "03",
+      "name": "Hospital Clínico La Florida"
+    },
+    "owner": {
+      "id": "usr_008",
+      "name": "Felipe Torres",
+      "email": "felipe.torres@constructoraspybee.cl",
+      "avatarUrl": "https://i.pravatar.cc/150?u=felipe.torres@constructoraspybee.cl"
+    },
+    "whatsappOwner": null,
+    "assignees": [
+      {
+        "id": "usr_009",
+        "name": "Carmen Díaz",
+        "email": "carmen.diaz@constructoraspybee.cl",
+        "avatarUrl": "https://i.pravatar.cc/150?u=carmen.diaz@constructoraspybee.cl"
+      }
+    ],
+    "observers": [],
+    "coordinates": {
+      "lat": -33.5345,
+      "lng": -70.5847
+    },
+    "locationDescription": "Torre A, shafts de ascensor, nivel 1",
+    "dueDate": "2024-03-20T00:00:00.000Z",
+    "closingDate": null,
+    "media": [
+      {
+        "id": "med_012",
+        "name": "ascensor_instalado.jpg",
+        "type": "image",
+        "format": "image/jpeg",
+        "size": 2228224,
+        "status": "approved",
+        "url": "https://picsum.photos/seed/ascensor1/800/600"
+      },
+      {
+        "id": "med_013",
+        "name": "plano_especificaciones.pdf",
+        "type": "image",
+        "format": "application/pdf",
+        "size": 1048576,
+        "status": "approved",
+        "url": "https://picsum.photos/seed/plano1/800/600"
+      }
+    ],
+    "tags": [
+      {
+        "id": "tag_007",
+        "name": "calidad",
+        "color": "#14B8A6"
+      },
+      {
+        "id": "tag_010",
+        "name": "proveedores",
+        "color": "#EC4899"
+      }
+    ],
+    "deleted": null,
+    "createdAt": "2024-03-01T12:00:00.000Z",
+    "updatedAt": "2024-03-03T10:30:00.000Z"
+  },
+  {
+    "id": "673c832c6f24063e770710d0",
+    "sequenceId": "INC-202403-011",
+    "order": 11,
+    "title": "Fuga de gas en sala de calderas",
+    "description": "Se detectó olor a gas en la sala de calderas del nivel -1. La medición con detector electrónico indica una concentración de 15% LEL. Se procedió a ventilar el recinto y cortar el suministro.",
+    "type": {
+      "id": "04",
+      "key": "safety",
+      "name": "Seguridad",
+      "name_en": "Safety"
+    },
+    "priority": "high",
+    "status": "open",
+    "approval": true,
+    "project": {
+      "id": "03",
+      "name": "Hospital Clínico La Florida"
+    },
+    "owner": {
+      "id": "usr_004",
+      "name": "María Soto",
+      "email": "maria.soto@constructoraspybee.cl",
+      "avatarUrl": "https://i.pravatar.cc/150?u=maria.soto@constructoraspybee.cl"
+    },
+    "whatsappOwner": null,
+    "assignees": [
+      {
+        "id": "usr_005",
+        "name": "Jorge Faúndez",
+        "email": "jorge.faundez@constructoraspybee.cl",
+        "avatarUrl": "https://i.pravatar.cc/150?u=jorge.faundez@constructoraspybee.cl"
+      },
+      {
+        "id": "usr_006",
+        "name": "Daniela Rojas",
+        "email": "daniela.rojas@constructoraspybee.cl",
+        "avatarUrl": "https://i.pravatar.cc/150?u=daniela.rojas@constructoraspybee.cl"
+      }
+    ],
+    "observers": [
+      {
+        "id": "usr_001",
+        "name": "Carlos Muñoz",
+        "email": "carlos.munoz@constructoraspybee.cl",
+        "avatarUrl": "https://i.pravatar.cc/150?u=carlos.munoz@constructoraspybee.cl"
+      }
+    ],
+    "coordinates": {
+      "lat": -33.5340,
+      "lng": -70.5845
+    },
+    "locationDescription": "Nivel -1, sala de calderas, edificio principal",
+    "dueDate": "2024-03-10T00:00:00.000Z",
+    "closingDate": null,
+    "media": [
+      {
+        "id": "med_014",
+        "name": "sala_calderas.jpg",
+        "type": "image",
+        "format": "image/jpeg",
+        "size": 1835008,
+        "status": "approved",
+        "url": "https://picsum.photos/seed/caldera1/800/600"
+      }
+    ],
+    "tags": [
+      {
+        "id": "tag_008",
+        "name": "seguridad",
+        "color": "#DC2626"
+      },
+      {
+        "id": "tag_011",
+        "name": "gas",
+        "color": "#F97316"
+      },
+      {
+        "id": "tag_003",
+        "name": "urgente",
+        "color": "#F97316"
+      }
+    ],
+    "deleted": null,
+    "createdAt": "2024-03-05T16:45:00.000Z",
+    "updatedAt": "2024-03-05T17:30:00.000Z"
+  },
+  {
+    "id": "673c832c6f24063e770710d1",
+    "sequenceId": "INC-202403-012",
+    "order": 12,
+    "title": "Pérdida de materiales en bodega",
+    "description": "Se ha detectado una diferencia entre el inventario físico y el registro del sistema en la bodega de materiales. Faltan 10 sacos de cemento especial y 20m² de cerámica importada.",
+    "type": {
+      "id": "06",
+      "key": "logistics",
+      "name": "Logística",
+      "name_en": "Logistics"
+    },
+    "priority": "low",
+    "status": "on_pause",
+    "approval": false,
+    "project": {
+      "id": "01",
+      "name": "Edificio Torres del Parque"
+    },
+    "owner": {
+      "id": "usr_009",
+      "name": "Carmen Díaz",
+      "email": "carmen.diaz@constructoraspybee.cl",
+      "avatarUrl": "https://i.pravatar.cc/150?u=carmen.diaz@constructoraspybee.cl"
+    },
+    "whatsappOwner": null,
+    "assignees": [
+      {
+        "id": "usr_008",
+        "name": "Felipe Torres",
+        "email": "felipe.torres@constructoraspybee.cl",
+        "avatarUrl": "https://i.pravatar.cc/150?u=felipe.torres@constructoraspybee.cl"
+      }
+    ],
+    "observers": [],
+    "coordinates": {
+      "lat": -33.4493,
+      "lng": -70.6698
+    },
+    "locationDescription": "Bodega central, sector materiales finos",
+    "dueDate": null,
+    "closingDate": null,
+    "media": [
+      {
+        "id": "med_015",
+        "name": "inventario_bodega.jpg",
+        "type": "image",
+        "format": "image/jpeg",
+        "size": 1572864,
+        "status": "approved",
+        "url": "https://picsum.photos/seed/bodega1/800/600"
+      }
+    ],
+    "tags": [
+      {
+        "id": "tag_012",
+        "name": "inventario",
+        "color": "#8B5CF6"
+      },
+      {
+        "id": "tag_013",
+        "name": "materiales",
+        "color": "#6B7280"
+      }
+    ],
+    "deleted": null,
+    "createdAt": "2024-03-10T08:00:00.000Z",
+    "updatedAt": "2024-03-12T14:20:00.000Z"
+  },
+  {
+    "id": "673c832c6f24063e770710d2",
+    "sequenceId": "INC-202404-013",
+    "order": 13,
+    "title": "Ruido excesivo en faenas nocturnas",
+    "description": "Vecinos del sector han presentado reclamos formales por ruido excesivo durante las faenas de excavación que se realizan después de las 22:00 hrs. La medición de decibeles supera los límites permitidos por la ordenanza municipal.",
+    "type": {
+      "id": "07",
+      "key": "environmental",
+      "name": "Medio Ambiente",
+      "name_en": "Environmental"
+    },
+    "priority": "medium",
+    "status": "open",
+    "approval": false,
+    "project": {
+      "id": "02",
+      "name": "Centro Comercial Los Dominicos"
+    },
+    "owner": {
+      "id": "usr_010",
+      "name": "Ana Martínez",
+      "email": "ana.martinez@constructoraspybee.cl",
+      "avatarUrl": "https://i.pravatar.cc/150?u=ana.martinez@constructoraspybee.cl"
+    },
+    "whatsappOwner": null,
+    "assignees": [
+      {
+        "id": "usr_001",
+        "name": "Carlos Muñoz",
+        "email": "carlos.munoz@constructoraspybee.cl",
+        "avatarUrl": "https://i.pravatar.cc/150?u=carlos.munoz@constructoraspybee.cl"
+      }
+    ],
+    "observers": [
+      {
+        "id": "usr_004",
+        "name": "María Soto",
+        "email": "maria.soto@constructoraspybee.cl",
+        "avatarUrl": "https://i.pravatar.cc/150?u=maria.soto@constructoraspybee.cl"
+      },
+      {
+        "id": "usr_008",
+        "name": "Felipe Torres",
+        "email": "felipe.torres@constructoraspybee.cl",
+        "avatarUrl": "https://i.pravatar.cc/150?u=felipe.torres@constructoraspybee.cl"
+      }
+    ],
+    "coordinates": {
+      "lat": -33.3826,
+      "lng": -70.5438
+    },
+    "locationDescription": "Sector de excavación, colindante con calle Los Dominicos",
+    "dueDate": "2024-04-15T00:00:00.000Z",
+    "closingDate": null,
+    "media": [
+      {
+        "id": "med_016",
+        "name": "medicion_ruido.mp4",
+        "type": "video",
+        "format": "video/mp4",
+        "size": 6291456,
+        "status": "pending",
+        "url": "https://www.w3schools.com/html/mov_bbb.mp4"
+      }
+    ],
+    "tags": [
+      {
+        "id": "tag_014",
+        "name": "ruido",
+        "color": "#A855F7"
+      },
+      {
+        "id": "tag_015",
+        "name": "comunidad",
+        "color": "#06B6D4"
+      }
+    ],
+    "deleted": null,
+    "createdAt": "2024-04-01T10:00:00.000Z",
+    "updatedAt": "2024-04-02T08:45:00.000Z"
+  },
+  {
+    "id": "673c832c6f24063e770710d3",
+    "sequenceId": "INC-202404-014",
+    "order": 14,
+    "title": "Equipo de protección personal incompleto en cuadrilla A",
+    "description": "Durante la inspección sorpresa del jueves se detectó que 3 trabajadores de la cuadrilla A no contaban con casco ni guantes de seguridad. Se detuvo la faena y se realizó charla de seguridad.",
+    "type": {
+      "id": "04",
+      "key": "safety",
+      "name": "Seguridad",
+      "name_en": "Safety"
+    },
+    "priority": "high",
+    "status": "closed",
+    "approval": true,
+    "project": {
+      "id": "01",
+      "name": "Edificio Torres del Parque"
+    },
+    "owner": {
+      "id": "usr_004",
+      "name": "María Soto",
+      "email": "maria.soto@constructoraspybee.cl",
+      "avatarUrl": "https://i.pravatar.cc/150?u=maria.soto@constructoraspybee.cl"
+    },
+    "whatsappOwner": null,
+    "assignees": [
+      {
+        "id": "usr_007",
+        "name": "Pedro Ramírez",
+        "email": "pedro.ramirez@constructoraspybee.cl",
+        "avatarUrl": "https://i.pravatar.cc/150?u=pedro.ramirez@constructoraspybee.cl"
+      }
+    ],
+    "observers": [],
+    "coordinates": {
+      "lat": -33.4488,
+      "lng": -70.6692
+    },
+    "locationDescription": "Piso 6, sector norte, frente a núcleo de escaleras",
+    "dueDate": "2024-04-05T00:00:00.000Z",
+    "closingDate": "2024-04-06T12:00:00.000Z",
+    "media": [],
+    "tags": [
+      {
+        "id": "tag_008",
+        "name": "seguridad",
+        "color": "#DC2626"
+      },
+      {
+        "id": "tag_016",
+        "name": "EPP",
+        "color": "#22C55E"
+      }
+    ],
+    "deleted": null,
+    "createdAt": "2024-04-03T11:30:00.000Z",
+    "updatedAt": "2024-04-06T12:00:00.000Z"
+  },
+  {
+    "id": "673c832c6f24063e770710d4",
+    "sequenceId": "INC-202404-015",
+    "order": 15,
+    "title": "Soldadura defectuosa en estructura metálica",
+    "description": "Las pruebas no destructivas realizadas a las uniones soldadas del marco estructural del piso 10 revelaron porosidad y falta de penetración en 4 uniones críticas. Se requiere reparación y nueva certificación.",
+    "type": {
+      "id": "01",
+      "key": "structural",
+      "name": "Estructural",
+      "name_en": "Structural"
+    },
+    "priority": "high",
+    "status": "on_pause",
+    "approval": false,
+    "project": {
+      "id": "03",
+      "name": "Hospital Clínico La Florida"
+    },
+    "owner": {
+      "id": "usr_001",
+      "name": "Carlos Muñoz",
+      "email": "carlos.munoz@constructoraspybee.cl",
+      "avatarUrl": "https://i.pravatar.cc/150?u=carlos.munoz@constructoraspybee.cl"
+    },
+    "whatsappOwner": null,
+    "assignees": [
+      {
+        "id": "usr_007",
+        "name": "Pedro Ramírez",
+        "email": "pedro.ramirez@constructoraspybee.cl",
+        "avatarUrl": "https://i.pravatar.cc/150?u=pedro.ramirez@constructoraspybee.cl"
+      },
+      {
+        "id": "usr_004",
+        "name": "María Soto",
+        "email": "maria.soto@constructoraspybee.cl",
+        "avatarUrl": "https://i.pravatar.cc/150?u=maria.soto@constructoraspybee.cl"
+      }
+    ],
+    "observers": [
+      {
+        "id": "usr_010",
+        "name": "Ana Martínez",
+        "email": "ana.martinez@constructoraspybee.cl",
+        "avatarUrl": "https://i.pravatar.cc/150?u=ana.martinez@constructoraspybee.cl"
+      }
+    ],
+    "coordinates": {
+      "lat": -33.5344,
+      "lng": -70.5840
+    },
+    "locationDescription": "Piso 10, uniones soldadas ejes C-4, C-5, D-4, D-5",
+    "dueDate": "2024-05-01T00:00:00.000Z",
+    "closingDate": null,
+    "media": [
+      {
+        "id": "med_017",
+        "name": "radiografia_soldadura.jpg",
+        "type": "image",
+        "format": "image/jpeg",
+        "size": 4194304,
+        "status": "approved",
+        "url": "https://picsum.photos/seed/soldadura1/800/600"
+      },
+      {
+        "id": "med_018",
+        "name": "video_inspeccion.mp4",
+        "type": "video",
+        "format": "video/mp4",
+        "size": 10485760,
+        "status": "approved",
+        "url": "https://www.w3schools.com/html/movie.mp4"
+      }
+    ],
+    "tags": [
+      {
+        "id": "tag_001",
+        "name": "estructural",
+        "color": "#EF4444"
+      },
+      {
+        "id": "tag_007",
+        "name": "calidad",
+        "color": "#14B8A6"
+      }
+    ],
+    "deleted": null,
+    "createdAt": "2024-04-10T13:00:00.000Z",
+    "updatedAt": "2024-04-15T09:00:00.000Z"
+  }
+]
