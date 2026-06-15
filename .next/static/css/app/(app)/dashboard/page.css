@@ -76,6 +76,370 @@
     flex: none;
   }
 }
+/*!************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[14].oneOf[7].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[14].oneOf[7].use[3]!./node_modules/next/dist/build/webpack/loaders/resolve-url-loader/index.js??ruleSet[1].rules[14].oneOf[7].use[4]!./node_modules/next/dist/compiled/sass-loader/cjs.js??ruleSet[1].rules[14].oneOf[7].use[5]!./src/components/ui/EmptyState.module.scss ***!
+  \************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+.EmptyState_container__Wuz8r {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 3rem 1.5rem;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+}
+
+.EmptyState_icon__bz0JH {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  line-height: 1;
+}
+.EmptyState_icon__bz0JH svg {
+  display: block;
+  width: 2.5rem;
+  height: 2.5rem;
+}
+
+.EmptyState_title__66QOG {
+  margin: 0 0 0.5rem;
+  font-size: 1.0625rem;
+  font-weight: 600;
+  color: #111827;
+}
+
+.EmptyState_description__Vz66s {
+  margin: 0 0 1.5rem;
+  max-width: 380px;
+  font-size: 0.875rem;
+  color: #6b7280;
+  line-height: 1.5;
+}
+
+.EmptyState_actions__6Zx4X {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.EmptyState_btnPrimary__VHbf7 {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.625rem 1.25rem;
+  border: none;
+  border-radius: 8px;
+  background: #2563eb;
+  color: #fff;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+.EmptyState_btnPrimary__VHbf7:hover {
+  background: #1d4ed8;
+}
+.EmptyState_btnPrimary__VHbf7:focus-visible {
+  outline: 2px solid #2563eb;
+  outline-offset: 2px;
+}
+
+.EmptyState_btnSecondary__D0R8k {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.625rem 1.25rem;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  background: #fff;
+  color: #374151;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  font-family: inherit;
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s;
+}
+.EmptyState_btnSecondary__D0R8k:hover {
+  background: #f9fafb;
+  border-color: #9ca3af;
+}
+.EmptyState_btnSecondary__D0R8k:focus-visible {
+  outline: 2px solid #2563eb;
+  outline-offset: 2px;
+}
+/*!************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[14].oneOf[7].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[14].oneOf[7].use[3]!./node_modules/next/dist/build/webpack/loaders/resolve-url-loader/index.js??ruleSet[1].rules[14].oneOf[7].use[4]!./node_modules/next/dist/compiled/sass-loader/cjs.js??ruleSet[1].rules[14].oneOf[7].use[5]!./src/components/ui/ErrorState.module.scss ***!
+  \************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+.ErrorState_container__MJuJ6 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 3rem 1.5rem;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+}
+
+.ErrorState_icon__sTmgj {
+  color: #dc2626;
+  margin-bottom: 1rem;
+  line-height: 1;
+}
+
+.ErrorState_title__MIAgL {
+  margin: 0 0 0.5rem;
+  font-size: 1.0625rem;
+  font-weight: 600;
+  color: #111827;
+}
+
+.ErrorState_message__nVeVP {
+  margin: 0 0 0.25rem;
+  max-width: 380px;
+  font-size: 0.875rem;
+  color: #6b7280;
+  line-height: 1.5;
+}
+
+.ErrorState_details__NiGAw {
+  margin: 0 0 1.5rem;
+  max-width: 440px;
+  font-size: 0.8125rem;
+  color: #9ca3af;
+  line-height: 1.5;
+}
+
+.ErrorState_btnRetry__GvG8s {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.625rem 1.25rem;
+  border: none;
+  border-radius: 8px;
+  background: #2563eb;
+  color: #fff;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+.ErrorState_btnRetry__GvG8s:hover {
+  background: #1d4ed8;
+}
+.ErrorState_btnRetry__GvG8s:focus-visible {
+  outline: 2px solid #2563eb;
+  outline-offset: 2px;
+}
+/*!***************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[14].oneOf[7].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[14].oneOf[7].use[3]!./node_modules/next/dist/build/webpack/loaders/resolve-url-loader/index.js??ruleSet[1].rules[14].oneOf[7].use[4]!./node_modules/next/dist/compiled/sass-loader/cjs.js??ruleSet[1].rules[14].oneOf[7].use[5]!./src/components/incident/CreateIncidentModal.module.scss ***!
+  \***************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+@charset "UTF-8";
+.CreateIncidentModal_overlay__ovXnt {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.5);
+  -webkit-backdrop-filter: blur(4px);
+          backdrop-filter: blur(4px);
+  padding: 1rem;
+}
+
+.CreateIncidentModal_modal__v6dDY {
+  width: 100%;
+  max-width: 560px;
+  max-height: 90dvh;
+  overflow-y: auto;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+  animation: CreateIncidentModal_slideUp__6V2FH 0.2s ease-out;
+}
+
+@keyframes CreateIncidentModal_slideUp__6V2FH {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+/* ─── Header ─────────────────────────────── */
+.CreateIncidentModal_header__AZ6S8 {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.25rem 1.5rem;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.CreateIncidentModal_title__Sktcj {
+  margin: 0;
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #111827;
+}
+
+.CreateIncidentModal_close__Hls0b {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border: none;
+  border-radius: 8px;
+  background: transparent;
+  color: #6b7280;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+.CreateIncidentModal_close__Hls0b:hover {
+  background: #f3f4f6;
+  color: #111827;
+}
+
+/* ─── Body ───────────────────────────────── */
+.CreateIncidentModal_body__TRNut {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.CreateIncidentModal_field__jMvzb {
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+  flex: 1 1;
+}
+
+.CreateIncidentModal_label__ps6Ev {
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: #374151;
+}
+
+.CreateIncidentModal_input__4Jkng,
+.CreateIncidentModal_textarea__zq49j,
+.CreateIncidentModal_select__JifQh {
+  width: 100%;
+  padding: 0.625rem 0.75rem;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 0.875rem;
+  font-family: inherit;
+  color: #111827;
+  background: #fff;
+  transition: border-color 0.15s, box-shadow 0.15s;
+  outline: none;
+}
+.CreateIncidentModal_input__4Jkng::placeholder,
+.CreateIncidentModal_textarea__zq49j::placeholder,
+.CreateIncidentModal_select__JifQh::placeholder {
+  color: #9ca3af;
+}
+.CreateIncidentModal_input__4Jkng:focus,
+.CreateIncidentModal_textarea__zq49j:focus,
+.CreateIncidentModal_select__JifQh:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+.CreateIncidentModal_textarea__zq49j {
+  resize: vertical;
+  min-height: 80px;
+}
+
+.CreateIncidentModal_select__JifQh {
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%236b7280' viewBox='0 0 16 16'%3E%3Cpath d='M8 11L3 6h10l-5 5z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.75rem center;
+  padding-right: 2.25rem;
+}
+
+.CreateIncidentModal_row__MkIt7 {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 1rem;
+  gap: 1rem;
+}
+@media (max-width: 520px) {
+  .CreateIncidentModal_row__MkIt7 {
+    grid-template-columns: 1fr;
+  }
+}
+
+.CreateIncidentModal_error__yg_kz {
+  margin: 0;
+  font-size: 0.75rem;
+  color: #dc2626;
+}
+
+/* ─── Footer ─────────────────────────────── */
+.CreateIncidentModal_footer__pJ0qs {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.75rem;
+  padding: 1rem 1.5rem;
+  border-top: 1px solid #e5e7eb;
+}
+@media (max-width: 520px) {
+  .CreateIncidentModal_footer__pJ0qs {
+    flex-direction: column-reverse;
+  }
+  .CreateIncidentModal_footer__pJ0qs .CreateIncidentModal_btnPrimary___n_z0,
+  .CreateIncidentModal_footer__pJ0qs .CreateIncidentModal_btnSecondary__uRup8 {
+    width: 100%;
+    justify-content: center;
+    padding: 0.75rem 1.25rem;
+  }
+}
+
+.CreateIncidentModal_btnPrimary___n_z0,
+.CreateIncidentModal_btnSecondary__uRup8 {
+  padding: 0.5rem 1.25rem;
+  border-radius: 8px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  font-family: inherit;
+  cursor: pointer;
+  transition: background 0.15s, opacity 0.15s;
+}
+
+.CreateIncidentModal_btnPrimary___n_z0 {
+  border: none;
+  background: #2563eb;
+  color: #fff;
+}
+.CreateIncidentModal_btnPrimary___n_z0:hover:not(:disabled) {
+  background: #1d4ed8;
+}
+.CreateIncidentModal_btnPrimary___n_z0:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.CreateIncidentModal_btnSecondary__uRup8 {
+  border: 1px solid #d1d5db;
+  background: #fff;
+  color: #374151;
+}
+.CreateIncidentModal_btnSecondary__uRup8:hover {
+  background: #f3f4f6;
+}
 /*!****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[14].oneOf[7].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[14].oneOf[7].use[3]!./node_modules/next/dist/build/webpack/loaders/resolve-url-loader/index.js??ruleSet[1].rules[14].oneOf[7].use[4]!./node_modules/next/dist/compiled/sass-loader/cjs.js??ruleSet[1].rules[14].oneOf[7].use[5]!./src/components/dashboard/KPICard.module.scss ***!
   \****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/

@@ -2,7 +2,8 @@
 
 import { useState, useCallback } from 'react';
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
+import { useAuthStore } from '@/domain/auth/store';
 import styles from './Sidebar.module.scss';
 
 const NAV = [
@@ -17,9 +18,17 @@ type SidebarProps = {
 
 export function Sidebar({ mobileOpen, onMobileClose }: SidebarProps) {
   const pathname = usePathname();
+  const router = useRouter();
   const [collapsed, setCollapsed] = useState(false);
+  const user = useAuthStore((s) => s.user);
+  const logout = useAuthStore((s) => s.logout);
 
   const toggleCollapse = useCallback(() => setCollapsed((c) => !c), []);
+
+  const handleLogout = useCallback(() => {
+    logout();
+    router.push('/login');
+  }, [logout, router]);
 
   return (
     <>
@@ -52,14 +61,28 @@ export function Sidebar({ mobileOpen, onMobileClose }: SidebarProps) {
           })}
         </nav>
 
+        {user && (
+          <div className={styles.user}>
+            <div className={styles.userAvatar}>
+              {user.name.charAt(0).toUpperCase()}
+            </div>
+            {!collapsed && (
+              <div className={styles.userInfo}>
+                <span className={styles.userName}>{user.name}</span>
+                <span className={styles.userEmail}>{user.email}</span>
+              </div>
+            )}
+          </div>
+        )}
+
         <button
           type="button"
-          className={styles.toggle}
-          onClick={toggleCollapse}
-          aria-label={collapsed ? 'Expandir sidebar' : 'Colapsar sidebar'}
+          className={styles.logoutBtn}
+          onClick={handleLogout}
+          aria-label="Cerrar sesión"
         >
-          <span className={styles.toggleIcon}>{collapsed ? '▶' : '◀'}</span>
-          {!collapsed && <span className={styles.toggleLabel}>Colapsar</span>}
+          <span className={styles.logoutIcon}>🚪</span>
+          {!collapsed && <span className={styles.logoutLabel}>Cerrar sesión</span>}
         </button>
       </aside>
     </>

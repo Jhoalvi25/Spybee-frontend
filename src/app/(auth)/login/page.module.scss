@@ -1,0 +1,138 @@
+.page {
+  min-height: 100dvh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 1.5rem;
+  background: #f9fafb;
+  font-family: system-ui, -apple-system, sans-serif;
+}
+
+.card {
+  width: 100%;
+  max-width: 400px;
+  background: #fff;
+  border-radius: 16px;
+  padding: 2.5rem 2rem;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+  text-align: center;
+}
+
+.logo {
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.title {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #111827;
+}
+
+.subtitle {
+  margin: 0.375rem 0 2rem;
+  font-size: 0.9375rem;
+  color: #6b7280;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  text-align: left;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+}
+
+.label {
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: #374151;
+}
+
+.input {
+  width: 100%;
+  padding: 0.625rem 0.75rem;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 0.875rem;
+  font-family: inherit;
+  color: #111827;
+  background: #fff;
+  transition: border-color 0.15s, box-shadow 0.15s;
+  outline: none;
+  box-sizing: border-box;
+
+  &::placeholder {
+    color: #9ca3af;
+  }
+
+  &:focus {
+    border-color: #2563eb;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+  }
+}
+
+.error {
+  margin: 0;
+  font-size: 0.75rem;
+  color: #dc2626;
+}
+
+.serverError {
+  margin: 0;
+  font-size: 0.8125rem;
+  color: #dc2626;
+  text-align: center;
+  padding: 0.5rem 0.75rem;
+  background: #fef2f2;
+  border-radius: 8px;
+}
+
+.submit {
+  width: 100%;
+  padding: 0.625rem 1.5rem;
+  border: none;
+  border-radius: 8px;
+  background: #2563eb;
+  color: #fff;
+  font-size: 0.9375rem;
+  font-weight: 500;
+  font-family: inherit;
+  cursor: pointer;
+  transition: background 0.15s, opacity 0.15s;
+  margin-top: 0.5rem;
+
+  &:hover:not(:disabled) {
+    background: #1d4ed8;
+  }
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+}
+
+.hint {
+  margin: 1.5rem 0 0;
+  font-size: 0.75rem;
+  color: #9ca3af;
+}
+
+.backLink {
+  display: inline-block;
+  margin-top: 0.75rem;
+  font-size: 0.8125rem;
+  color: #6b7280;
+  text-decoration: none;
+  transition: color 0.15s;
+
+  &:hover {
+    color: #2563eb;
+  }
+}

@@ -76,7 +76,19 @@
 }
 
 .counter {
-  margin: 0;
+  margin: 0 0 1.5rem;
   font-size: 0.875rem;
   color: #9ca3af;
+}
+
+.loginLink {
+  display: inline-block;
+  font-size: 0.8125rem;
+  color: #6b7280;
+  text-decoration: none;
+  transition: color 0.15s;
+
+  &:hover {
+    color: #2563eb;
+  }
 }

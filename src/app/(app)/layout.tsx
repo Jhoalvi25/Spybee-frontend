@@ -2,6 +2,7 @@
 
 import { useState, useCallback } from 'react';
 import { Sidebar } from '@/components/layout/Sidebar';
+import { AuthGuard } from '@/components/layout/AuthGuard';
 import styles from './layout.module.scss';
 
 export default function AppLayout({ children }: { children: React.ReactNode }) {
@@ -11,23 +12,25 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
   const closeMobile = useCallback(() => setMobileOpen(false), []);
 
   return (
-    <div className={styles.layout}>
-      <Sidebar mobileOpen={mobileOpen} onMobileClose={closeMobile} />
+    <AuthGuard>
+      <div className={styles.layout}>
+        <Sidebar mobileOpen={mobileOpen} onMobileClose={closeMobile} />
 
-      <div className={styles.content}>
-        <button
-          type="button"
-          className={styles.hamburger}
-          onClick={openMobile}
-          aria-label="Abrir menú"
-        >
-          <span className={styles.hamburgerBar} />
-          <span className={styles.hamburgerBar} />
-          <span className={styles.hamburgerBar} />
-        </button>
+        <div className={styles.content}>
+          <button
+            type="button"
+            className={styles.hamburger}
+            onClick={openMobile}
+            aria-label="Abrir menú"
+          >
+            <span className={styles.hamburgerBar} />
+            <span className={styles.hamburgerBar} />
+            <span className={styles.hamburgerBar} />
+          </button>
 
-        {children}
+          {children}
+        </div>
       </div>
-    </div>
+    </AuthGuard>
   );
 }

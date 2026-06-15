@@ -45,3 +45,11 @@
   text-align: center;
   line-height: 1.5;
 }
+
+.stateCard {
+  max-width: 420px;
+  width: 100%;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.12);
+}

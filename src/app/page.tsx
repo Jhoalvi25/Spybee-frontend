@@ -40,6 +40,10 @@ export default function Home() {
         {incidents.length} incidencias cargadas
       </p>
 
+      <Link href="/login" className={styles.loginLink}>
+        Iniciar sesión
+      </Link>
+
       <CreateIncidentModal open={modalOpen} onClose={() => setModalOpen(false)} />
     </main>
   );

@@ -76,6 +76,165 @@
     flex: none;
   }
 }
+/*!************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[14].oneOf[7].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[14].oneOf[7].use[3]!./node_modules/next/dist/build/webpack/loaders/resolve-url-loader/index.js??ruleSet[1].rules[14].oneOf[7].use[4]!./node_modules/next/dist/compiled/sass-loader/cjs.js??ruleSet[1].rules[14].oneOf[7].use[5]!./src/components/ui/EmptyState.module.scss ***!
+  \************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+.EmptyState_container__Wuz8r {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 3rem 1.5rem;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+}
+
+.EmptyState_icon__bz0JH {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  line-height: 1;
+}
+.EmptyState_icon__bz0JH svg {
+  display: block;
+  width: 2.5rem;
+  height: 2.5rem;
+}
+
+.EmptyState_title__66QOG {
+  margin: 0 0 0.5rem;
+  font-size: 1.0625rem;
+  font-weight: 600;
+  color: #111827;
+}
+
+.EmptyState_description__Vz66s {
+  margin: 0 0 1.5rem;
+  max-width: 380px;
+  font-size: 0.875rem;
+  color: #6b7280;
+  line-height: 1.5;
+}
+
+.EmptyState_actions__6Zx4X {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.EmptyState_btnPrimary__VHbf7 {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.625rem 1.25rem;
+  border: none;
+  border-radius: 8px;
+  background: #2563eb;
+  color: #fff;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+.EmptyState_btnPrimary__VHbf7:hover {
+  background: #1d4ed8;
+}
+.EmptyState_btnPrimary__VHbf7:focus-visible {
+  outline: 2px solid #2563eb;
+  outline-offset: 2px;
+}
+
+.EmptyState_btnSecondary__D0R8k {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.625rem 1.25rem;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  background: #fff;
+  color: #374151;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  font-family: inherit;
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s;
+}
+.EmptyState_btnSecondary__D0R8k:hover {
+  background: #f9fafb;
+  border-color: #9ca3af;
+}
+.EmptyState_btnSecondary__D0R8k:focus-visible {
+  outline: 2px solid #2563eb;
+  outline-offset: 2px;
+}
+/*!************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[14].oneOf[7].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[14].oneOf[7].use[3]!./node_modules/next/dist/build/webpack/loaders/resolve-url-loader/index.js??ruleSet[1].rules[14].oneOf[7].use[4]!./node_modules/next/dist/compiled/sass-loader/cjs.js??ruleSet[1].rules[14].oneOf[7].use[5]!./src/components/ui/ErrorState.module.scss ***!
+  \************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+.ErrorState_container__MJuJ6 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 3rem 1.5rem;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+}
+
+.ErrorState_icon__sTmgj {
+  color: #dc2626;
+  margin-bottom: 1rem;
+  line-height: 1;
+}
+
+.ErrorState_title__MIAgL {
+  margin: 0 0 0.5rem;
+  font-size: 1.0625rem;
+  font-weight: 600;
+  color: #111827;
+}
+
+.ErrorState_message__nVeVP {
+  margin: 0 0 0.25rem;
+  max-width: 380px;
+  font-size: 0.875rem;
+  color: #6b7280;
+  line-height: 1.5;
+}
+
+.ErrorState_details__NiGAw {
+  margin: 0 0 1.5rem;
+  max-width: 440px;
+  font-size: 0.8125rem;
+  color: #9ca3af;
+  line-height: 1.5;
+}
+
+.ErrorState_btnRetry__GvG8s {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.625rem 1.25rem;
+  border: none;
+  border-radius: 8px;
+  background: #2563eb;
+  color: #fff;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+.ErrorState_btnRetry__GvG8s:hover {
+  background: #1d4ed8;
+}
+.ErrorState_btnRetry__GvG8s:focus-visible {
+  outline: 2px solid #2563eb;
+  outline-offset: 2px;
+}
 /*!**********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[14].oneOf[7].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[14].oneOf[7].use[3]!./node_modules/next/dist/build/webpack/loaders/resolve-url-loader/index.js??ruleSet[1].rules[14].oneOf[7].use[4]!./node_modules/next/dist/compiled/sass-loader/cjs.js??ruleSet[1].rules[14].oneOf[7].use[5]!./src/components/map/MapView.module.scss ***!
   \**********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
@@ -125,4 +284,12 @@
   border-radius: 8px;
   text-align: center;
   line-height: 1.5;
+}
+
+.MapView_stateCard__sea2V {
+  max-width: 420px;
+  width: 100%;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.12);
 }
