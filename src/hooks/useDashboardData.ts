@@ -15,7 +15,7 @@ const MONTH_INDEX: Record<string, number> = {
 const STATUS_COLORS: Record<IncidentStatus, string> = {
   open: '#22C55E',
   on_pause: '#F59E0B',
-  closed: '#9CA3AF',
+  closed: '#A3A3A3',
 };
 
 const STATUS_LABELS: Record<IncidentStatus, string> = {
@@ -27,7 +27,7 @@ const STATUS_LABELS: Record<IncidentStatus, string> = {
 const PRIORITY_COLORS: Record<IncidentPriority, string> = {
   high: '#EF4444',
   medium: '#F59E0B',
-  low: '#3B82F6',
+  low: '#F4C400',
 };
 
 const PRIORITY_LABELS: Record<IncidentPriority, string> = {

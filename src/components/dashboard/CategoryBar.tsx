@@ -19,12 +19,12 @@ function CustomTooltip({ active, payload, label }: any) {
   return (
     <div
       style={{
-        background: '#fff',
-        border: '1px solid #e5e7eb',
-        borderRadius: 8,
+        background: 'var(--white)',
+        border: '1px solid var(--gray-200)',
+        borderRadius: 'var(--radius-sm)',
         padding: '0.5rem 0.75rem',
         fontSize: '0.8125rem',
-        boxShadow: '0 4px 12px rgba(0,0,0,0.08)',
+        boxShadow: 'var(--shadow-md)',
       }}
     >
       <strong>{label}:</strong> {payload[0].value}
@@ -33,8 +33,8 @@ function CustomTooltip({ active, payload, label }: any) {
 }
 
 const BAR_COLORS = [
-  '#2563EB', '#059669', '#D97706', '#DC2626',
-  '#7C3AED', '#0891B2', '#DB2777', '#65A30D',
+  '#F4C400', '#1F1F1F', '#22C55E', '#EF4444',
+  '#7C3AED', '#F59E0B', '#A3A3A3', '#0891B2',
 ];
 
 export function CategoryBar({ data }: CategoryBarProps) {
@@ -44,17 +44,17 @@ export function CategoryBar({ data }: CategoryBarProps) {
         <BarChart data={data} margin={{ top: 4, right: 16, left: 0, bottom: 4 }}>
           <XAxis
             dataKey="name"
-            tick={{ fontSize: 12, fill: '#6b7280' }}
-            axisLine={{ stroke: '#e5e7eb' }}
+            tick={{ fontSize: 12, fill: 'var(--gray-500)' }}
+            axisLine={{ stroke: 'var(--gray-200)' }}
             tickLine={false}
           />
           <YAxis
-            tick={{ fontSize: 12, fill: '#6b7280' }}
+            tick={{ fontSize: 12, fill: 'var(--gray-500)' }}
             axisLine={false}
             tickLine={false}
             allowDecimals={false}
           />
-          <Tooltip content={<CustomTooltip />} cursor={{ fill: '#f3f4f6' }} />
+          <Tooltip content={<CustomTooltip />} cursor={{ fill: 'var(--gray-100)' }} />
           <Bar dataKey="value" radius={[4, 4, 0, 0]} maxBarSize={48}>
             {data.map((_, i) => (
               <Cell key={i} fill={BAR_COLORS[i % BAR_COLORS.length]} />

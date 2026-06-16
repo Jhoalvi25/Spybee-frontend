@@ -18,12 +18,12 @@ function CustomTooltip({ active, payload }: any) {
   return (
     <div
       style={{
-        background: '#fff',
-        border: '1px solid #e5e7eb',
-        borderRadius: 8,
+        background: 'var(--white)',
+        border: '1px solid var(--gray-200)',
+        borderRadius: 'var(--radius-sm)',
         padding: '0.5rem 0.75rem',
         fontSize: '0.8125rem',
-        boxShadow: '0 4px 12px rgba(0,0,0,0.08)',
+        boxShadow: 'var(--shadow-md)',
       }}
     >
       <span style={{ display: 'inline-block', width: 10, height: 10, borderRadius: '50%', background: color, marginRight: 6 }} />
@@ -63,6 +63,7 @@ export function StatusDonut({ data }: StatusDonutProps) {
           margin: '0.5rem 0 0',
           padding: 0,
           flexWrap: 'wrap',
+          color: 'var(--gray-500)',
         }}
       >
         {data.map((d) => (
@@ -73,7 +74,7 @@ export function StatusDonut({ data }: StatusDonutProps) {
               alignItems: 'center',
               gap: 6,
               fontSize: '0.8125rem',
-              color: '#6b7280',
+              color: 'var(--gray-500)',
             }}
           >
             <span

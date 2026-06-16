@@ -1,9 +1,7 @@
-/* ─── Variables ──────────────────────────── */
-$sidebar-width: 240px;
-$sidebar-collapsed: 60px;
+$sidebar-width: 260px;
+$sidebar-collapsed: 64px;
 $mobile-break: 768px;
 
-/* ─── Sidebar base ──────────────────────── */
 .sidebar {
   width: $sidebar-width;
   min-height: 100dvh;
@@ -14,6 +12,7 @@ $mobile-break: 768px;
   flex-shrink: 0;
   transition: width 0.2s ease;
   overflow: hidden;
+  position: relative;
 
   @media (max-width: $mobile-break) {
     position: fixed;
@@ -22,7 +21,7 @@ $mobile-break: 768px;
     bottom: 0;
     z-index: 110;
     transform: translateX(-100%);
-    transition: transform 0.25s ease;
+    transition: transform 0.25s ease, width 0.2s ease;
     width: $sidebar-width;
   }
 }
@@ -37,7 +36,6 @@ $mobile-break: 768px;
   width: $sidebar-collapsed;
 }
 
-/* ─── Overlay (mobile only) ─────────────── */
 .overlay {
   display: none;
 
@@ -46,38 +44,58 @@ $mobile-break: 768px;
     position: fixed;
     inset: 0;
     z-index: 109;
-    background: rgba(0, 0, 0, 0.4);
+    background: rgba(0, 0, 0, 0.5);
   }
 }
 
-/* ─── Logo ──────────────────────────────── */
+/* ─── Logo ─────────────────────────────── */
+
 .logo {
   display: flex;
   align-items: center;
-  gap: 0.625rem;
-  padding: 1.25rem 1rem;
-  border-bottom: 1px solid #e5e7eb;
+  padding: 1.25rem 1rem 0.75rem;
   min-height: 60px;
+}
+
+.logoImg {
+  display: block;
+  height: 72px;
+  width: auto;
+  object-fit: contain;
+}
+
+/* ─── Project name ─────────────────────── */
+
+.projectSection {
+  padding: 0 1rem 1rem;
+  border-bottom: 1px solid #e5e7eb;
   white-space: nowrap;
 }
 
-.logoIcon {
-  font-size: 1.375rem;
-  flex-shrink: 0;
+.projectLabel {
+  font-size: 0.6875rem;
+  font-weight: 600;
+  color: #9ca3af;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 
-.logoText {
-  font-size: 1.125rem;
-  font-weight: 700;
+.projectName {
+  margin-top: 0.125rem;
+  font-size: 0.875rem;
+  font-weight: 600;
   color: #111827;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
-/* ─── Navigation ────────────────────────── */
+/* ─── Nav ──────────────────────────────── */
+
 .nav {
   flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 0.25rem;
+  gap: 0.125rem;
   padding: 0.75rem 0.5rem;
 }
 
@@ -86,35 +104,41 @@ $mobile-break: 768px;
   align-items: center;
   gap: 0.75rem;
   padding: 0.625rem 0.75rem;
-  border-radius: 8px;
+  padding-left: calc(0.75rem + 4px);
+  border-left: 4px solid transparent;
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
   text-decoration: none;
   color: #6b7280;
   font-size: 0.875rem;
   font-weight: 500;
-  transition: background 0.15s, color 0.15s;
+  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
   white-space: nowrap;
 
   &:hover {
-    background: #f3f4f6;
+    background: #fff7cc;
     color: #111827;
   }
 }
 
 .active {
-  background: #eff6ff;
-  color: #2563eb;
+  background: #fff1a8;
+  color: #111827;
+  border-left-color: #f4c400;
 
   &:hover {
-    background: #dbeafe;
-    color: #2563eb;
+    background: #ffe87f;
+    color: #111827;
   }
 }
 
 .linkIcon {
-  font-size: 1.125rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
   flex-shrink: 0;
-  width: 1.25rem;
-  text-align: center;
+  transition: transform 0.2s ease;
 }
 
 .linkLabel {
@@ -122,7 +146,8 @@ $mobile-break: 768px;
   text-overflow: ellipsis;
 }
 
-/* ─── User section ──────────────────────── */
+/* ─── User ─────────────────────────────── */
+
 .user {
   display: flex;
   align-items: center;
@@ -136,13 +161,13 @@ $mobile-break: 768px;
   width: 32px;
   height: 32px;
   border-radius: 50%;
-  background: #2563eb;
-  color: #fff;
+  background: #f4c400;
+  color: #111827;
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 0.8125rem;
-  font-weight: 600;
+  font-weight: 700;
   flex-shrink: 0;
 }
 
@@ -168,7 +193,8 @@ $mobile-break: 768px;
   text-overflow: ellipsis;
 }
 
-/* ─── Logout button ─────────────────────── */
+/* ─── Logout ───────────────────────────── */
+
 .logoutBtn {
   display: flex;
   align-items: center;
@@ -181,25 +207,61 @@ $mobile-break: 768px;
   font-size: 0.8125rem;
   font-family: inherit;
   cursor: pointer;
-  transition: color 0.15s, background 0.15s;
+  transition: color 0.2s ease, background 0.2s ease;
 
   &:hover {
-    background: #fef2f2;
-    color: #dc2626;
+    background: #fff7cc;
+    color: #ef4444;
   }
 
   @media (max-width: $mobile-break) {
-    display: none; /* no logout in mobile sidebar? actually keep it */
+    display: none;
   }
 }
 
 .logoutIcon {
-  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
   flex-shrink: 0;
-  width: 1.25rem;
-  text-align: center;
 }
 
 .logoutLabel {
   white-space: nowrap;
+}
+
+/* ─── Collapse toggle (desktop only) ───── */
+
+.collapseBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  bottom: 1rem;
+  right: -12px;
+  width: 24px;
+  height: 24px;
+  border: 1px solid #e5e7eb;
+  border-radius: 50%;
+  background: #fff;
+  color: #9ca3af;
+  cursor: pointer;
+  transition: color 0.2s ease, background 0.2s ease, transform 0.2s ease;
+  z-index: 1;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+
+  &:hover {
+    background: #fff7cc;
+    color: #111827;
+  }
+
+  @media (max-width: $mobile-break) {
+    display: none;
+  }
+}
+
+.collapseBtnRotated {
+  transform: rotate(180deg);
 }

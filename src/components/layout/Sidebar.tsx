@@ -3,12 +3,14 @@
 import { useState, useCallback } from 'react';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
+import { LayoutDashboard, Map, LogOut, ChevronLeft } from 'lucide-react';
 import { useAuthStore } from '@/domain/auth/store';
+import { useProjectStore } from '@/domain/project/store';
 import styles from './Sidebar.module.scss';
 
 const NAV = [
-  { href: '/dashboard', label: 'Dashboard', icon: '📊' },
-  { href: '/map', label: 'Mapa', icon: '🗺️' },
+  { href: '/dashboard', label: 'Dashboard', icon: LayoutDashboard },
+  { href: '/map', label: 'Mapa', icon: Map },
 ];
 
 type SidebarProps = {
@@ -22,6 +24,7 @@ export function Sidebar({ mobileOpen, onMobileClose }: SidebarProps) {
   const [collapsed, setCollapsed] = useState(false);
   const user = useAuthStore((s) => s.user);
   const logout = useAuthStore((s) => s.logout);
+  const selectedProject = useProjectStore((s) => s.selectedProject);
 
   const toggleCollapse = useCallback(() => setCollapsed((c) => !c), []);
 
@@ -40,13 +43,24 @@ export function Sidebar({ mobileOpen, onMobileClose }: SidebarProps) {
         className={`${styles.sidebar} ${collapsed ? styles.collapsed : ''} ${mobileOpen ? styles.mobileOpen : ''}`}
       >
         <div className={styles.logo}>
-          <span className={styles.logoIcon}>🔷</span>
-          {!collapsed && <span className={styles.logoText}>Spybee</span>}
+          <img
+            src="https://framerusercontent.com/images/KMIp6oxIY5aDYfDah2Rt0hoPC0.png?width=1818&height=900"
+            alt="Spybee"
+            className={styles.logoImg}
+          />
         </div>
+
+        {!collapsed && selectedProject && (
+          <div className={styles.projectSection}>
+            <span className={styles.projectLabel}>Proyecto</span>
+            <p className={styles.projectName}>{selectedProject.name}</p>
+          </div>
+        )}
 
         <nav className={styles.nav}>
           {NAV.map((item) => {
             const isActive = pathname === item.href || pathname.startsWith(item.href + '/');
+            const Icon = item.icon;
             return (
               <Link
                 key={item.href}
@@ -54,7 +68,9 @@ export function Sidebar({ mobileOpen, onMobileClose }: SidebarProps) {
                 className={`${styles.link} ${isActive ? styles.active : ''}`}
                 onClick={onMobileClose}
               >
-                <span className={styles.linkIcon}>{item.icon}</span>
+                <span className={styles.linkIcon}>
+                  <Icon size={18} />
+                </span>
                 {!collapsed && <span className={styles.linkLabel}>{item.label}</span>}
               </Link>
             );
@@ -81,8 +97,19 @@ export function Sidebar({ mobileOpen, onMobileClose }: SidebarProps) {
           onClick={handleLogout}
           aria-label="Cerrar sesión"
         >
-          <span className={styles.logoutIcon}>🚪</span>
+          <span className={styles.logoutIcon}>
+            <LogOut size={16} />
+          </span>
           {!collapsed && <span className={styles.logoutLabel}>Cerrar sesión</span>}
+        </button>
+
+        <button
+          type="button"
+          className={`${styles.collapseBtn} ${collapsed ? styles.collapseBtnRotated : ''}`}
+          onClick={toggleCollapse}
+          aria-label={collapsed ? 'Expandir sidebar' : 'Colapsar sidebar'}
+        >
+          <ChevronLeft size={14} />
         </button>
       </aside>
     </>

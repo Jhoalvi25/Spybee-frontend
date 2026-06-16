@@ -68,12 +68,18 @@ export interface Incident {
   updatedAt: string;
 }
 
+export interface CreateIncidentMedia {
+  name: string;
+  url: string;
+}
+
 export interface CreateIncidentDTO {
   title: string;
   description: string;
   typeKey: string;
   priority: IncidentPriority;
   projectId: string;
+  status?: IncidentStatus;
   ownerId?: string;
   assigneeIds?: string[];
   observerIds?: string[];
@@ -82,6 +88,7 @@ export interface CreateIncidentDTO {
   locationDescription: string;
   dueDate?: string;
   tagIds?: string[];
+  media?: CreateIncidentMedia[];
 }
 
 export interface UpdateIncidentDTO {

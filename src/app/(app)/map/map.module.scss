@@ -1,5 +1,14 @@
+$mobile-break: 768px;
+
 .page {
   flex: 1;
   display: flex;
   overflow: hidden;
+  position: relative;
+
+  @media (max-width: $mobile-break) {
+    margin-top: -60px;
+    padding-top: 0;
+    height: 100dvh;
+  }
 }

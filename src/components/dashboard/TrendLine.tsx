@@ -20,12 +20,12 @@ function CustomTooltip({ active, payload, label }: any) {
   return (
     <div
       style={{
-        background: '#fff',
-        border: '1px solid #e5e7eb',
-        borderRadius: 8,
+        background: 'var(--white)',
+        border: '1px solid var(--gray-200)',
+        borderRadius: 'var(--radius-sm)',
         padding: '0.5rem 0.75rem',
         fontSize: '0.8125rem',
-        boxShadow: '0 4px 12px rgba(0,0,0,0.08)',
+        boxShadow: 'var(--shadow-md)',
       }}
     >
       <p style={{ margin: '0 0 4px', fontWeight: 600 }}>{label}</p>
@@ -43,15 +43,15 @@ export function TrendLine({ data }: TrendLineProps) {
     <ChartCard title="Tendencia mensual" fullWidth>
       <ResponsiveContainer width="100%" height={320}>
         <LineChart data={data} margin={{ top: 8, right: 16, left: 0, bottom: 4 }}>
-          <CartesianGrid strokeDasharray="4 4" stroke="#f3f4f6" />
+          <CartesianGrid strokeDasharray="4 4" stroke="var(--gray-100)" />
           <XAxis
             dataKey="month"
-            tick={{ fontSize: 12, fill: '#6b7280' }}
-            axisLine={{ stroke: '#e5e7eb' }}
+            tick={{ fontSize: 12, fill: 'var(--gray-500)' }}
+            axisLine={{ stroke: 'var(--gray-200)' }}
             tickLine={false}
           />
           <YAxis
-            tick={{ fontSize: 12, fill: '#6b7280' }}
+            tick={{ fontSize: 12, fill: 'var(--gray-500)' }}
             axisLine={false}
             tickLine={false}
             allowDecimals={false}
@@ -59,22 +59,22 @@ export function TrendLine({ data }: TrendLineProps) {
           <Tooltip content={<CustomTooltip />} />
           <Legend
             formatter={(value) => (value === 'created' ? 'Creadas' : 'Cerradas')}
-            wrapperStyle={{ fontSize: '0.8125rem', color: '#6b7280' }}
+            wrapperStyle={{ fontSize: '0.8125rem', color: 'var(--gray-500)' }}
           />
           <Line
             type="monotone"
             dataKey="created"
-            stroke="#2563EB"
+            stroke="#F4C400"
             strokeWidth={2}
-            dot={{ r: 3, fill: '#2563EB' }}
+            dot={{ r: 3, fill: '#F4C400' }}
             activeDot={{ r: 5 }}
           />
           <Line
             type="monotone"
             dataKey="closed"
-            stroke="#16A34A"
+            stroke="#1F1F1F"
             strokeWidth={2}
-            dot={{ r: 3, fill: '#16A34A' }}
+            dot={{ r: 3, fill: '#1F1F1F' }}
             activeDot={{ r: 5 }}
           />
         </LineChart>

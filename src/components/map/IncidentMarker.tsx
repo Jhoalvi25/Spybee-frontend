@@ -1,29 +1,30 @@
 'use client';
 
 import { memo, useEffect, useRef } from 'react';
+import { useRouter } from 'next/navigation';
 import mapboxgl from 'mapbox-gl';
 import { useMapInstance } from './MapContext';
 import type { Incident } from '@/domain/incident/types';
 import { getStatusLabel, getPriorityLabel } from '@/domain/incident/hooks';
 
-const PRIORITY_COLORS: Record<string, string> = {
-  high: '#EF4444',
-  medium: '#F59E0B',
-  low: '#3B82F6',
-};
+function getMarkerColor(incident: Incident): string {
+  if (incident.status === 'closed') return '#22C55E';
+  if (incident.priority === 'high') return '#EF4444';
+  return '#F4C400';
+}
 
-const PRIORITY_SHADOWS: Record<string, string> = {
-  high: '0 0 0 4px rgba(239,68,68,0.3)',
-  medium: '0 0 0 4px rgba(245,158,11,0.3)',
-  low: '0 0 0 4px rgba(59,130,246,0.3)',
-};
+function getMarkerShadow(color: string): string {
+  return `0 2px 8px ${color}66, 0 0 0 3px rgba(255,255,255,0.6)`;
+}
 
 function popupHTML(incident: Incident): string {
   const statusLabel = getStatusLabel(incident.status);
   const priorityLabel = getPriorityLabel(incident.priority);
+  const color = getMarkerColor(incident);
 
   return `
     <div class="incident-popup">
+      <div class="incident-popup__bar" style="background:${color}"></div>
       <h3 class="incident-popup__title">${incident.title}</h3>
       <div class="incident-popup__meta">
         <span class="incident-popup__badge incident-popup__badge--${incident.priority}">${priorityLabel}</span>
@@ -32,7 +33,7 @@ function popupHTML(incident: Incident): string {
       <p class="incident-popup__detail"><strong>Tipo:</strong> ${incident.type.name}</p>
       <p class="incident-popup__detail"><strong>Proyecto:</strong> ${incident.project.name}</p>
       <span class="incident-popup__id">${incident.sequenceId}</span>
-      <a href="/incidents/${incident.id}" class="incident-popup__link">Ver detalle →</a>
+      <a href="/incidents/${incident.id}" class="incident-popup__link">Ver detalle</a>
     </div>
   `;
 }
@@ -54,31 +55,43 @@ export const IncidentMarker = memo(function IncidentMarker({
   useEffect(() => {
     if (!map) return;
 
+    const color = getMarkerColor(incident);
+
     const el = document.createElement('div');
     el.className = 'incident-marker';
-    el.style.cssText = `
-      cursor: pointer;
+
+    el.innerHTML = `
+      <div class="incident-marker__outer" style="
+        width:28px;height:28px;
+        display:flex;align-items:center;justify-content:center;
+      ">
+        <div class="incident-marker__pulse" style="
+          position:absolute;inset:-4px;border-radius:50%;
+          animation:pulse-marker 2s ease-out infinite;
+          border:2px solid ${color};
+          opacity:0.4;
+        "></div>
+        <div class="incident-marker__core" style="
+          width:16px;height:16px;border-radius:50%;
+          background:${color};
+          box-shadow:${getMarkerShadow(color)};
+          transition:transform 0.2s ease;
+        "></div>
+      </div>
     `;
 
-    const dot = document.createElement('div');
-    dot.className = 'incident-marker__dot';
-    dot.style.cssText = `
-      width: 22px;
-      height: 22px;
-      border-radius: 50%;
-      background: ${PRIORITY_COLORS[incident.priority] ?? '#6B7280'};
-      border: 3px solid #fff;
-      box-shadow: ${PRIORITY_SHADOWS[incident.priority] ?? '0 2px 6px rgba(0,0,0,0.3)'};
-      transition: transform 0.15s ease;
-    `;
-    el.appendChild(dot);
+    el.style.cssText = 'cursor:pointer;';
 
     el.addEventListener('mouseenter', () => {
-      dot.style.transform = 'scale(1.3)';
+      const core = el.querySelector('.incident-marker__core') as HTMLElement;
+      if (core) core.style.transform = 'scale(1.35)';
     });
+
     el.addEventListener('mouseleave', () => {
-      dot.style.transform = 'scale(1)';
+      const core = el.querySelector('.incident-marker__core') as HTMLElement;
+      if (core) core.style.transform = 'scale(1)';
     });
+
     el.addEventListener('click', () => onSelectRef.current?.(incident.id));
 
     const marker = new mapboxgl.Marker({ element: el })
@@ -91,7 +104,7 @@ export const IncidentMarker = memo(function IncidentMarker({
       marker.remove();
       markerRef.current = null;
     };
-  }, [map, incident.id, incident.coordinates.lng, incident.coordinates.lat, incident.priority]);
+  }, [map, incident]);
 
   return null;
 });
@@ -106,7 +119,9 @@ export const IncidentPopup = memo(function IncidentPopup({
   onClose,
 }: IncidentPopupProps) {
   const map = useMapInstance();
+  const router = useRouter();
   const popupRef = useRef<mapboxgl.Popup | null>(null);
+  const linkCleanupRef = useRef<(() => void) | null>(null);
   const onCloseRef = useRef(onClose);
   onCloseRef.current = onClose;
 
@@ -117,10 +132,23 @@ export const IncidentPopup = memo(function IncidentPopup({
       offset: 25,
       closeButton: true,
       closeOnClick: false,
+      className: 'spybee-popup',
     })
       .setLngLat([incident.coordinates.lng, incident.coordinates.lat])
       .setHTML(popupHTML(incident))
       .addTo(map);
+
+    const handleLinkClick = (e: Event) => {
+      e.preventDefault();
+      router.push(`/incidents/${incident.id}`);
+    };
+
+    const popupEl = popup.getElement();
+    const linkEl = popupEl?.querySelector<HTMLAnchorElement>('.incident-popup__link');
+    if (linkEl) {
+      linkEl.addEventListener('click', handleLinkClick);
+      linkCleanupRef.current = () => linkEl.removeEventListener('click', handleLinkClick);
+    }
 
     const handleClose = () => onCloseRef.current?.();
     popup.on('close', handleClose);
@@ -128,11 +156,13 @@ export const IncidentPopup = memo(function IncidentPopup({
     popupRef.current = popup;
 
     return () => {
+      linkCleanupRef.current?.();
+      linkCleanupRef.current = null;
       popup.off('close', handleClose);
       popup.remove();
       popupRef.current = null;
     };
-  }, [map, incident.coordinates.lng, incident.coordinates.lat, incident.id]);
+  }, [map, incident]);
 
   return null;
 });

@@ -46,8 +46,11 @@ export default function LoginPage() {
   return (
     <main className={styles.page}>
       <div className={styles.card}>
-        <div className={styles.logo}>🔷</div>
-        <h1 className={styles.title}>Spybee</h1>
+        <img
+          src="https://framerusercontent.com/images/KMIp6oxIY5aDYfDah2Rt0hoPC0.png?width=1818&height=900"
+          alt="Spybee"
+          className={styles.logo}
+        />
         <p className={styles.subtitle}>Inicia sesión en tu cuenta</p>
 
         <form onSubmit={handleSubmit(onSubmit)} noValidate className={styles.form}>

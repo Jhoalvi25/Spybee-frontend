@@ -1,3 +1,73 @@
+/*!*****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[14].oneOf[2].use[1]!./node_modules/next/dist/build/webpack/loaders/next-font-loader/index.js??ruleSet[1].rules[14].oneOf[2].use[2]!./node_modules/next/font/google/target.css?{"path":"src\\app\\layout.tsx","import":"Inter","arguments":[{"subsets":["latin"],"display":"swap","variable":"--font-inter"}],"variableName":"inter"} ***!
+  \*****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/* cyrillic-ext */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url(/_next/static/media/ba9851c3c22cd980-s.woff2) format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url(/_next/static/media/21350d82a1f187e9-s.woff2) format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* greek-ext */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url(/_next/static/media/c5fe6dc8356a8c31-s.woff2) format('woff2');
+  unicode-range: U+1F00-1FFF;
+}
+/* greek */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url(/_next/static/media/19cfc7226ec3afaa-s.woff2) format('woff2');
+  unicode-range: U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1, U+03A3-03FF;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url(/_next/static/media/df0a9ae256c0569c-s.woff2) format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url(/_next/static/media/8e9860b6e62d6359-s.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url(/_next/static/media/e4af272ccee01ff0-s.p.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}@font-face {font-family: 'Inter Fallback';src: local("Arial");ascent-override: 90.44%;descent-override: 22.52%;line-gap-override: 0.00%;size-adjust: 107.12%
+}.__className_f367f3 {font-family: 'Inter', 'Inter Fallback';font-style: normal
+}.__variable_f367f3 {--font-inter: 'Inter', 'Inter Fallback'
+}
+
 /*!***************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[14].oneOf[10].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[14].oneOf[10].use[3]!./node_modules/mapbox-gl/dist/mapbox-gl.css ***!
   \***************************************************************************************************************************************************************************************************************************************************************************************/
@@ -6,32 +76,178 @@
   !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[14].oneOf[11].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[14].oneOf[11].use[3]!./node_modules/next/dist/build/webpack/loaders/resolve-url-loader/index.js??ruleSet[1].rules[14].oneOf[11].use[4]!./node_modules/next/dist/compiled/sass-loader/cjs.js??ruleSet[1].rules[14].oneOf[11].use[5]!./src/app/globals.scss ***!
   \********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
 @charset "UTF-8";
-/* ─── Marker ─────────────────────────────────── */
+:root {
+  --yellow: #F4C400;
+  --yellow-hover: #EAB308;
+  --yellow-light: #FEF9C3;
+  --yellow-bg: #FFFBEB;
+  --dark: #1F1F1F;
+  --dark-surface: #2B2B2B;
+  --dark-elevated: #333333;
+  --dark-border: #404040;
+  --bg: #FAFAFA;
+  --white: #FFFFFF;
+  --success: #22C55E;
+  --warning: #F59E0B;
+  --danger: #EF4444;
+  --info: #3B82F6;
+  --success-bg: #F0FDF4;
+  --warning-bg: #FFFBEB;
+  --danger-bg: #FEF2F2;
+  --info-bg: #EFF6FF;
+  --gray-50: #FAFAFA;
+  --gray-100: #F5F5F5;
+  --gray-200: #E5E5E5;
+  --gray-300: #D4D4D4;
+  --gray-400: #A3A3A3;
+  --gray-500: #737373;
+  --gray-600: #525252;
+  --gray-700: #404040;
+  --gray-800: #262626;
+  --gray-900: #171717;
+  --font-family: Inter, system-ui, -apple-system, sans-serif;
+  --font-mono: JetBrains Mono, Fira Code, monospace;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-full: 9999px;
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.07), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.08), 0 4px 6px -4px rgba(0, 0, 0, 0.05);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.05);
+  --shadow-card: 0 1px 3px rgba(0, 0, 0, 0.06), 0 1px 2px rgba(0, 0, 0, 0.04);
+  --shadow-elevated: 0 4px 16px rgba(0, 0, 0, 0.1);
+}
+
+/* ─── Reset ──────────────────────────────────────── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  font-family: var(--font-family);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background: #FAFAFA;
+  color: #262626;
+  font-size: 0.8125rem;
+  line-height: 1.5;
+}
+
+/* ─── Mapbox Overrides ──────────────────────────── */
+.mapboxgl-ctrl-group {
+  border: none !important;
+  border-radius: 8px !important;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.08), 0 4px 6px -4px rgba(0, 0, 0, 0.05) !important;
+  overflow: hidden;
+}
+.mapboxgl-ctrl-group button {
+  width: 36px !important;
+  height: 36px !important;
+  border-radius: 0 !important;
+}
+.mapboxgl-ctrl-group button:hover {
+  background: #F5F5F5 !important;
+}
+.mapboxgl-ctrl-group button + button {
+  border-top: 1px solid #E5E5E5 !important;
+}
+
+.mapboxgl-ctrl-scale {
+  font-family: var(--font-family) !important;
+  font-size: 0.6875rem !important;
+  background: rgba(255, 255, 255, 0.9) !important;
+  border-color: #D4D4D4 !important;
+  color: #525252 !important;
+  border-radius: 4px !important;
+  padding: 2px 6px !important;
+}
+
+.mapboxgl-ctrl-geolocate {
+  background: #FFFFFF !important;
+}
+
+/* ─── Popup override (glass + premium) ──────────── */
+.mapboxgl-popup {
+  z-index: 5;
+}
+
+.mapboxgl-popup-content {
+  border-radius: 12px !important;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15) !important;
+  padding: 0 !important;
+  border: none !important;
+  overflow: hidden;
+  background: #fff !important;
+}
+
+.mapboxgl-popup-close-button {
+  font-size: 18px !important;
+  padding: 6px 10px !important;
+  color: #A3A3A3 !important;
+  transition: color 0.15s;
+  z-index: 2;
+}
+.mapboxgl-popup-close-button:hover {
+  color: #404040 !important;
+  background: transparent !important;
+}
+
+.mapboxgl-popup-tip {
+  border-top-color: #fff !important;
+}
+
+/* ─── Incident Marker ───────────────────────────── */
 .incident-marker {
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-/* ─── Popup ──────────────────────────────────── */
+@keyframes pulse-marker {
+  0% {
+    transform: scale(1);
+    opacity: 0.4;
+  }
+  50% {
+    transform: scale(1.6);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1.6);
+    opacity: 0;
+  }
+}
+/* ─── Incident Popup ────────────────────────────── */
 .incident-popup {
-  font-family: system-ui, -apple-system, sans-serif;
-  padding: 0.125rem 0;
-  max-width: 260px;
+  font-family: var(--font-family);
+  max-width: 280px;
+}
+
+.incident-popup__bar {
+  height: 4px;
+  width: 100%;
 }
 
 .incident-popup__title {
-  margin: 0 0 0.5rem;
-  font-size: 0.9rem;
-  font-weight: 600;
+  margin: 0.75rem 1rem 0.375rem;
+  font-size: 1rem;
+  font-weight: 700;
   line-height: 1.3;
-  color: #111827;
+  color: #171717;
 }
 
 .incident-popup__meta {
   display: flex;
   gap: 0.375rem;
-  margin-bottom: 0.5rem;
+  margin: 0 1rem 0.5rem;
 }
 
 .incident-popup__badge {
@@ -39,64 +255,65 @@
   font-size: 0.6875rem;
   font-weight: 600;
   padding: 0.125rem 0.5rem;
-  border-radius: 999px;
+  border-radius: 9999px;
   text-transform: capitalize;
 }
 
 .incident-popup__badge--high {
-  background: #fef2f2;
-  color: #dc2626;
+  background: #FEF2F2;
+  color: #EF4444;
 }
 
 .incident-popup__badge--medium {
-  background: #fffbeb;
-  color: #d97706;
+  background: #FFFBEB;
+  color: #F59E0B;
 }
 
 .incident-popup__badge--low {
-  background: #eff6ff;
-  color: #2563eb;
+  background: #FFFBEB;
+  color: #D97706;
 }
 
 .incident-popup__badge--open {
-  background: #f0fdf4;
-  color: #16a34a;
+  background: #F0FDF4;
+  color: #22C55E;
 }
 
 .incident-popup__badge--on_pause {
-  background: #fefce8;
-  color: #ca8a04;
+  background: #FFFBEB;
+  color: #F59E0B;
 }
 
 .incident-popup__badge--closed {
-  background: #f3f4f6;
-  color: #6b7280;
+  background: #F5F5F5;
+  color: #737373;
 }
 
 .incident-popup__detail {
-  margin: 0 0 0.25rem;
-  font-size: 0.8rem;
-  color: #4b5563;
+  margin: 0 1rem 0.25rem;
+  font-size: 0.75rem;
+  color: #525252;
 }
 
 .incident-popup__id {
   display: block;
-  margin-top: 0.375rem;
+  margin: 0.375rem 1rem 0;
   font-size: 0.6875rem;
-  color: #9ca3af;
+  color: #A3A3A3;
 }
 
 .incident-popup__link {
-  display: inline-block;
-  margin-top: 0.5rem;
+  display: block;
+  margin: 0.75rem 0 0;
+  padding: 0.625rem 1rem;
+  background: var(--yellow);
+  color: var(--dark);
   font-size: 0.75rem;
-  font-weight: 500;
-  color: #2563eb;
+  font-weight: 600;
+  text-align: center;
   text-decoration: none;
-  transition: color 0.15s;
+  transition: background 0.15s;
 }
-
 .incident-popup__link:hover {
-  color: #1d4ed8;
-  text-decoration: underline;
+  background: var(--yellow-hover);
 }

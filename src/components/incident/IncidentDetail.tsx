@@ -5,15 +5,32 @@ import Link from 'next/link';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
+import {
+  ArrowLeft,
+  MapPin,
+  Calendar,
+  Clock,
+  User,
+  Users,
+  Eye,
+  Tag,
+  FolderOpen,
+  FileText,
+  Edit3,
+  Save,
+  X,
+  CheckCircle2,
+  AlertCircle,
+  AlertTriangle,
+  PauseCircle,
+} from 'lucide-react';
 import { useIncidents, useLoadIncidents, useIsLoading, useUpdateIncident } from '@/domain/incident/hooks';
 import { INCIDENT_STATUS_LABELS, INCIDENT_PRIORITY_LABELS } from '@/lib/constants';
 import { formatDate } from '@/lib/utils';
 import type { Incident, UpdateIncidentDTO, IncidentStatus, IncidentPriority } from '@/domain/incident/types';
 import styles from './IncidentDetail.module.scss';
 
-type IncidentDetailProps = {
-  id: string;
-};
+type IncidentDetailProps = { id: string };
 
 const editSchema = z.object({
   title: z.string().min(3, 'Mínimo 3 caracteres').max(200, 'Máximo 200 caracteres'),
@@ -25,31 +42,51 @@ const editSchema = z.object({
 
 type EditFormValues = z.infer<typeof editSchema>;
 
-const STATUS_OPTIONS: { value: IncidentStatus; label: string }[] = [
-  { value: 'open', label: 'Abierta' },
-  { value: 'on_pause', label: 'En pausa' },
-  { value: 'closed', label: 'Cerrada' },
+const STATUS_OPTIONS: { value: IncidentStatus; label: string; icon: typeof AlertCircle }[] = [
+  { value: 'open', label: 'Abierta', icon: AlertCircle },
+  { value: 'on_pause', label: 'En pausa', icon: PauseCircle },
+  { value: 'closed', label: 'Cerrada', icon: CheckCircle2 },
 ];
 
-const PRIORITY_OPTIONS: { value: IncidentPriority; label: string }[] = [
-  { value: 'low', label: 'Baja' },
-  { value: 'medium', label: 'Media' },
-  { value: 'high', label: 'Alta' },
+const PRIORITY_OPTIONS: { value: IncidentPriority; label: string; icon: typeof AlertTriangle }[] = [
+  { value: 'low', label: 'Baja', icon: AlertTriangle },
+  { value: 'medium', label: 'Media', icon: AlertTriangle },
+  { value: 'high', label: 'Alta', icon: AlertTriangle },
 ];
 
-function Field({ label, children }: { label: string; children: React.ReactNode }) {
+function Timeline({ incident }: { incident: Incident }) {
+  const events = [
+    { label: 'Creada', date: incident.createdAt, icon: FileText },
+    { label: 'Actualizada', date: incident.updatedAt, icon: Edit3 },
+    ...(incident.closingDate ? [{ label: 'Cerrada', date: incident.closingDate, icon: CheckCircle2 }] : []),
+  ];
+
   return (
-    <div className={styles.field}>
-      <span className={styles.fieldLabel}>{label}</span>
-      <span className={styles.fieldValue}>{children}</span>
+    <div className={styles.timeline}>
+      {events.map((ev, i) => {
+        const Icon = ev.icon;
+        const isLast = i === events.length - 1;
+        return (
+          <div key={ev.label} className={styles.timelineItem}>
+            <div className={styles.timelineLine}>
+              <div className={styles.timelineDot}>
+                <Icon size={12} />
+              </div>
+              {!isLast && <div className={styles.timelineBar} />}
+            </div>
+            <div className={styles.timelineContent}>
+              <span className={styles.timelineLabel}>{ev.label}</span>
+              <span className={styles.timelineDate}>{formatDate(ev.date)}</span>
+            </div>
+          </div>
+        );
+      })}
     </div>
   );
 }
 
-function PeopleList({ people, empty }: { people: { id: string; name: string; email: string; avatarUrl: string }[]; empty: string }) {
-  if (people.length === 0) {
-    return <span className={styles.empty}>{empty}</span>;
-  }
+function PeopleList({ people, empty, icon: Icon }: { people: { id: string; name: string; email: string; avatarUrl: string }[]; empty: string; icon: typeof User }) {
+  if (people.length === 0) return <span className={styles.empty}>{empty}</span>;
   return (
     <div className={styles.people}>
       {people.map((p) => (
@@ -150,7 +187,9 @@ export function IncidentDetail({ id }: IncidentDetailProps) {
     return (
       <div className={styles.page}>
         <div className={styles.notFound}>
-          <span className={styles.notFoundIcon}>🔍</span>
+          <span className={styles.notFoundIcon}>
+            <AlertCircle size={40} />
+          </span>
           <h2 className={styles.notFoundTitle}>Incidencia no encontrada</h2>
           <p className={styles.notFoundText}>La incidencia que buscas no existe o ha sido eliminada.</p>
           <Link href="/dashboard" className={styles.backLink}>Volver al dashboard</Link>
@@ -159,81 +198,67 @@ export function IncidentDetail({ id }: IncidentDetailProps) {
     );
   }
 
+  const StatusIcon = STATUS_OPTIONS.find((s) => s.value === incident.status)?.icon ?? AlertCircle;
+  const PriorityIcon = PRIORITY_OPTIONS.find((p) => p.value === incident.priority)?.icon ?? AlertTriangle;
+
   return (
     <div className={styles.page}>
-      <Link href="/dashboard" className={styles.back}>{'← Volver'}</Link>
+      <Link href="/dashboard" className={styles.back}>
+        <ArrowLeft size={16} />
+        Volver a incidencias
+      </Link>
 
       <form onSubmit={handleSubmit(onSubmit)} noValidate>
-        <header className={styles.header}>
-          <div className={styles.titleRow}>
+        {/* ─── Header ─────────────────────────── */}
+        <div className={styles.header}>
+          <div className={styles.headerTitleRow}>
             {isEditing ? (
-              <div className={styles.editTitleWrap}>
+              <div className={styles.editField}>
                 <input
                   {...register('title')}
-                  className={`${styles.editInput} ${styles.editInputTitle}`}
+                  className={styles.editInputTitle}
                   placeholder="Título de la incidencia"
                   aria-label="Título"
                 />
                 {errors.title && <p className={styles.editError}>{errors.title.message}</p>}
               </div>
             ) : (
+              <h1 className={styles.title}>{incident.title}</h1>
+            )}
+            <span className={styles.sequenceId}>{incident.sequenceId}</span>
+          </div>
+
+          <div className={styles.headerActions}>
+            {isEditing ? (
               <>
-                <h1 className={styles.title}>{incident.title}</h1>
-                <span className={styles.sequenceId}>{incident.sequenceId}</span>
+                <button type="button" onClick={handleCancel} className={styles.btnSecondary}>
+                  <X size={14} />
+                  Cancelar
+                </button>
+                <button type="submit" disabled={isSubmitting} className={styles.btnPrimary}>
+                  <Save size={14} />
+                  {isSubmitting ? 'Guardando…' : 'Guardar'}
+                </button>
               </>
+            ) : (
+              <button type="button" onClick={handleStartEdit} className={styles.btnPrimary}>
+                <Edit3 size={14} />
+                Editar
+              </button>
             )}
           </div>
+        </div>
 
-          <div className={styles.headerRow}>
-            <div className={styles.badges}>
-              {isEditing ? (
-                <>
-                  <select {...register('priority')} className={styles.editBadge} aria-label="Prioridad">
-                    {PRIORITY_OPTIONS.map((opt) => (
-                      <option key={opt.value} value={opt.value}>{opt.label}</option>
-                    ))}
-                  </select>
-                  <select {...register('status')} className={styles.editBadge} aria-label="Estado">
-                    {STATUS_OPTIONS.map((opt) => (
-                      <option key={opt.value} value={opt.value}>{opt.label}</option>
-                    ))}
-                  </select>
-                </>
-              ) : (
-                <>
-                  <span className={`${styles.badge} ${styles[`badge--${incident.priority}`]}`}>
-                    {INCIDENT_PRIORITY_LABELS[incident.priority]}
-                  </span>
-                  <span className={`${styles.badge} ${styles[`badge--${incident.status}`]}`}>
-                    {INCIDENT_STATUS_LABELS[incident.status]}
-                  </span>
-                </>
-              )}
-            </div>
-
-            <div className={styles.actions}>
-              {isEditing ? (
-                <>
-                  <button type="button" onClick={handleCancel} className={styles.btnSecondary}>
-                    Cancelar
-                  </button>
-                  <button type="submit" disabled={isSubmitting} className={styles.btnPrimary}>
-                    {isSubmitting ? 'Guardando…' : 'Guardar cambios'}
-                  </button>
-                </>
-              ) : (
-                <button type="button" onClick={handleStartEdit} className={styles.btnOutline}>
-                  Editar
-                </button>
-              )}
-            </div>
-          </div>
-        </header>
-
+        {/* ─── 2-column content ──────────────── */}
         <div className={styles.content}>
+          {/* ─── Left column ─────────────────── */}
           <div className={styles.main}>
+            {/* Description */}
             <section className={styles.card}>
-              <h2 className={styles.cardTitle}>Descripción</h2>
+              <div className={styles.cardHeader}>
+                <FileText size={16} />
+                <h2 className={styles.cardTitle}>Descripción</h2>
+              </div>
               {isEditing ? (
                 <div>
                   <textarea
@@ -250,64 +275,35 @@ export function IncidentDetail({ id }: IncidentDetailProps) {
               )}
             </section>
 
+            {/* Location */}
             <section className={styles.card}>
-              <h2 className={styles.cardTitle}>Archivos adjuntos</h2>
-              <MediaGallery media={incident.media} />
-            </section>
-          </div>
-
-          <aside className={styles.sidebar}>
-            <section className={styles.card}>
-              <h2 className={styles.cardTitle}>Detalles</h2>
-              <Field label="Proyecto">{incident.project.name}</Field>
-              <Field label="Categoría">{incident.type.name}</Field>
-              <Field label="Ubicación">{incident.locationDescription || '—'}</Field>
+              <div className={styles.cardHeader}>
+                <MapPin size={16} />
+                <h2 className={styles.cardTitle}>Ubicación</h2>
+              </div>
+              <p className={styles.locationText}>
+                {incident.locationDescription || 'Sin ubicación registrada'}
+              </p>
               {incident.coordinates && (
-                <Field label="Coordenadas">
-                  {incident.coordinates.lat.toFixed(4)}, {incident.coordinates.lng.toFixed(4)}
-                </Field>
+                <p className={styles.coords}>
+                  {incident.coordinates.lat.toFixed(5)}, {incident.coordinates.lng.toFixed(5)}
+                </p>
               )}
-              <Field label="Creada">{formatDate(incident.createdAt)}</Field>
-              <Field label="Vence">
-                {isEditing ? (
-                  <div>
-                    <input type="date" {...register('dueDate')} className={styles.editInput} aria-label="Fecha de vencimiento" />
-                    {errors.dueDate && <p className={styles.editError}>{errors.dueDate.message}</p>}
-                  </div>
-                ) : (
-                  incident.dueDate ? formatDate(incident.dueDate) : '—'
-                )}
-              </Field>
-              {incident.closingDate && <Field label="Cerrada">{formatDate(incident.closingDate)}</Field>}
-              <Field label="Aprobación">{incident.approval ? 'Aprobada' : 'Pendiente'}</Field>
             </section>
 
-            {incident.owner && (
-              <section className={styles.card}>
-                <h2 className={styles.cardTitle}>Responsable</h2>
-                <PeopleList people={[incident.owner]} empty="Sin responsable" />
-              </section>
-            )}
-
-            <section className={styles.card}>
-              <h2 className={styles.cardTitle}>Asignados</h2>
-              <PeopleList people={incident.assignees} empty="Sin asignados" />
-            </section>
-
-            <section className={styles.card}>
-              <h2 className={styles.cardTitle}>Observadores</h2>
-              <PeopleList people={incident.observers} empty="Sin observadores" />
-            </section>
-
+            {/* Tags */}
             {incident.tags.length > 0 && (
               <section className={styles.card}>
-                <h2 className={styles.cardTitle}>Etiquetas</h2>
+                <div className={styles.cardHeader}>
+                  <Tag size={16} />
+                  <h2 className={styles.cardTitle}>Etiquetas</h2>
+                </div>
                 <div className={styles.tags}>
                   {incident.tags.map((tag) => (
                     <span
                       key={tag.id}
                       className={styles.tag}
-                      style={{ background: `${tag.color}1A`, color: tag.color, borderColor: tag.color }}
+                      style={{ background: `${tag.color}14`, color: tag.color, borderColor: `${tag.color}40` }}
                     >
                       {tag.name}
                     </span>
@@ -315,6 +311,133 @@ export function IncidentDetail({ id }: IncidentDetailProps) {
                 </div>
               </section>
             )}
+
+            {/* Media */}
+            <section className={styles.card}>
+              <div className={styles.cardHeader}>
+                <FolderOpen size={16} />
+                <h2 className={styles.cardTitle}>Archivos adjuntos</h2>
+              </div>
+              <MediaGallery media={incident.media} />
+            </section>
+          </div>
+
+          {/* ─── Right column ────────────────── */}
+          <aside className={styles.sidebar}>
+            {/* Status & Priority */}
+            <section className={styles.card}>
+              <div className={styles.metaGrid}>
+                <div className={styles.metaItem}>
+                  {isEditing ? (
+                    <div className={styles.editField}>
+                      <label className={styles.metaLabel}>Estado</label>
+                      <select {...register('status')} className={styles.editSelect} aria-label="Estado">
+                        {STATUS_OPTIONS.map((opt) => (
+                          <option key={opt.value} value={opt.value}>{opt.label}</option>
+                        ))}
+                      </select>
+                    </div>
+                  ) : (
+                    <>
+                      <span className={styles.metaLabel}>Estado</span>
+                      <span className={`${styles.badge} ${styles[`badge--${incident.status}`]}`}>
+                        <StatusIcon size={12} />
+                        {INCIDENT_STATUS_LABELS[incident.status]}
+                      </span>
+                    </>
+                  )}
+                </div>
+
+                <div className={styles.metaItem}>
+                  {isEditing ? (
+                    <div className={styles.editField}>
+                      <label className={styles.metaLabel}>Prioridad</label>
+                      <select {...register('priority')} className={styles.editSelect} aria-label="Prioridad">
+                        {PRIORITY_OPTIONS.map((opt) => (
+                          <option key={opt.value} value={opt.value}>{opt.label}</option>
+                        ))}
+                      </select>
+                    </div>
+                  ) : (
+                    <>
+                      <span className={styles.metaLabel}>Prioridad</span>
+                      <span className={`${styles.badge} ${styles[`badge--${incident.priority}`]}`}>
+                        <PriorityIcon size={12} />
+                        {INCIDENT_PRIORITY_LABELS[incident.priority]}
+                      </span>
+                    </>
+                  )}
+                </div>
+              </div>
+            </section>
+
+            {/* Due date */}
+            <section className={styles.card}>
+              <div className={styles.metaRow}>
+                <Calendar size={14} />
+                <span className={styles.metaLabel}>Vence</span>
+                {isEditing ? (
+                  <div className={styles.editField}>
+                    <input type="date" {...register('dueDate')} className={styles.editInput} aria-label="Fecha de vencimiento" />
+                    {errors.dueDate && <p className={styles.editError}>{errors.dueDate.message}</p>}
+                  </div>
+                ) : (
+                  <span className={styles.metaValue}>{incident.dueDate ? formatDate(incident.dueDate) : '—'}</span>
+                )}
+              </div>
+            </section>
+
+            {/* Owner */}
+            <section className={styles.card}>
+              <div className={styles.cardHeader}>
+                <User size={16} />
+                <h2 className={styles.cardTitle}>Responsable</h2>
+              </div>
+              <PeopleList people={incident.owner ? [incident.owner] : []} empty="Sin responsable" icon={User} />
+            </section>
+
+            {/* Assignees */}
+            <section className={styles.card}>
+              <div className={styles.cardHeader}>
+                <Users size={16} />
+                <h2 className={styles.cardTitle}>Asignados</h2>
+              </div>
+              <PeopleList people={incident.assignees} empty="Sin asignados" icon={Users} />
+            </section>
+
+            {/* Observers */}
+            {incident.observers.length > 0 && (
+              <section className={styles.card}>
+                <div className={styles.cardHeader}>
+                  <Eye size={16} />
+                  <h2 className={styles.cardTitle}>Observadores</h2>
+                </div>
+                <PeopleList people={incident.observers} empty="Sin observadores" icon={Eye} />
+              </section>
+            )}
+
+            {/* Project & Category */}
+            <section className={styles.card}>
+              <div className={styles.metaRow}>
+                <FolderOpen size={14} />
+                <span className={styles.metaLabel}>Proyecto</span>
+                <span className={styles.metaValue}>{incident.project.name}</span>
+              </div>
+              <div className={styles.metaRow}>
+                <Tag size={14} />
+                <span className={styles.metaLabel}>Categoría</span>
+                <span className={styles.metaValue}>{incident.type.name}</span>
+              </div>
+            </section>
+
+            {/* Timeline */}
+            <section className={styles.card}>
+              <div className={styles.cardHeader}>
+                <Clock size={16} />
+                <h2 className={styles.cardTitle}>Línea de tiempo</h2>
+              </div>
+              <Timeline incident={incident} />
+            </section>
           </aside>
         </div>
       </form>

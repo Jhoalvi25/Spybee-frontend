@@ -1,3 +1,4 @@
+import { ClipboardList } from 'lucide-react';
 import styles from './EmptyState.module.scss';
 import type { ReactNode } from 'react';
 
@@ -23,7 +24,13 @@ export function EmptyState({
 }: EmptyStateProps) {
   return (
     <div className={styles.container}>
-      {icon && <div className={styles.icon}>{icon}</div>}
+      {icon ? (
+        <div className={styles.icon}>{icon}</div>
+      ) : (
+        <div className={styles.icon}>
+          <ClipboardList size={40} />
+        </div>
+      )}
 
       <h2 className={styles.title}>{title}</h2>
       <p className={styles.description}>{description}</p>

@@ -2,10 +2,8 @@
   !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[14].oneOf[7].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[14].oneOf[7].use[3]!./node_modules/next/dist/build/webpack/loaders/resolve-url-loader/index.js??ruleSet[1].rules[14].oneOf[7].use[4]!./node_modules/next/dist/compiled/sass-loader/cjs.js??ruleSet[1].rules[14].oneOf[7].use[5]!./src/components/layout/Sidebar.module.scss ***!
   \*************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
 @charset "UTF-8";
-/* ─── Variables ──────────────────────────── */
-/* ─── Sidebar base ──────────────────────── */
 .Sidebar_sidebar__JoEdm {
-  width: 240px;
+  width: 260px;
   min-height: 100dvh;
   display: flex;
   flex-direction: column;
@@ -14,6 +12,7 @@
   flex-shrink: 0;
   transition: width 0.2s ease;
   overflow: hidden;
+  position: relative;
 }
 @media (max-width: 768px) {
   .Sidebar_sidebar__JoEdm {
@@ -23,8 +22,8 @@
     bottom: 0;
     z-index: 110;
     transform: translateX(-100%);
-    transition: transform 0.25s ease;
-    width: 240px;
+    transition: transform 0.25s ease, width 0.2s ease;
+    width: 260px;
   }
 }
 
@@ -35,10 +34,9 @@
 }
 
 .Sidebar_collapsed__Ia3Kw {
-  width: 60px;
+  width: 64px;
 }
 
-/* ─── Overlay (mobile only) ─────────────── */
 .Sidebar_overlay__Zrr9W {
   display: none;
 }
@@ -48,38 +46,55 @@
     position: fixed;
     inset: 0;
     z-index: 109;
-    background: rgba(0, 0, 0, 0.4);
+    background: rgba(0, 0, 0, 0.5);
   }
 }
 
-/* ─── Logo ──────────────────────────────── */
+/* ─── Logo ─────────────────────────────── */
 .Sidebar_logo__9GiFI {
   display: flex;
   align-items: center;
-  gap: 0.625rem;
-  padding: 1.25rem 1rem;
-  border-bottom: 1px solid #e5e7eb;
+  padding: 1.25rem 1rem 0.75rem;
   min-height: 60px;
+}
+
+.Sidebar_logoImg__heIRZ {
+  display: block;
+  height: 72px;
+  width: auto;
+  object-fit: contain;
+}
+
+/* ─── Project name ─────────────────────── */
+.Sidebar_projectSection__zE5R6 {
+  padding: 0 1rem 1rem;
+  border-bottom: 1px solid #e5e7eb;
   white-space: nowrap;
 }
 
-.Sidebar_logoIcon__4V_Qb {
-  font-size: 1.375rem;
-  flex-shrink: 0;
+.Sidebar_projectLabel__29VYr {
+  font-size: 0.6875rem;
+  font-weight: 600;
+  color: #9ca3af;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 
-.Sidebar_logoText__XGF5C {
-  font-size: 1.125rem;
-  font-weight: 700;
+.Sidebar_projectName__gRzZ9 {
+  margin-top: 0.125rem;
+  font-size: 0.875rem;
+  font-weight: 600;
   color: #111827;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
-/* ─── Navigation ────────────────────────── */
+/* ─── Nav ──────────────────────────────── */
 .Sidebar_nav__RI_ZA {
   flex: 1 1;
   display: flex;
   flex-direction: column;
-  gap: 0.25rem;
+  gap: 0.125rem;
   padding: 0.75rem 0.5rem;
 }
 
@@ -88,33 +103,39 @@
   align-items: center;
   gap: 0.75rem;
   padding: 0.625rem 0.75rem;
-  border-radius: 8px;
+  padding-left: calc(0.75rem + 4px);
+  border-left: 4px solid transparent;
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
   text-decoration: none;
   color: #6b7280;
   font-size: 0.875rem;
   font-weight: 500;
-  transition: background 0.15s, color 0.15s;
+  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
   white-space: nowrap;
 }
 .Sidebar_link__Li6xQ:hover {
-  background: #f3f4f6;
+  background: #fff7cc;
   color: #111827;
 }
 
 .Sidebar_active__xq3Qf {
-  background: #eff6ff;
-  color: #2563eb;
+  background: #fff1a8;
+  color: #111827;
+  border-left-color: #f4c400;
 }
 .Sidebar_active__xq3Qf:hover {
-  background: #dbeafe;
-  color: #2563eb;
+  background: #ffe87f;
+  color: #111827;
 }
 
 .Sidebar_linkIcon__zvuk3 {
-  font-size: 1.125rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
   flex-shrink: 0;
-  width: 1.25rem;
-  text-align: center;
+  transition: transform 0.2s ease;
 }
 
 .Sidebar_linkLabel__hCkpN {
@@ -122,7 +143,7 @@
   text-overflow: ellipsis;
 }
 
-/* ─── User section ──────────────────────── */
+/* ─── User ─────────────────────────────── */
 .Sidebar_user__Gtunp {
   display: flex;
   align-items: center;
@@ -136,13 +157,13 @@
   width: 32px;
   height: 32px;
   border-radius: 50%;
-  background: #2563eb;
-  color: #fff;
+  background: #f4c400;
+  color: #111827;
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 0.8125rem;
-  font-weight: 600;
+  font-weight: 700;
   flex-shrink: 0;
 }
 
@@ -168,7 +189,7 @@
   text-overflow: ellipsis;
 }
 
-/* ─── Logout button ─────────────────────── */
+/* ─── Logout ───────────────────────────── */
 .Sidebar_logoutBtn__fMdI2 {
   display: flex;
   align-items: center;
@@ -181,32 +202,66 @@
   font-size: 0.8125rem;
   font-family: inherit;
   cursor: pointer;
-  transition: color 0.15s, background 0.15s;
+  transition: color 0.2s ease, background 0.2s ease;
 }
 .Sidebar_logoutBtn__fMdI2:hover {
-  background: #fef2f2;
-  color: #dc2626;
+  background: #fff7cc;
+  color: #ef4444;
 }
 @media (max-width: 768px) {
   .Sidebar_logoutBtn__fMdI2 {
-    display: none; /* no logout in mobile sidebar? actually keep it */
+    display: none;
   }
 }
 
 .Sidebar_logoutIcon__N_8MJ {
-  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
   flex-shrink: 0;
-  width: 1.25rem;
-  text-align: center;
 }
 
 .Sidebar_logoutLabel__P7XiY {
   white-space: nowrap;
 }
+
+/* ─── Collapse toggle (desktop only) ───── */
+.Sidebar_collapseBtn__2peml {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  bottom: 1rem;
+  right: -12px;
+  width: 24px;
+  height: 24px;
+  border: 1px solid #e5e7eb;
+  border-radius: 50%;
+  background: #fff;
+  color: #9ca3af;
+  cursor: pointer;
+  transition: color 0.2s ease, background 0.2s ease, transform 0.2s ease;
+  z-index: 1;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+}
+.Sidebar_collapseBtn__2peml:hover {
+  background: #fff7cc;
+  color: #111827;
+}
+@media (max-width: 768px) {
+  .Sidebar_collapseBtn__2peml {
+    display: none;
+  }
+}
+
+.Sidebar_collapseBtnRotated__lSfbB {
+  transform: rotate(180deg);
+}
 /*!****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[14].oneOf[7].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[14].oneOf[7].use[3]!./node_modules/next/dist/build/webpack/loaders/resolve-url-loader/index.js??ruleSet[1].rules[14].oneOf[7].use[4]!./node_modules/next/dist/compiled/sass-loader/cjs.js??ruleSet[1].rules[14].oneOf[7].use[5]!./src/app/(app)/layout.module.scss ***!
   \****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
-@charset "UTF-8";
 .layout_layout__bqnDT {
   display: flex;
   min-height: 100dvh;
@@ -217,14 +272,14 @@
   min-width: 0;
   display: flex;
   flex-direction: column;
+  background: var(--bg);
 }
 @media (max-width: 768px) {
   .layout_content__UJPqO {
-    padding-top: 52px; /* room for hamburger */
+    padding-top: 52px;
   }
 }
 
-/* ─── Hamburger (mobile only) ───────────── */
 .layout_hamburger__rYX_E {
   display: none;
 }
@@ -242,9 +297,9 @@
     height: 36px;
     padding: 0.5rem;
     border: none;
-    border-radius: 8px;
-    background: #fff;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+    border-radius: var(--radius-sm);
+    background: var(--white);
+    box-shadow: var(--shadow-md);
     cursor: pointer;
   }
 }
@@ -252,7 +307,7 @@
 .layout_hamburgerBar__vmdfW {
   display: block;
   height: 2px;
-  background: #374151;
+  background: var(--gray-700);
   border-radius: 1px;
   transition: background 0.15s;
 }

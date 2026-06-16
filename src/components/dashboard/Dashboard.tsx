@@ -1,6 +1,13 @@
 'use client';
 
 import { useEffect, useState, useCallback } from 'react';
+import {
+  Plus,
+  ClipboardList,
+  AlertTriangle,
+  CheckCircle2,
+  MapPin,
+} from 'lucide-react';
 import { useDashboardData } from '@/hooks/useDashboardData';
 import {
   useIncidents,
@@ -10,6 +17,7 @@ import {
   useFilters,
   useResetFilters,
 } from '@/domain/incident/hooks';
+import { useProjectStore } from '@/domain/project/store';
 import { FilterBar } from '@/components/layout/FilterBar';
 import { EmptyState } from '@/components/ui/EmptyState';
 import { ErrorState } from '@/components/ui/ErrorState';
@@ -21,6 +29,12 @@ import { CategoryBar } from './CategoryBar';
 import { TrendLine } from './TrendLine';
 import styles from './Dashboard.module.scss';
 
+const STATUS_BADGE: Record<string, { label: string; className: string }> = {
+  active: { label: 'Activo', className: 'badgeActive' },
+  completed: { label: 'Completado', className: 'badgeCompleted' },
+  on_hold: { label: 'En pausa', className: 'badgeHold' },
+};
+
 export function Dashboard() {
   const loadIncidents = useLoadIncidents();
   const isLoading = useIsLoading();
@@ -29,6 +43,8 @@ export function Dashboard() {
   const data = useDashboardData();
   const filters = useFilters();
   const resetFilters = useResetFilters();
+  const selectedProject = useProjectStore((s) => s.selectedProject);
+  const stats = useProjectStore((s) => s.stats);
 
   const [createOpen, setCreateOpen] = useState(false);
 
@@ -51,13 +67,19 @@ export function Dashboard() {
     resetFilters();
   }, [resetFilters]);
 
+  const badge = selectedProject ? STATUS_BADGE[selectedProject.status] : null;
+
   if (isLoading) {
     return (
       <div className={styles.page}>
-        <header className={styles.header}>
-          <h1 className={styles.title}>Dashboard</h1>
-          <p className={styles.subtitle}>Resumen general de incidencias</p>
-        </header>
+        <div className={styles.hero}>
+          <div className={styles.heroBody}>
+            <div className={styles.heroTop}>
+              <span className={styles.heroEyebrow}>Supervisión inteligente de obra</span>
+            </div>
+            <h1 className={styles.heroTitle}>Panel de control</h1>
+          </div>
+        </div>
         <div className={styles.skeleton}>Cargando indicadores…</div>
       </div>
     );
@@ -66,10 +88,14 @@ export function Dashboard() {
   if (error) {
     return (
       <div className={styles.page}>
-        <header className={styles.header}>
-          <h1 className={styles.title}>Dashboard</h1>
-          <p className={styles.subtitle}>Resumen general de incidencias</p>
-        </header>
+        <div className={styles.hero}>
+          <div className={styles.heroBody}>
+            <div className={styles.heroTop}>
+              <span className={styles.heroEyebrow}>Supervisión inteligente de obra</span>
+            </div>
+            <h1 className={styles.heroTitle}>Panel de control</h1>
+          </div>
+        </div>
         <ErrorState message={error} onRetry={handleRetry} />
       </div>
     );
@@ -78,14 +104,31 @@ export function Dashboard() {
   if (allIncidents.length === 0) {
     return (
       <div className={styles.page}>
-        <header className={styles.header}>
-          <h1 className={styles.title}>Dashboard</h1>
-          <p className={styles.subtitle}>Resumen general de incidencias</p>
-        </header>
+        <div className={styles.hero}>
+          <div className={styles.heroBody}>
+            <div className={styles.heroTop}>
+              <span className={styles.heroEyebrow}>Supervisión inteligente de obra</span>
+              {badge && (
+                <span className={`${styles.heroBadge} ${styles[badge.className]}`}>
+                  {badge.label}
+                </span>
+              )}
+            </div>
+            <h1 className={styles.heroTitle}>
+              {selectedProject ? selectedProject.name : 'Panel de control'}
+            </h1>
+            {selectedProject && (
+              <p className={styles.heroMeta}>
+                <MapPin size={14} />
+                {selectedProject.address}
+              </p>
+            )}
+          </div>
+        </div>
         <EmptyState
-          icon={<span>📋</span>}
+          icon={<ClipboardList size={40} />}
           title="No hay incidencias"
-          description="Aún no se han registrado incidencias. Crea la primera para comenzar."
+          description="Aún no se han registrado incidencias en esta obra. Crea la primera para comenzar."
           action={{ label: 'Crear incidencia', onClick: handleCreate }}
         />
         <CreateIncidentModal open={createOpen} onClose={() => setCreateOpen(false)} />
@@ -96,13 +139,30 @@ export function Dashboard() {
   if (filtersActive && data.total === 0) {
     return (
       <div className={styles.page}>
-        <header className={styles.header}>
-          <h1 className={styles.title}>Dashboard</h1>
-          <p className={styles.subtitle}>Resumen general de incidencias</p>
-        </header>
+        <div className={styles.hero}>
+          <div className={styles.heroBody}>
+            <div className={styles.heroTop}>
+              <span className={styles.heroEyebrow}>Supervisión inteligente de obra</span>
+              {badge && (
+                <span className={`${styles.heroBadge} ${styles[badge.className]}`}>
+                  {badge.label}
+                </span>
+              )}
+            </div>
+            <h1 className={styles.heroTitle}>
+              {selectedProject ? selectedProject.name : 'Panel de control'}
+            </h1>
+            {selectedProject && (
+              <p className={styles.heroMeta}>
+                <MapPin size={14} />
+                {selectedProject.address}
+              </p>
+            )}
+          </div>
+        </div>
         <FilterBar />
         <EmptyState
-          icon={<span>🔍</span>}
+          icon={<AlertTriangle size={40} />}
           title="Sin resultados"
           description="No se encontraron incidencias con los filtros seleccionados. Intenta con otros criterios."
           action={{ label: 'Limpiar filtros', onClick: handleClearFilters }}
@@ -112,22 +172,66 @@ export function Dashboard() {
   }
 
   return (
-    <div className={styles.page}>
-      <header className={styles.header}>
-        <h1 className={styles.title}>Dashboard</h1>
-        <p className={styles.subtitle}>Resumen general de incidencias</p>
-      </header>
+      <div className={styles.page}>
+        {/* ─── Hero ─────────────────────────── */}
+        <div className={styles.hero}>
+          <div className={styles.heroBody}>
+            <div className={styles.heroTop}>
+              <span className={styles.heroEyebrow}>Supervisión inteligente de obra</span>
+              {badge && (
+                <span className={`${styles.heroBadge} ${styles[badge.className]}`}>
+                  {badge.label}
+                </span>
+              )}
+            </div>
+            <h1 className={styles.heroTitle}>
+              {selectedProject ? selectedProject.name : 'Panel de control'}
+            </h1>
+            {selectedProject && (
+              <p className={styles.heroMeta}>
+                <MapPin size={14} />
+                {selectedProject.address}
+              </p>
+            )}
+          </div>
 
-      <FilterBar />
+          <div className={styles.heroAside}>
+            <div className={styles.heroQuickItem}>
+              <span className={styles.heroQuickValue}>{data.total}</span>
+              <span className={styles.heroQuickLabel}>Total</span>
+            </div>
+            <div className={styles.heroQuickItem}>
+              <span className={styles.heroQuickValue}>{data.open}</span>
+              <span className={styles.heroQuickLabel}>Abiertas</span>
+            </div>
+            <div className={styles.heroQuickItem}>
+              <span className={styles.heroQuickValue}>{data.closed}</span>
+              <span className={styles.heroQuickLabel}>Cerradas</span>
+            </div>
+          </div>
+        </div>
 
+      {/* ─── Toolbar ──────────────────────── */}
+      <div className={styles.toolbar}>
+        <FilterBar />
+        <button type="button" className={styles.addBtn} onClick={handleCreate}>
+          <Plus size={16} />
+          Nueva incidencia
+        </button>
+      </div>
+
+      {/* ─── KPI Grid ─────────────────────── */}
       <KPIGrid data={data} />
 
+      {/* ─── Charts ───────────────────────── */}
       <section className={styles.charts}>
         <StatusDonut data={data.statusData} />
         <PriorityDonut data={data.priorityData} />
         <CategoryBar data={data.categoryData} />
         <TrendLine data={data.trendData} />
       </section>
+
+      <CreateIncidentModal open={createOpen} onClose={() => setCreateOpen(false)} />
     </div>
   );
 }

@@ -1,4 +1,98 @@
-/* ─── Marker ─────────────────────────────────── */
+@use '../styles/tokens' as *;
+
+/* ─── Reset ──────────────────────────────────────── */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  font-family: var(--font-family);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background: $bg;
+  color: $gray-800;
+  font-size: $font-base;
+  line-height: 1.5;
+}
+
+/* ─── Mapbox Overrides ──────────────────────────── */
+
+.mapboxgl-ctrl-group {
+  border: none !important;
+  border-radius: $radius-sm !important;
+  box-shadow: $shadow-lg !important;
+  overflow: hidden;
+
+  button {
+    width: 36px !important;
+    height: 36px !important;
+    border-radius: 0 !important;
+
+    &:hover {
+      background: $gray-100 !important;
+    }
+
+    & + button {
+      border-top: 1px solid $gray-200 !important;
+    }
+  }
+}
+
+.mapboxgl-ctrl-scale {
+  font-family: var(--font-family) !important;
+  font-size: $font-xs !important;
+  background: rgba(255, 255, 255, 0.9) !important;
+  border-color: $gray-300 !important;
+  color: $gray-600 !important;
+  border-radius: 4px !important;
+  padding: 2px 6px !important;
+}
+
+.mapboxgl-ctrl-geolocate {
+  background: $white !important;
+}
+
+/* ─── Popup override (glass + premium) ──────────── */
+
+.mapboxgl-popup {
+  z-index: 5;
+}
+
+.mapboxgl-popup-content {
+  border-radius: $radius-md !important;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15) !important;
+  padding: 0 !important;
+  border: none !important;
+  overflow: hidden;
+  background: #fff !important;
+}
+
+.mapboxgl-popup-close-button {
+  font-size: 18px !important;
+  padding: 6px 10px !important;
+  color: $gray-400 !important;
+  transition: color 0.15s;
+  z-index: 2;
+
+  &:hover {
+    color: $gray-700 !important;
+    background: transparent !important;
+  }
+}
+
+.mapboxgl-popup-tip {
+  border-top-color: #fff !important;
+}
+
+/* ─── Incident Marker ───────────────────────────── */
 
 .incident-marker {
   display: flex;
@@ -6,91 +100,103 @@
   justify-content: center;
 }
 
-/* ─── Popup ──────────────────────────────────── */
+@keyframes pulse-marker {
+  0% { transform: scale(1); opacity: 0.4; }
+  50% { transform: scale(1.6); opacity: 0; }
+  100% { transform: scale(1.6); opacity: 0; }
+}
+
+/* ─── Incident Popup ────────────────────────────── */
 
 .incident-popup {
-  font-family: system-ui, -apple-system, sans-serif;
-  padding: 0.125rem 0;
-  max-width: 260px;
+  font-family: var(--font-family);
+  max-width: 280px;
+}
+
+.incident-popup__bar {
+  height: 4px;
+  width: 100%;
 }
 
 .incident-popup__title {
-  margin: 0 0 0.5rem;
-  font-size: 0.9rem;
-  font-weight: 600;
+  margin: 0.75rem 1rem 0.375rem;
+  font-size: 1rem;
+  font-weight: 700;
   line-height: 1.3;
-  color: #111827;
+  color: $gray-900;
 }
 
 .incident-popup__meta {
   display: flex;
   gap: 0.375rem;
-  margin-bottom: 0.5rem;
+  margin: 0 1rem 0.5rem;
 }
 
 .incident-popup__badge {
   display: inline-block;
-  font-size: 0.6875rem;
-  font-weight: 600;
+  font-size: $font-xs;
+  font-weight: $weight-semibold;
   padding: 0.125rem 0.5rem;
-  border-radius: 999px;
+  border-radius: $radius-full;
   text-transform: capitalize;
 }
 
 .incident-popup__badge--high {
-  background: #fef2f2;
-  color: #dc2626;
+  background: $danger-bg;
+  color: $danger;
 }
 
 .incident-popup__badge--medium {
-  background: #fffbeb;
-  color: #d97706;
+  background: $warning-bg;
+  color: $warning;
 }
 
 .incident-popup__badge--low {
-  background: #eff6ff;
-  color: #2563eb;
+  background: #FFFBEB;
+  color: #D97706;
 }
 
 .incident-popup__badge--open {
-  background: #f0fdf4;
-  color: #16a34a;
+  background: $success-bg;
+  color: $success;
 }
 
 .incident-popup__badge--on_pause {
-  background: #fefce8;
-  color: #ca8a04;
+  background: $warning-bg;
+  color: $warning;
 }
 
 .incident-popup__badge--closed {
-  background: #f3f4f6;
-  color: #6b7280;
+  background: $gray-100;
+  color: $gray-500;
 }
 
 .incident-popup__detail {
-  margin: 0 0 0.25rem;
-  font-size: 0.8rem;
-  color: #4b5563;
+  margin: 0 1rem 0.25rem;
+  font-size: $font-sm;
+  color: $gray-600;
 }
 
 .incident-popup__id {
   display: block;
-  margin-top: 0.375rem;
-  font-size: 0.6875rem;
-  color: #9ca3af;
+  margin: 0.375rem 1rem 0;
+  font-size: $font-xs;
+  color: $gray-400;
 }
 
 .incident-popup__link {
-  display: inline-block;
-  margin-top: 0.5rem;
-  font-size: 0.75rem;
-  font-weight: 500;
-  color: #2563eb;
+  display: block;
+  margin: 0.75rem 0 0;
+  padding: 0.625rem 1rem;
+  background: var(--yellow);
+  color: var(--dark);
+  font-size: $font-sm;
+  font-weight: 600;
+  text-align: center;
   text-decoration: none;
-  transition: color 0.15s;
-}
+  transition: background 0.15s;
 
-.incident-popup__link:hover {
-  color: #1d4ed8;
-  text-decoration: underline;
+  &:hover {
+    background: var(--yellow-hover);
+  }
 }

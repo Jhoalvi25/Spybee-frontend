@@ -5,4 +5,12 @@
   flex: 1 1;
   display: flex;
   overflow: hidden;
+  position: relative;
+}
+@media (max-width: 768px) {
+  .map_page__vvFaJ {
+    margin-top: -60px;
+    padding-top: 0;
+    height: 100dvh;
+  }
 }

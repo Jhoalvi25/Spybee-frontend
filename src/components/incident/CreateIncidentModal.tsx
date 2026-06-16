@@ -5,8 +5,17 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import { useCreateIncident } from '@/domain/incident/hooks';
-import { INCIDENT_TYPE_OPTIONS, MAPBOX_DEFAULT_CENTER } from '@/lib/constants';
-import type { CreateIncidentDTO, IncidentPriority } from '@/domain/incident/types';
+import { MiniMapPicker } from '@/components/ui/MiniMapPicker';
+import {
+  PROJECT_OPTIONS,
+  INCIDENT_TYPE_OPTIONS,
+  PRIORITY_OPTIONS,
+  STATUS_OPTIONS,
+  PEOPLE_OPTIONS,
+  TAG_OPTIONS,
+  MAPBOX_DEFAULT_CENTER,
+} from '@/lib/constants';
+import type { CreateIncidentDTO } from '@/domain/incident/types';
 import styles from './CreateIncidentModal.module.scss';
 
 const createIncidentSchema = z.object({
@@ -18,20 +27,24 @@ const createIncidentSchema = z.object({
     .string()
     .min(10, 'Mínimo 10 caracteres')
     .max(2000, 'Máximo 2000 caracteres'),
-  dueDate: z.string().optional(),
+  projectId: z.string().min(1, 'Selecciona un proyecto'),
   typeKey: z.string().min(1, 'Selecciona una categoría'),
   priority: z.enum(['low', 'medium', 'high']),
+  status: z.enum(['open', 'on_pause', 'closed']),
+  dueDate: z.string().optional(),
+  ownerId: z.string().optional(),
+  assigneeIds: z.array(z.string()),
+  observerIds: z.array(z.string()),
+  tagIds: z.array(z.string()),
+  locationDescription: z.string().optional(),
+  lat: z.number(),
+  lng: z.number(),
+  mediaUrls: z.string().optional(),
 });
 
 type FormValues = z.infer<typeof createIncidentSchema>;
 
-const PRIORITY_OPTIONS: { value: IncidentPriority; label: string }[] = [
-  { value: 'low', label: 'Baja' },
-  { value: 'medium', label: 'Media' },
-  { value: 'high', label: 'Alta' },
-];
-
-function focusTrap(element: HTMLElement, previous: HTMLElement | null) {
+function focusTrapCleanup(element: HTMLElement, previous: HTMLElement | null): () => void {
   const focusable = element.querySelectorAll<HTMLElement>(
     'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
   );
@@ -64,24 +77,41 @@ type CreateIncidentModalProps = {
 export function CreateIncidentModal({ open, onClose }: CreateIncidentModalProps) {
   const overlayRef = useRef<HTMLDivElement>(null);
   const previousFocus = useRef<HTMLElement | null>(null);
+  const cleanupTrap = useRef<(() => void) | null>(null);
   const createIncident = useCreateIncident();
 
   const {
     register,
     handleSubmit,
     reset,
+    setValue,
+    watch,
     formState: { errors, isSubmitting },
   } = useForm<FormValues>({
     resolver: zodResolver(createIncidentSchema),
     defaultValues: {
       title: '',
       description: '',
-      dueDate: '',
+      projectId: '01',
       typeKey: '',
       priority: undefined,
+      status: 'open',
+      dueDate: '',
+      ownerId: '',
+      assigneeIds: [],
+      observerIds: [],
+      tagIds: [],
+      locationDescription: '',
+      lat: MAPBOX_DEFAULT_CENTER[0],
+      lng: MAPBOX_DEFAULT_CENTER[1],
+      mediaUrls: '',
     },
   });
 
+  const lat = watch('lat');
+  const lng = watch('lng');
+
+  // Modal open/close side effects
   useEffect(() => {
     if (open) {
       previousFocus.current = document.activeElement as HTMLElement;
@@ -89,11 +119,26 @@ export function CreateIncidentModal({ open, onClose }: CreateIncidentModalProps)
     } else {
       document.body.style.overflow = '';
       previousFocus.current?.focus();
+      previousFocus.current = null;
     }
     return () => {
       document.body.style.overflow = '';
     };
   }, [open]);
+
+  // Focus trap — stored in ref so it runs after the DOM paints
+  const modalRef = useCallback(
+    (el: HTMLDivElement | null) => {
+      // Cleanup previous trap
+      if (cleanupTrap.current) {
+        cleanupTrap.current();
+        cleanupTrap.current = null;
+      }
+      if (!el || !open) return;
+      cleanupTrap.current = focusTrapCleanup(el, previousFocus.current);
+    },
+    [open]
+  );
 
   const handleOverlayClick = useCallback(
     (e: React.MouseEvent) => {
@@ -109,6 +154,14 @@ export function CreateIncidentModal({ open, onClose }: CreateIncidentModalProps)
     [onClose]
   );
 
+  const handleMapChange = useCallback(
+    (newLat: number, newLng: number) => {
+      setValue('lat', newLat, { shouldValidate: false });
+      setValue('lng', newLng, { shouldValidate: false });
+    },
+    [setValue]
+  );
+
   const onSubmit = useCallback(
     (data: FormValues) => {
       const dto: CreateIncidentDTO = {
@@ -116,11 +169,23 @@ export function CreateIncidentModal({ open, onClose }: CreateIncidentModalProps)
         description: data.description,
         typeKey: data.typeKey,
         priority: data.priority,
-        projectId: '01',
+        projectId: data.projectId,
+        status: data.status,
+        ownerId: data.ownerId || undefined,
+        assigneeIds: data.assigneeIds,
+        observerIds: data.observerIds,
+        tagIds: data.tagIds,
+        lat: data.lat,
+        lng: data.lng,
+        locationDescription: data.locationDescription ?? '',
         dueDate: data.dueDate || undefined,
-        lat: MAPBOX_DEFAULT_CENTER[1],
-        lng: MAPBOX_DEFAULT_CENTER[0],
-        locationDescription: '',
+        media: data.mediaUrls
+          ? data.mediaUrls
+              .split(',')
+              .map((s) => s.trim())
+              .filter(Boolean)
+              .map((url) => ({ name: url.split('/').pop() ?? url, url }))
+          : undefined,
       };
 
       createIncident(dto);
@@ -129,6 +194,11 @@ export function CreateIncidentModal({ open, onClose }: CreateIncidentModalProps)
     },
     [createIncident, reset, onClose]
   );
+
+  const handleCancel = useCallback(() => {
+    reset();
+    onClose();
+  }, [reset, onClose]);
 
   if (!open) return null;
 
@@ -142,13 +212,7 @@ export function CreateIncidentModal({ open, onClose }: CreateIncidentModalProps)
       aria-modal="true"
       aria-labelledby="modal-title"
     >
-        <div
-          className={styles.modal}
-          ref={(el) => {
-            if (!el) return;
-            return focusTrap(el, previousFocus.current);
-          }}
-        >
+      <div ref={modalRef} className={styles.modal}>
         <div className={styles.header}>
           <h2 id="modal-title" className={styles.title}>
             Nueva incidencia
@@ -165,9 +229,10 @@ export function CreateIncidentModal({ open, onClose }: CreateIncidentModalProps)
 
         <form onSubmit={handleSubmit(onSubmit)} noValidate>
           <div className={styles.body}>
+            {/* ── Título ── */}
             <div className={styles.field}>
               <label htmlFor="title" className={styles.label}>
-                Título
+                Título <span className={styles.required}>*</span>
               </label>
               <input
                 id="title"
@@ -176,14 +241,13 @@ export function CreateIncidentModal({ open, onClose }: CreateIncidentModalProps)
                 {...register('title')}
                 placeholder="Ej: Fisura en losa sector B"
               />
-              {errors.title && (
-                <p className={styles.error}>{errors.title.message}</p>
-              )}
+              {errors.title && <p className={styles.error}>{errors.title.message}</p>}
             </div>
 
+            {/* ── Descripción ── */}
             <div className={styles.field}>
               <label htmlFor="description" className={styles.label}>
-                Descripción
+                Descripción <span className={styles.required}>*</span>
               </label>
               <textarea
                 id="description"
@@ -192,46 +256,61 @@ export function CreateIncidentModal({ open, onClose }: CreateIncidentModalProps)
                 {...register('description')}
                 placeholder="Describe el problema con el mayor detalle posible..."
               />
-              {errors.description && (
-                <p className={styles.error}>{errors.description.message}</p>
-              )}
+              {errors.description && <p className={styles.error}>{errors.description.message}</p>}
             </div>
 
-            <div className={styles.row}>
+            {/* ── Fila clasificación ── */}
+            <div className={styles.row4}>
+              <div className={styles.field}>
+                <label htmlFor="projectId" className={styles.label}>
+                  Proyecto <span className={styles.required}>*</span>
+                </label>
+                <select id="projectId" className={styles.select} {...register('projectId')}>
+                  {PROJECT_OPTIONS.map((opt) => (
+                    <option key={opt.value} value={opt.value}>{opt.label}</option>
+                  ))}
+                </select>
+                {errors.projectId && <p className={styles.error}>{errors.projectId.message}</p>}
+              </div>
+
               <div className={styles.field}>
                 <label htmlFor="typeKey" className={styles.label}>
-                  Categoría
+                  Categoría <span className={styles.required}>*</span>
                 </label>
                 <select id="typeKey" className={styles.select} {...register('typeKey')}>
                   <option value="">Seleccionar</option>
                   {INCIDENT_TYPE_OPTIONS.map((opt) => (
-                    <option key={opt.key} value={opt.key}>
-                      {opt.label}
-                    </option>
+                    <option key={opt.key} value={opt.key}>{opt.label}</option>
                   ))}
                 </select>
-                {errors.typeKey && (
-                  <p className={styles.error}>{errors.typeKey.message}</p>
-                )}
+                {errors.typeKey && <p className={styles.error}>{errors.typeKey.message}</p>}
               </div>
 
               <div className={styles.field}>
                 <label htmlFor="priority" className={styles.label}>
-                  Prioridad
+                  Prioridad <span className={styles.required}>*</span>
                 </label>
                 <select id="priority" className={styles.select} {...register('priority')}>
                   <option value="">Seleccionar</option>
                   {PRIORITY_OPTIONS.map((opt) => (
-                    <option key={opt.value} value={opt.value}>
-                      {opt.label}
-                    </option>
+                    <option key={opt.value} value={opt.value}>{opt.label}</option>
                   ))}
                 </select>
-                {errors.priority && (
-                  <p className={styles.error}>{errors.priority.message}</p>
-                )}
+                {errors.priority && <p className={styles.error}>{errors.priority.message}</p>}
               </div>
 
+              <div className={styles.field}>
+                <label htmlFor="status" className={styles.label}>Estado</label>
+                <select id="status" className={styles.select} {...register('status')}>
+                  {STATUS_OPTIONS.map((opt) => (
+                    <option key={opt.value} value={opt.value}>{opt.label}</option>
+                  ))}
+                </select>
+              </div>
+            </div>
+
+            {/* ── Fila fechas ── */}
+            <div className={styles.row2}>
               <div className={styles.field}>
                 <label htmlFor="dueDate" className={styles.label}>
                   Fecha vencimiento
@@ -243,6 +322,136 @@ export function CreateIncidentModal({ open, onClose }: CreateIncidentModalProps)
                   {...register('dueDate')}
                 />
               </div>
+
+              <div className={styles.field}>
+                <label htmlFor="locationDescription" className={styles.label}>
+                  Descripción ubicación
+                </label>
+                <input
+                  id="locationDescription"
+                  type="text"
+                  className={styles.input}
+                  {...register('locationDescription')}
+                  placeholder="Ej: Piso 5, sector norte"
+                />
+              </div>
+            </div>
+
+            {/* ── Ubicación (mapa) ── */}
+            <div className={styles.field}>
+              <label className={styles.label}>Ubicación en el mapa</label>
+              <MiniMapPicker lat={lat} lng={lng} onChange={handleMapChange} />
+              <div className={styles.row2}>
+                <div className={styles.field}>
+                  <label htmlFor="lat" className={styles.labelSm}>Latitud</label>
+                  <input
+                    id="lat"
+                    type="number"
+                    step="any"
+                    className={styles.input}
+                    value={lat}
+                    onChange={(e) => {
+                      const v = parseFloat(e.target.value);
+                      if (!isNaN(v)) handleMapChange(v, lng);
+                    }}
+                  />
+                </div>
+                <div className={styles.field}>
+                  <label htmlFor="lng" className={styles.labelSm}>Longitud</label>
+                  <input
+                    id="lng"
+                    type="number"
+                    step="any"
+                    className={styles.input}
+                    value={lng}
+                    onChange={(e) => {
+                      const v = parseFloat(e.target.value);
+                      if (!isNaN(v)) handleMapChange(lat, v);
+                    }}
+                  />
+                </div>
+              </div>
+            </div>
+
+            {/* ── Responsable ── */}
+            <div className={styles.field}>
+              <label htmlFor="ownerId" className={styles.label}>Responsable</label>
+              <select id="ownerId" className={styles.select} {...register('ownerId')}>
+                <option value="">Sin responsable</option>
+                {PEOPLE_OPTIONS.map((p) => (
+                  <option key={p.id} value={p.id}>{p.name}</option>
+                ))}
+              </select>
+            </div>
+
+            {/* ── Asignados ── */}
+            <fieldset className={styles.fieldset}>
+              <legend className={styles.label}>Asignados</legend>
+              <div className={styles.checkboxGrid}>
+                {PEOPLE_OPTIONS.map((p) => (
+                  <label key={p.id} className={styles.checkbox}>
+                    <input
+                      type="checkbox"
+                      value={p.id}
+                      {...register('assigneeIds')}
+                    />
+                    <span>{p.name}</span>
+                  </label>
+                ))}
+              </div>
+            </fieldset>
+
+            {/* ── Observadores ── */}
+            <fieldset className={styles.fieldset}>
+              <legend className={styles.label}>Observadores</legend>
+              <div className={styles.checkboxGrid}>
+                {PEOPLE_OPTIONS.map((p) => (
+                  <label key={p.id} className={styles.checkbox}>
+                    <input
+                      type="checkbox"
+                      value={p.id}
+                      {...register('observerIds')}
+                    />
+                    <span>{p.name}</span>
+                  </label>
+                ))}
+              </div>
+            </fieldset>
+
+            {/* ── Tags ── */}
+            <fieldset className={styles.fieldset}>
+              <legend className={styles.label}>Etiquetas</legend>
+              <div className={styles.tagGrid}>
+                {TAG_OPTIONS.map((t) => (
+                  <label
+                    key={t.id}
+                    className={styles.tagCheckbox}
+                    style={{ '--tag-color': t.color } as React.CSSProperties}
+                  >
+                    <input
+                      type="checkbox"
+                      value={t.id}
+                      {...register('tagIds')}
+                    />
+                    <span>{t.name}</span>
+                  </label>
+                ))}
+              </div>
+            </fieldset>
+
+            {/* ── Archivos adjuntos ── */}
+            <div className={styles.field}>
+              <label htmlFor="mediaUrls" className={styles.label}>
+                Archivos adjuntos
+              </label>
+              <input
+                id="mediaUrls"
+                type="text"
+                className={styles.input}
+                {...register('mediaUrls')}
+                placeholder="URLs separadas por coma (ej: https://…, https://…)"
+              />
+              <p className={styles.hint}>Ingresa URLs de imágenes para simular la carga de archivos</p>
             </div>
           </div>
 
@@ -250,7 +459,7 @@ export function CreateIncidentModal({ open, onClose }: CreateIncidentModalProps)
             <button
               type="button"
               className={styles.btnSecondary}
-              onClick={onClose}
+              onClick={handleCancel}
             >
               Cancelar
             </button>

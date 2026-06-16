@@ -10,13 +10,13 @@ $mobile-break: 768px;
   min-width: 0;
   display: flex;
   flex-direction: column;
+  background: var(--bg);
 
   @media (max-width: $mobile-break) {
-    padding-top: 52px; /* room for hamburger */
+    padding-top: 52px;
   }
 }
 
-/* ─── Hamburger (mobile only) ───────────── */
 .hamburger {
   display: none;
 
@@ -33,9 +33,9 @@ $mobile-break: 768px;
     height: 36px;
     padding: 0.5rem;
     border: none;
-    border-radius: 8px;
-    background: #fff;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+    border-radius: var(--radius-sm);
+    background: var(--white);
+    box-shadow: var(--shadow-md);
     cursor: pointer;
   }
 }
@@ -43,7 +43,7 @@ $mobile-break: 768px;
 .hamburgerBar {
   display: block;
   height: 2px;
-  background: #374151;
+  background: var(--gray-700);
   border-radius: 1px;
   transition: background 0.15s;
 }
