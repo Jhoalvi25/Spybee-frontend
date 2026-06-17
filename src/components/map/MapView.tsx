@@ -6,6 +6,7 @@ import {
   ClipboardList,
   AlertCircle,
   CheckCircle2,
+  X,
 } from 'lucide-react';
 import { useMapbox } from '@/hooks/useMapbox';
 import { MapContext } from './MapContext';
@@ -29,6 +30,27 @@ import {
 import type { Incident } from '@/domain/incident/types';
 import styles from './MapView.module.scss';
 
+function useLastSync() {
+  const [label, setLabel] = useState('hace unos segundos');
+  const [ts, setTs] = useState(Date.now());
+
+  const touch = useCallback(() => setTs(Date.now()), []);
+
+  useEffect(() => {
+    const tick = () => {
+      const elapsed = Math.floor((Date.now() - ts) / 1000);
+      if (elapsed < 5) setLabel('hace unos segundos');
+      else if (elapsed < 60) setLabel(`hace ${elapsed} segundos`);
+      else setLabel(`hace ${Math.floor(elapsed / 60)} min`);
+    };
+    tick();
+    const id = setInterval(tick, 5000);
+    return () => clearInterval(id);
+  }, [ts]);
+
+  return { label, touch };
+}
+
 export function MapView() {
   const containerRef = useRef<HTMLDivElement>(null);
   const { map, isLoaded, error: mapError } = useMapbox({ container: containerRef });
@@ -50,6 +72,8 @@ export function MapView() {
   useEffect(() => {
     loadIncidents();
   }, [loadIncidents]);
+
+  const { label: syncLabel, touch: touchSync } = useLastSync();
 
   const [popupIncident, setPopupIncident] = useState<Incident | null>(null);
   const [sideOpen, setSideOpen] = useState(true);
@@ -75,12 +99,17 @@ export function MapView() {
   }, [selectIncident]);
 
   const handleRetry = useCallback(() => {
+    touchSync();
     loadIncidents();
-  }, [loadIncidents]);
+  }, [loadIncidents, touchSync]);
 
   const handleClearFilters = useCallback(() => {
     resetFilters();
   }, [resetFilters]);
+
+  const handleFilterChange = useCallback((key: string, value: string) => {
+    setFilters({ [key]: value || undefined } as any);
+  }, [setFilters]);
 
   return (
     <MapContext.Provider value={map}>
@@ -98,23 +127,34 @@ export function MapView() {
 
           {sideOpen && (
             <>
+              {/* Section header */}
+              <div className={styles.panelHeader}>
+                <span className={styles.panelTitle}>Incidencias</span>
+              </div>
+
               {/* Stats */}
-              <div className={styles.statsGrid}>
-                <div className={styles.statCard}>
-                  <ClipboardList size={16} />
+              <div className={styles.statsRow}>
+                <div className={styles.statItem}>
                   <span className={styles.statValue}>{allIncidents.length}</span>
                   <span className={styles.statLabel}>Total</span>
                 </div>
-                <div className={styles.statCard}>
-                  <AlertCircle size={16} />
+                <div className={styles.statDivider} />
+                <div className={styles.statItem}>
                   <span className={styles.statValue}>{openCount}</span>
                   <span className={styles.statLabel}>Abiertas</span>
                 </div>
-                <div className={styles.statCard}>
-                  <CheckCircle2 size={16} />
+                <div className={styles.statDivider} />
+                <div className={styles.statItem}>
                   <span className={styles.statValue}>{closedCount}</span>
                   <span className={styles.statLabel}>Cerradas</span>
                 </div>
+              </div>
+
+              {/* System status */}
+              <div className={styles.systemStatus}>
+                <span className={styles.statusDot} />
+                <span className={styles.statusLabel}>Monitoreo activo</span>
+                <span className={styles.statusSync}>{syncLabel}</span>
               </div>
 
               {/* Filters */}
@@ -123,40 +163,53 @@ export function MapView() {
                   <Search size={14} className={styles.filterIcon} />
                   <input
                     type="text"
-                    placeholder="Buscar…"
+                    placeholder="Buscar incidencias…"
                     value={filters.search ?? ''}
-                    onChange={(e) => setFilters({ search: e.target.value || undefined })}
+                    onChange={(e) => handleFilterChange('search', e.target.value)}
                     className={styles.filterInput}
                     aria-label="Buscar incidencias"
                   />
+                  {filters.search && (
+                    <button
+                      type="button"
+                      className={styles.filterClearIcon}
+                      onClick={() => handleFilterChange('search', '')}
+                      aria-label="Limpiar búsqueda"
+                    >
+                      <X size={14} />
+                    </button>
+                  )}
                 </div>
 
-                <select
-                  value={filters.status ?? ''}
-                  onChange={(e) => setFilters({ status: (e.target.value || undefined) as never })}
-                  className={styles.filterSelect}
-                  aria-label="Filtrar por estado"
-                >
-                  <option value="">Todos los estados</option>
-                  {(Object.entries(INCIDENT_STATUS_LABELS) as [string, string][]).map(([k, v]) => (
-                    <option key={k} value={k}>{v}</option>
-                  ))}
-                </select>
+                <div className={styles.filterRow}>
+                  <select
+                    value={filters.status ?? ''}
+                    onChange={(e) => handleFilterChange('status', e.target.value)}
+                    className={styles.filterSelect}
+                    aria-label="Filtrar por estado"
+                  >
+                    <option value="">Estado</option>
+                    {(Object.entries(INCIDENT_STATUS_LABELS) as [string, string][]).map(([k, v]) => (
+                      <option key={k} value={k}>{v}</option>
+                    ))}
+                  </select>
 
-                <select
-                  value={filters.priority ?? ''}
-                  onChange={(e) => setFilters({ priority: (e.target.value || undefined) as never })}
-                  className={styles.filterSelect}
-                  aria-label="Filtrar por prioridad"
-                >
-                  <option value="">Todas las prioridades</option>
-                  {(Object.entries(INCIDENT_PRIORITY_LABELS) as [string, string][]).map(([k, v]) => (
-                    <option key={k} value={k}>{v}</option>
-                  ))}
-                </select>
+                  <select
+                    value={filters.priority ?? ''}
+                    onChange={(e) => handleFilterChange('priority', e.target.value)}
+                    className={styles.filterSelect}
+                    aria-label="Filtrar por prioridad"
+                  >
+                    <option value="">Prioridad</option>
+                    {(Object.entries(INCIDENT_PRIORITY_LABELS) as [string, string][]).map(([k, v]) => (
+                      <option key={k} value={k}>{v}</option>
+                    ))}
+                  </select>
+                </div>
 
                 {filtersActive && (
                   <button type="button" onClick={handleClearFilters} className={styles.clearBtn}>
+                    <X size={12} />
                     Limpiar filtros
                   </button>
                 )}
@@ -167,29 +220,28 @@ export function MapView() {
                 {incidents.length === 0 && (
                   <p className={styles.emptyList}>Sin incidencias</p>
                 )}
-                {incidents.slice(0, 20).map((inc) => (
-                  <button
-                    key={inc.id}
-                    type="button"
-                    className={`${styles.incidentItem} ${popupIncident?.id === inc.id ? styles.incidentItemActive : ''}`}
-                    onClick={() => handleMarkerClick(inc.id)}
-                  >
-                    <span
-                      className={styles.incidentDot}
-                      style={{
-                        background:
-                          inc.status === 'closed' ? '#22C55E' :
-                          inc.priority === 'high' ? '#EF4444' : '#F4C400',
-                      }}
-                    />
-                    <div className={styles.incidentInfo}>
-                      <span className={styles.incidentTitle}>{inc.title}</span>
-                      <span className={styles.incidentSub}>
-                        {inc.type.name} · {inc.sequenceId}
-                      </span>
-                    </div>
-                  </button>
-                ))}
+                {incidents.slice(0, 20).map((inc) => {
+                  const dotColor =
+                    inc.status === 'closed' ? '#22C55E' :
+                    inc.priority === 'high' ? '#EF4444' : '#F4C400';
+                  return (
+                    <button
+                      key={inc.id}
+                      type="button"
+                      className={`${styles.incidentCard} ${popupIncident?.id === inc.id ? styles.incidentCardActive : ''}`}
+                      style={{ '--bar-color': dotColor } as React.CSSProperties}
+                      onClick={() => handleMarkerClick(inc.id)}
+                    >
+                      <div className={styles.incidentBody}>
+                        <span className={styles.incidentTitle}>{inc.title}</span>
+                        <span className={styles.incidentMeta}>
+                          <span className={styles.incidentCategory}>{inc.type.name}</span>
+                          <span className={styles.incidentId}>{inc.sequenceId}</span>
+                        </span>
+                      </div>
+                    </button>
+                  );
+                })}
               </div>
             </>
           )}

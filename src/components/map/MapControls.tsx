@@ -50,7 +50,7 @@ export function MapControls({ map, isLoaded }: MapControlsProps) {
   return (
     <div className={styles.controls}>
       {/* Style switcher */}
-      <div className={styles.glassCard} role="radiogroup" aria-label="Estilo de mapa">
+      <div className={styles.card} role="radiogroup" aria-label="Estilo de mapa">
         {STYLE_OPTIONS.map((s) => {
           const Icon = s.icon;
           return (
@@ -63,7 +63,7 @@ export function MapControls({ map, isLoaded }: MapControlsProps) {
               onClick={() => handleStyleChange(s.id, s.url)}
               disabled={isSwitching}
             >
-              <Icon size={16} />
+              <Icon size={15} />
               <span>{s.label}</span>
             </button>
           );
@@ -72,7 +72,7 @@ export function MapControls({ map, isLoaded }: MapControlsProps) {
       </div>
 
       {/* Zoom controls */}
-      <div className={styles.glassCard}>
+      <div className={styles.card}>
         {ZOOM_BUTTONS.map((z, i) => {
           const Icon = z.icon;
           return (
@@ -83,7 +83,7 @@ export function MapControls({ map, isLoaded }: MapControlsProps) {
                 className={styles.btn}
                 onClick={() => handleZoom(z.action)}
               >
-                <Icon size={16} />
+                <Icon size={15} />
                 <span>{z.label}</span>
               </button>
             </span>

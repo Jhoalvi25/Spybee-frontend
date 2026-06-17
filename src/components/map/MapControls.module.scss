@@ -19,15 +19,17 @@
   }
 }
 
-.glassCard {
+.card {
   display: flex;
   flex-direction: column;
-  background: rgba(255, 255, 255, 0.9);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
   border-radius: 10px;
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  box-shadow:
+    0 4px 16px rgba(0, 0, 0, 0.06),
+    0 1px 3px rgba(0, 0, 0, 0.04);
   overflow: hidden;
   pointer-events: auto;
 
@@ -53,15 +55,16 @@
   border: none;
   background: transparent;
   color: var(--gray-500);
-  font-size: 0.78125rem;
+  font-size: 0.75rem;
+  font-weight: 500;
   font-family: inherit;
   cursor: pointer;
   transition: background 0.15s, color 0.15s;
   white-space: nowrap;
 
   &:hover:not(:disabled) {
-    background: rgba(244, 196, 0, 0.08);
-    color: var(--dark);
+    background: var(--gray-50);
+    color: #111827;
   }
 
   &:disabled {
@@ -80,9 +83,13 @@
 }
 
 .btnActive {
-  color: var(--dark);
+  color: #111827;
   font-weight: 600;
   background: rgba(244, 196, 0, 0.1);
+
+  &:hover:not(:disabled) {
+    background: rgba(244, 196, 0, 0.15);
+  }
 }
 
 .spinner {
