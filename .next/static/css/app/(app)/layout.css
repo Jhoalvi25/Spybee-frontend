@@ -4,7 +4,7 @@
 @charset "UTF-8";
 .Sidebar_sidebar__JoEdm {
   width: 260px;
-  min-height: 100dvh;
+  height: 100vh;
   display: flex;
   flex-direction: column;
   background: #fff;
@@ -12,7 +12,9 @@
   flex-shrink: 0;
   transition: width 0.2s ease;
   overflow: hidden;
-  position: relative;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
 }
 @media (max-width: 768px) {
   .Sidebar_sidebar__JoEdm {
@@ -96,6 +98,7 @@
   flex-direction: column;
   gap: 0.125rem;
   padding: 0.75rem 0.5rem;
+  overflow-y: auto;
 }
 
 .Sidebar_link__Li6xQ {
@@ -143,28 +146,43 @@
   text-overflow: ellipsis;
 }
 
-/* ─── User ─────────────────────────────── */
-.Sidebar_user__Gtunp {
+/* ─── Footer (pushed to bottom) ────────── */
+.Sidebar_sidebarFooter__OgofT {
+  margin-top: auto;
+  padding: 0 0.5rem 0.75rem;
+}
+
+.Sidebar_footerDivider__dgoda {
+  height: 1px;
+  background: linear-gradient(to right, transparent, #e5e7eb, transparent);
+  margin: 0 0.5rem 0.75rem;
+}
+
+/* ─── User Card ────────────────────────── */
+.Sidebar_userCard__1buTi {
   display: flex;
   align-items: center;
   gap: 0.75rem;
-  padding: 0.75rem 1rem;
-  border-top: 1px solid #e5e7eb;
+  padding: 0.625rem 0.75rem;
+  border-radius: var(--radius-sm);
+  background: var(--gray-50);
   white-space: nowrap;
+  margin-bottom: 0.375rem;
 }
 
 .Sidebar_userAvatar__DeUtD {
-  width: 32px;
-  height: 32px;
+  width: 36px;
+  height: 36px;
   border-radius: 50%;
   background: #f4c400;
   color: #111827;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 0.8125rem;
+  font-size: 0.875rem;
   font-weight: 700;
   flex-shrink: 0;
+  box-shadow: 0 0 0 2px #fff, 0 0 0 3px #f4c400;
 }
 
 .Sidebar_userInfo__DkDOM {
@@ -182,6 +200,16 @@
   text-overflow: ellipsis;
 }
 
+.Sidebar_userRole__8nQwR {
+  font-size: 0.625rem;
+  font-weight: 600;
+  color: #f4c400;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 .Sidebar_userEmail__KvVex {
   font-size: 0.6875rem;
   color: #9ca3af;
@@ -194,9 +222,10 @@
   display: flex;
   align-items: center;
   gap: 0.75rem;
-  padding: 0.75rem 1rem;
+  width: 100%;
+  padding: 0.5rem 0.75rem;
   border: none;
-  border-top: 1px solid #e5e7eb;
+  border-radius: var(--radius-sm);
   background: transparent;
   color: #9ca3af;
   font-size: 0.8125rem;
@@ -205,7 +234,7 @@
   transition: color 0.2s ease, background 0.2s ease;
 }
 .Sidebar_logoutBtn__fMdI2:hover {
-  background: #fff7cc;
+  background: #fef2f2;
   color: #ef4444;
 }
 @media (max-width: 768px) {
@@ -264,7 +293,8 @@
   \****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
 .layout_layout__bqnDT {
   display: flex;
-  min-height: 100dvh;
+  height: 100vh;
+  overflow: hidden;
 }
 
 .layout_content__UJPqO {
@@ -273,6 +303,7 @@
   display: flex;
   flex-direction: column;
   background: var(--bg);
+  overflow-y: auto;
 }
 @media (max-width: 768px) {
   .layout_content__UJPqO {

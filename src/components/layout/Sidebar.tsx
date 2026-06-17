@@ -77,31 +77,36 @@ export function Sidebar({ mobileOpen, onMobileClose }: SidebarProps) {
           })}
         </nav>
 
-        {user && (
-          <div className={styles.user}>
-            <div className={styles.userAvatar}>
-              {user.name.charAt(0).toUpperCase()}
-            </div>
-            {!collapsed && (
-              <div className={styles.userInfo}>
-                <span className={styles.userName}>{user.name}</span>
-                <span className={styles.userEmail}>{user.email}</span>
-              </div>
-            )}
-          </div>
-        )}
+        <div className={styles.sidebarFooter}>
+          <div className={styles.footerDivider} />
 
-        <button
-          type="button"
-          className={styles.logoutBtn}
-          onClick={handleLogout}
-          aria-label="Cerrar sesión"
-        >
-          <span className={styles.logoutIcon}>
-            <LogOut size={16} />
-          </span>
-          {!collapsed && <span className={styles.logoutLabel}>Cerrar sesión</span>}
-        </button>
+          {user && (
+            <div className={styles.userCard}>
+              <div className={styles.userAvatar}>
+                {user.name.charAt(0).toUpperCase()}
+              </div>
+              {!collapsed && (
+                <div className={styles.userInfo}>
+                  <span className={styles.userName}>{user.name}</span>
+                  <span className={styles.userRole}>Administrador</span>
+                  <span className={styles.userEmail}>{user.email}</span>
+                </div>
+              )}
+            </div>
+          )}
+
+          <button
+            type="button"
+            className={styles.logoutBtn}
+            onClick={handleLogout}
+            aria-label="Cerrar sesión"
+          >
+            <span className={styles.logoutIcon}>
+              <LogOut size={16} />
+            </span>
+            {!collapsed && <span className={styles.logoutLabel}>Cerrar sesión</span>}
+          </button>
+        </div>
 
         <button
           type="button"
