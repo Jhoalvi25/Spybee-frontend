@@ -11,6 +11,7 @@ import {
   CartesianGrid,
 } from 'recharts';
 import type { TrendLineItem } from '@/hooks/useDashboardData';
+import { useTheme } from '@/domain/ui/hooks';
 import { ChartCard } from './ChartCard';
 
 type TrendLineProps = { data: TrendLineItem[] };
@@ -39,6 +40,9 @@ function CustomTooltip({ active, payload, label }: any) {
 }
 
 export function TrendLine({ data }: TrendLineProps) {
+  const theme = useTheme();
+  const closedStroke = theme === 'dark' ? '#9CA3AF' : '#1F1F1F';
+
   return (
     <ChartCard title="Tendencia mensual" fullWidth>
       <ResponsiveContainer width="100%" height={320}>
@@ -72,9 +76,9 @@ export function TrendLine({ data }: TrendLineProps) {
           <Line
             type="monotone"
             dataKey="closed"
-            stroke="#1F1F1F"
+            stroke={closedStroke}
             strokeWidth={2}
-            dot={{ r: 3, fill: '#1F1F1F' }}
+            dot={{ r: 3, fill: closedStroke }}
             activeDot={{ r: 5 }}
           />
         </LineChart>

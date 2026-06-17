@@ -119,6 +119,83 @@
   --shadow-elevated: 0 4px 16px rgba(0, 0, 0, 0.1);
 }
 
+[data-theme=light],
+:root {
+  --surface: #ffffff;
+  --surface-secondary: #f5f5f5;
+  --border: #ececec;
+  --border-secondary: #e2e2e2;
+  --text-primary: #111827;
+  --text-secondary: #6b7280;
+  --text-tertiary: #9ca3af;
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.04);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 10px 24px rgba(0, 0, 0, 0.08);
+  --glass-bg: rgba(255, 255, 255, 0.85);
+  --glass-border: rgba(255, 255, 255, 0.5);
+  --glass-bg-solid: rgba(255, 255, 255, 0.95);
+  --skel-start: #f0f0f0;
+  --skel-end: #f8f8f8;
+  --low-bg: #FFFBEB;
+  --low-color: #D97706;
+  --purple: #8B5CF6;
+  --purple-bg: #F5F3FF;
+  --orange: #F97316;
+  --orange-bg: #FFF7ED;
+  --avatar-inner-bg: #F4C400;
+  --avatar-inner-color: #1F1F1F;
+  --avatar-outer-bg: #1F1F1F;
+  --role-color: #1F1F1F;
+}
+
+[data-theme=dark] {
+  --bg: #0f1115;
+  --surface: #171b22;
+  --surface-secondary: #1f242d;
+  --border: #2d3440;
+  --border-secondary: #2d3440;
+  --text-primary: #ffffff;
+  --text-secondary: #9ca3af;
+  --text-tertiary: #6b7280;
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.18);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.25);
+  --shadow-lg: 0 10px 24px rgba(0, 0, 0, 0.35);
+  --glass-bg: rgba(23, 27, 34, 0.85);
+  --glass-border: rgba(45, 52, 64, 0.5);
+  --glass-bg-solid: rgba(23, 27, 34, 0.95);
+  --skel-start: #1f242d;
+  --skel-end: #252b36;
+  --gray-50: #1a1e26;
+  --gray-100: #1f242d;
+  --gray-200: #2d3440;
+  --gray-300: #3b4352;
+  --gray-400: #6b7280;
+  --gray-500: #9ca3af;
+  --gray-600: #cbd5e1;
+  --gray-700: #e2e8f0;
+  --gray-800: #f1f5f9;
+  --gray-900: #f8fafc;
+  --success-bg: rgba(34, 197, 94, 0.12);
+  --warning-bg: rgba(245, 158, 11, 0.12);
+  --danger-bg: rgba(239, 68, 68, 0.12);
+  --info-bg: rgba(59, 130, 246, 0.12);
+  --white: #171b22;
+  --dark: #ffffff;
+  --yellow-bg: rgba(244, 196, 0, 0.12);
+  --yellow-light: rgba(244, 196, 0, 0.2);
+  --low-bg: rgba(245, 158, 11, 0.12);
+  --low-color: #F59E0B;
+  --purple: #A78BFA;
+  --purple-bg: rgba(139, 92, 246, 0.12);
+  --orange: #FB923C;
+  --orange-bg: rgba(249, 115, 22, 0.12);
+  --icon-card-color: #ffffff;
+  --avatar-inner-bg: #F4C400;
+  --avatar-inner-color: #1F1F1F;
+  --avatar-outer-bg: #ffffff;
+  --role-color: #ffffff;
+}
+
 /* ─── Reset ──────────────────────────────────────── */
 *,
 *::before,
@@ -139,39 +216,42 @@ body {
   color: #262626;
   font-size: 0.8125rem;
   line-height: 1.5;
+  transition: background-color 0.2s ease, color 0.2s ease;
 }
 
 /* ─── Mapbox Overrides ──────────────────────────── */
 .mapboxgl-ctrl-group {
   border: none !important;
-  border-radius: 8px !important;
-  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.08), 0 4px 6px -4px rgba(0, 0, 0, 0.05) !important;
+  border-radius: var(--radius-sm) !important;
+  box-shadow: var(--shadow-md) !important;
   overflow: hidden;
 }
 .mapboxgl-ctrl-group button {
   width: 36px !important;
   height: 36px !important;
   border-radius: 0 !important;
+  transition: background-color 0.2s ease !important;
 }
 .mapboxgl-ctrl-group button:hover {
-  background: #F5F5F5 !important;
+  background: var(--gray-100) !important;
 }
 .mapboxgl-ctrl-group button + button {
-  border-top: 1px solid #E5E5E5 !important;
+  border-top: 1px solid var(--border) !important;
 }
 
 .mapboxgl-ctrl-scale {
   font-family: var(--font-family) !important;
-  font-size: 0.6875rem !important;
-  background: rgba(255, 255, 255, 0.9) !important;
-  border-color: #D4D4D4 !important;
-  color: #525252 !important;
+  font-size: var(--font-xs, 0.6875rem) !important;
+  background: var(--glass-bg) !important;
+  border-color: var(--border) !important;
+  color: var(--gray-500) !important;
   border-radius: 4px !important;
   padding: 2px 6px !important;
+  transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease !important;
 }
 
 .mapboxgl-ctrl-geolocate {
-  background: #FFFFFF !important;
+  background: var(--surface) !important;
 }
 
 /* ─── Popup override (glass + premium) ──────────── */
@@ -181,27 +261,28 @@ body {
 
 .mapboxgl-popup-content {
   border-radius: 12px !important;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15) !important;
+  box-shadow: var(--shadow-lg) !important;
   padding: 0 !important;
   border: none !important;
   overflow: hidden;
-  background: #fff !important;
+  background: var(--surface) !important;
+  transition: background-color 0.2s ease, box-shadow 0.2s ease;
 }
 
 .mapboxgl-popup-close-button {
   font-size: 18px !important;
   padding: 6px 10px !important;
-  color: #A3A3A3 !important;
+  color: var(--gray-400) !important;
   transition: color 0.15s;
   z-index: 2;
 }
 .mapboxgl-popup-close-button:hover {
-  color: #404040 !important;
+  color: var(--gray-700) !important;
   background: transparent !important;
 }
 
 .mapboxgl-popup-tip {
-  border-top-color: #fff !important;
+  border-top-color: var(--surface) !important;
 }
 
 /* ─── Incident Marker ───────────────────────────── */
@@ -241,7 +322,8 @@ body {
   font-size: 1rem;
   font-weight: 700;
   line-height: 1.3;
-  color: #171717;
+  color: var(--text-primary);
+  transition: color 0.2s ease;
 }
 
 .incident-popup__meta {
@@ -270,8 +352,8 @@ body {
 }
 
 .incident-popup__badge--low {
-  background: #FFFBEB;
-  color: #D97706;
+  background: var(--low-bg);
+  color: var(--low-color);
 }
 
 .incident-popup__badge--open {
@@ -285,21 +367,23 @@ body {
 }
 
 .incident-popup__badge--closed {
-  background: #F5F5F5;
-  color: #737373;
+  background: var(--gray-100);
+  color: var(--gray-500);
 }
 
 .incident-popup__detail {
   margin: 0 1rem 0.25rem;
   font-size: 0.75rem;
-  color: #525252;
+  color: var(--text-secondary);
+  transition: color 0.2s ease;
 }
 
 .incident-popup__id {
   display: block;
   margin: 0.375rem 1rem 0;
   font-size: 0.6875rem;
-  color: #A3A3A3;
+  color: var(--gray-400);
+  transition: color 0.2s ease;
 }
 
 .incident-popup__link {
@@ -355,6 +439,34 @@ body {
   100% {
     opacity: 1;
     transform: scale(1);
+  }
+}
+/* ─── MiniMapPicker marker animations ─── */
+@keyframes drop {
+  0% {
+    transform: translateY(-20px) scale(0.6);
+    opacity: 0;
+  }
+  60% {
+    transform: translateY(4px) scale(1.05);
+  }
+  100% {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+}
+@keyframes shadow {
+  0% {
+    transform: translateX(-50%) scale(0.4);
+    opacity: 0;
+  }
+  60% {
+    transform: translateX(-50%) scale(1.2);
+    opacity: 0.5;
+  }
+  100% {
+    transform: translateX(-50%) scale(1);
+    opacity: 1;
   }
 }
 /* ─── Shared animation utility classes ─── */

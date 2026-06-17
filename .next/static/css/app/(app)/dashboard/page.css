@@ -247,13 +247,83 @@
 /*!***************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[14].oneOf[7].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[14].oneOf[7].use[3]!./node_modules/next/dist/build/webpack/loaders/resolve-url-loader/index.js??ruleSet[1].rules[14].oneOf[7].use[4]!./node_modules/next/dist/compiled/sass-loader/cjs.js??ruleSet[1].rules[14].oneOf[7].use[5]!./src/components/ui/MiniMapPicker.module.scss ***!
   \***************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+@charset "UTF-8";
 .MiniMapPicker_wrapper__8focu {
+  display: flex;
+  flex-direction: column;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  transition: box-shadow 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
+}
+.MiniMapPicker_wrapper__8focu:focus-within {
+  box-shadow: 0 0 0 3px rgba(244, 196, 0, 0.12);
+}
+
+/* ─── Header ──────────────────────────── */
+.MiniMapPicker_header__4l6U8 {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  padding: 0.875rem 1rem;
+  border-bottom: 1px solid var(--border);
+  transition: border-color 0.2s ease;
+}
+
+.MiniMapPicker_headerTop__hEetF {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.MiniMapPicker_headerIcon__Yqk8P {
+  color: var(--primary);
+  flex-shrink: 0;
+}
+
+.MiniMapPicker_headerTitle__ZlHUM {
+  font-size: 0.8125rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  transition: color 0.2s ease;
+}
+
+.MiniMapPicker_headerDesc__HezNC {
+  margin: 0;
+  font-size: 0.6875rem;
+  color: var(--gray-400);
+  line-height: 1.4;
+}
+
+.MiniMapPicker_headerCoords__dVGxm {
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+  margin-top: 0.125rem;
+}
+
+.MiniMapPicker_coordLabel__zPo5n {
+  font-size: 0.6875rem;
+  font-weight: 600;
+  color: var(--gray-500);
+  font-family: var(--font-mono, "JetBrains Mono", monospace);
+  font-feature-settings: "tnum";
+  font-variant-numeric: tabular-nums;
+}
+
+.MiniMapPicker_coordSep__B6IRS {
+  font-size: 0.5rem;
+  color: var(--gray-300);
+}
+
+/* ─── Map container ────────────────────── */
+.MiniMapPicker_mapContainer__H44AL {
   position: relative;
   width: 100%;
-  height: 240px;
-  border-radius: var(--radius-sm);
+  height: 260px;
   overflow: hidden;
-  border: 1px solid var(--gray-300);
 }
 
 .MiniMapPicker_map__xIXsG {
@@ -261,31 +331,188 @@
   height: 100%;
 }
 
-.MiniMapPicker_loading__lIEXi {
+/* ─── Style switcher ───────────────────── */
+.MiniMapPicker_styleBar__BCTp6 {
   position: absolute;
-  inset: 0;
+  top: 0.625rem;
+  left: 0.625rem;
+  z-index: 2;
+  display: flex;
+  gap: 2px;
+  background: var(--glass-bg);
+  -webkit-backdrop-filter: blur(8px);
+          backdrop-filter: blur(8px);
+  border-radius: 8px;
+  padding: 2px;
+  box-shadow: var(--shadow-md);
+  transition: background-color 0.2s ease;
+}
+
+.MiniMapPicker_styleBtn__3emP_ {
+  padding: 0.25rem 0.5rem;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.6875rem;
+  font-weight: 500;
+  font-family: inherit;
+  color: var(--gray-500);
+  background: transparent;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.15s, color 0.15s;
+}
+.MiniMapPicker_styleBtn__3emP_:hover {
+  background: var(--gray-100);
+  color: var(--text-primary);
+}
+
+.MiniMapPicker_styleBtnActive__LERvp {
+  background: var(--surface);
+  color: var(--text-primary);
+  font-weight: 600;
+  box-shadow: var(--shadow-sm);
+}
+.MiniMapPicker_styleBtnActive__LERvp:hover {
+  background: var(--surface);
+}
+
+/* ─── Floating controls ────────────────── */
+.MiniMapPicker_floatControls__xnYpG {
+  position: absolute;
+  right: 0.625rem;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: var(--glass-bg);
+  -webkit-backdrop-filter: blur(8px);
+          backdrop-filter: blur(8px);
+  border-radius: 8px;
+  padding: 2px;
+  box-shadow: var(--shadow-md);
+  transition: background-color 0.2s ease;
+}
+
+.MiniMapPicker_ctrlBtn__a9JhS {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: var(--gray-50);
+  width: 32px;
+  height: 32px;
+  border: none;
+  border-radius: 6px;
+  background: transparent;
+  color: var(--gray-500);
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+}
+.MiniMapPicker_ctrlBtn__a9JhS:hover {
+  background: var(--gray-100);
+  color: var(--text-primary);
+}
+
+.MiniMapPicker_ctrlDivider__OG4IU {
+  width: 20px;
+  height: 1px;
+  background: var(--border);
+  margin: 0;
+}
+
+/* ─── Loading overlay ──────────────────── */
+.MiniMapPicker_loadingOverlay__oMmeC {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background: var(--glass-bg-solid);
   color: var(--gray-500);
   font-size: 0.8125rem;
 }
 
-.MiniMapPicker_error__s3IRN {
+@keyframes MiniMapPicker_spin__2cCqt {
+  to {
+    transform: rotate(360deg);
+  }
+}
+.MiniMapPicker_loadingSpin__uaRwE {
+  animation: MiniMapPicker_spin__2cCqt 0.8s linear infinite;
+  color: var(--primary);
+}
+
+/* ─── Error state ──────────────────────── */
+.MiniMapPicker_errorBox__fhbKU {
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 100%;
+  min-height: 200px;
   color: var(--danger);
   font-size: 0.8125rem;
   background: var(--danger-bg);
   padding: 1rem;
   text-align: center;
+  border-radius: 10px;
+}
+
+/* ─── Coordinate fields ────────────────── */
+.MiniMapPicker_coordRow__pPnSx {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 0.75rem;
+  gap: 0.75rem;
+  padding: 0.875rem 1rem;
+  border-top: 1px solid var(--border);
+  transition: border-color 0.2s ease;
+}
+
+.MiniMapPicker_coordField__kNXwT {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.MiniMapPicker_coordFieldLabel__d4Xub {
+  font-size: 0.6875rem;
+  font-weight: 600;
+  color: var(--gray-500);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.MiniMapPicker_coordInput__DsrVm {
+  width: 100%;
+  height: 36px;
+  padding: 0 0.75rem;
+  border: 1px solid var(--border-secondary);
+  border-radius: 8px;
+  font-size: 0.8125rem;
+  font-family: var(--font-mono, "JetBrains Mono", monospace);
+  color: var(--text-primary);
+  background: var(--surface-secondary);
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+  box-sizing: border-box;
+  font-feature-settings: "tnum";
+  font-variant-numeric: tabular-nums;
+}
+.MiniMapPicker_coordInput__DsrVm:hover {
+  border-color: var(--border);
+  background: var(--surface);
+}
+.MiniMapPicker_coordInput__DsrVm:focus {
+  border-color: var(--primary);
+  background: var(--surface);
+  box-shadow: 0 0 0 3px rgba(244, 196, 0, 0.12);
 }
 /*!***************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[14].oneOf[7].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[14].oneOf[7].use[3]!./node_modules/next/dist/build/webpack/loaders/resolve-url-loader/index.js??ruleSet[1].rules[14].oneOf[7].use[4]!./node_modules/next/dist/compiled/sass-loader/cjs.js??ruleSet[1].rules[14].oneOf[7].use[5]!./src/components/incident/CreateIncidentModal.module.scss ***!
   \***************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+@charset "UTF-8";
 .CreateIncidentModal_overlay__ovXnt {
   position: fixed;
   inset: 0;
@@ -293,85 +520,209 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(0, 0, 0, 0.5);
-  -webkit-backdrop-filter: blur(4px);
-          backdrop-filter: blur(4px);
+  background: rgba(0, 0, 0, 0.45);
+  -webkit-backdrop-filter: blur(6px);
+          backdrop-filter: blur(6px);
   padding: 1rem;
+  animation: CreateIncidentModal_overlayIn__lGSZm 0.2s ease-out;
 }
 
+@keyframes CreateIncidentModal_overlayIn__lGSZm {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
 .CreateIncidentModal_modal__v6dDY {
   width: 100%;
-  max-width: 720px;
+  max-width: 800px;
   max-height: 90dvh;
   overflow-y: auto;
-  background: var(--white);
-  border-radius: var(--radius-md);
-  box-shadow: var(--shadow-xl);
-  animation: CreateIncidentModal_slideUp__6V2FH 0.2s ease-out;
+  background: var(--bg);
+  border-radius: 20px;
+  box-shadow: var(--shadow-lg);
+  animation: CreateIncidentModal_modalIn__alKlp 0.3s ease-out;
+  transition: background-color 0.2s ease;
 }
 
-@keyframes CreateIncidentModal_slideUp__6V2FH {
-  from {
+@keyframes CreateIncidentModal_modalIn__alKlp {
+  0% {
     opacity: 0;
-    transform: translateY(16px);
+    transform: scale(0.96) translateY(12px);
   }
-  to {
+  100% {
     opacity: 1;
-    transform: translateY(0);
+    transform: scale(1) translateY(0);
   }
 }
+/* ─── Header ──────────────────────────── */
 .CreateIncidentModal_header__AZ6S8 {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 1.25rem 1.5rem;
-  border-bottom: 1px solid var(--gray-200);
+  padding: 1.5rem 1.75rem;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  border-radius: 20px 20px 0 0;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.CreateIncidentModal_headerLeft__8iLM6 {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.875rem;
+}
+
+.CreateIncidentModal_headerIcon___V6q5 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background: var(--yellow-bg);
+  color: var(--primary);
+  flex-shrink: 0;
+  margin-top: 2px;
 }
 
 .CreateIncidentModal_title__Sktcj {
   margin: 0;
   font-size: 1.125rem;
-  font-weight: 600;
-  color: var(--dark);
+  font-weight: 700;
+  color: var(--text-primary);
+  line-height: 1.3;
+  transition: color 0.2s ease;
+}
+
+.CreateIncidentModal_headerSub__xXwFU {
+  margin: 0.125rem 0 0;
+  font-size: 0.8125rem;
+  color: var(--text-secondary);
+  line-height: 1.4;
+  transition: color 0.2s ease;
 }
 
 .CreateIncidentModal_close__Hls0b {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 32px;
-  height: 32px;
+  width: 36px;
+  height: 36px;
   border: none;
-  border-radius: var(--radius-sm);
+  border-radius: 10px;
   background: transparent;
   color: var(--gray-500);
   font-size: 1rem;
   cursor: pointer;
-  transition: background 0.15s;
+  flex-shrink: 0;
+  transition: background 0.15s, color 0.15s;
 }
 .CreateIncidentModal_close__Hls0b:hover {
   background: var(--gray-100);
-  color: var(--dark);
+  color: var(--text-primary);
 }
 
+/* ─── Body ─────────────────────────────── */
 .CreateIncidentModal_body__TRNut {
-  padding: 1.5rem;
+  padding: 1.25rem 1.75rem 1.75rem;
   display: flex;
   flex-direction: column;
-  gap: 1.25rem;
+  gap: 1rem;
 }
 
+/* ─── Section Card ─────────────────────── */
+.CreateIncidentModal_section__9V9h0 {
+  background: var(--surface);
+  border-radius: 16px;
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+  animation: CreateIncidentModal_sectionIn__ZPdty 0.35s ease-out both;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+.CreateIncidentModal_section__9V9h0:nth-child(1) {
+  animation-delay: 0.04s;
+}
+.CreateIncidentModal_section__9V9h0:nth-child(2) {
+  animation-delay: 0.08s;
+}
+.CreateIncidentModal_section__9V9h0:nth-child(3) {
+  animation-delay: 0.12s;
+}
+.CreateIncidentModal_section__9V9h0:nth-child(4) {
+  animation-delay: 0.16s;
+}
+.CreateIncidentModal_section__9V9h0:nth-child(5) {
+  animation-delay: 0.2s;
+}
+
+@keyframes CreateIncidentModal_sectionIn__ZPdty {
+  0% {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.CreateIncidentModal_sectionHead___1wIL {
+  padding: 1.125rem 1.25rem 0.75rem;
+  border-bottom: 1px solid var(--border);
+  transition: border-color 0.2s ease;
+}
+
+.CreateIncidentModal_sectionTitle__fLjp3 {
+  margin: 0;
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  transition: color 0.2s ease;
+}
+
+.CreateIncidentModal_sectionDesc__FqGEC {
+  margin: 0.125rem 0 0;
+  font-size: 0.75rem;
+  color: var(--gray-400);
+  line-height: 1.4;
+}
+
+.CreateIncidentModal_sectionBody__4_lsW {
+  padding: 1.125rem 1.25rem 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.CreateIncidentModal_sectionGrid2__Z6zaD {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 1rem;
+  gap: 1rem;
+}
+@media (max-width: 640px) {
+  .CreateIncidentModal_sectionGrid2__Z6zaD {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ─── Field ────────────────────────────── */
 .CreateIncidentModal_field__jMvzb {
   display: flex;
   flex-direction: column;
   gap: 0.375rem;
   flex: 1 1;
+  min-width: 0;
 }
 
 .CreateIncidentModal_label__ps6Ev {
   font-size: 0.8125rem;
-  font-weight: 500;
-  color: var(--gray-700);
+  font-weight: 600;
+  color: var(--text-primary);
+  transition: color 0.2s ease;
 }
 
 .CreateIncidentModal_labelSm__ZqtMe {
@@ -386,91 +737,188 @@
 
 .CreateIncidentModal_hint__TyGzv {
   margin: 0;
-  font-size: 0.75rem;
+  font-size: 0.6875rem;
   color: var(--gray-400);
+  line-height: 1.4;
 }
 
-.CreateIncidentModal_input__4Jkng,
-.CreateIncidentModal_textarea__zq49j,
-.CreateIncidentModal_select__JifQh {
+/* ─── Input ────────────────────────────── */
+.CreateIncidentModal_input__4Jkng {
   width: 100%;
-  padding: 0.625rem 0.75rem;
-  border: 1px solid var(--gray-300);
-  border-radius: var(--radius-sm);
+  height: 44px;
+  padding: 0 0.875rem;
+  border: 1px solid var(--border-secondary);
+  border-radius: 10px;
   font-size: 0.875rem;
   font-family: inherit;
-  color: var(--dark);
-  background: var(--white);
-  transition: border-color 0.15s, box-shadow 0.15s;
+  color: var(--text-primary);
+  background: var(--surface);
   outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
   box-sizing: border-box;
 }
-.CreateIncidentModal_input__4Jkng::placeholder,
-.CreateIncidentModal_textarea__zq49j::placeholder,
-.CreateIncidentModal_select__JifQh::placeholder {
+.CreateIncidentModal_input__4Jkng::placeholder {
   color: var(--gray-400);
 }
-.CreateIncidentModal_input__4Jkng:focus,
-.CreateIncidentModal_textarea__zq49j:focus,
-.CreateIncidentModal_select__JifQh:focus {
-  border-color: var(--yellow);
-  box-shadow: 0 0 0 3px rgba(244, 196, 0, 0.1);
+.CreateIncidentModal_input__4Jkng:hover {
+  border-color: var(--border);
+}
+.CreateIncidentModal_input__4Jkng:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(244, 196, 0, 0.12);
 }
 
+.CreateIncidentModal_inputError__ryKs8 {
+  border-color: var(--danger);
+}
+.CreateIncidentModal_inputError__ryKs8:focus {
+  border-color: var(--danger);
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.12);
+}
+
+/* ─── Textarea ─────────────────────────── */
 .CreateIncidentModal_textarea__zq49j {
+  width: 100%;
+  min-height: 120px;
+  padding: 0.75rem 0.875rem;
+  border: 1px solid var(--border-secondary);
+  border-radius: 10px;
+  font-size: 0.875rem;
+  font-family: inherit;
+  color: var(--text-primary);
+  background: var(--surface);
+  outline: none;
   resize: vertical;
-  min-height: 80px;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+  box-sizing: border-box;
+  line-height: 1.6;
+}
+.CreateIncidentModal_textarea__zq49j::placeholder {
+  color: var(--gray-400);
+}
+.CreateIncidentModal_textarea__zq49j:hover {
+  border-color: var(--border);
+}
+.CreateIncidentModal_textarea__zq49j:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(244, 196, 0, 0.12);
+}
+
+.CreateIncidentModal_textareaError__j_2Im {
+  border-color: var(--danger);
+}
+.CreateIncidentModal_textareaError__j_2Im:focus {
+  border-color: var(--danger);
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.12);
+}
+
+.CreateIncidentModal_charCount__kJH_Y {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.125rem;
+  font-size: 0.6875rem;
+  color: var(--gray-400);
+  font-feature-settings: "tnum";
+  font-variant-numeric: tabular-nums;
+  margin-top: 0.125rem;
+}
+
+.CreateIncidentModal_charOver___63rZ {
+  color: var(--danger);
+  font-weight: 600;
+}
+
+/* ─── Select ───────────────────────────── */
+.CreateIncidentModal_selectWrap__P8At6 {
+  position: relative;
+}
+.CreateIncidentModal_selectWrap__P8At6::after {
+  content: "";
+  position: absolute;
+  right: 0.875rem;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 10px;
+  height: 6px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' fill='none'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%239CA3AF' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: center;
+  pointer-events: none;
 }
 
 .CreateIncidentModal_select__JifQh {
+  width: 100%;
+  height: 44px;
+  padding: 0 2.25rem 0 0.875rem;
+  border: 1px solid var(--border-secondary);
+  border-radius: 10px;
+  font-size: 0.875rem;
+  font-family: inherit;
+  color: var(--text-primary);
+  background: var(--surface);
+  outline: none;
+  cursor: pointer;
   -webkit-appearance: none;
      -moz-appearance: none;
           appearance: none;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%23737373' viewBox='0 0 16 16'%3E%3Cpath d='M8 11L3 6h10l-5 5z'/%3E%3C/svg%3E");
-  background-repeat: no-repeat;
-  background-position: right 0.75rem center;
-  padding-right: 2.25rem;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+  box-sizing: border-box;
+}
+.CreateIncidentModal_select__JifQh:hover {
+  border-color: var(--border);
+}
+.CreateIncidentModal_select__JifQh:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(244, 196, 0, 0.12);
 }
 
+.CreateIncidentModal_selectError__BkO79 {
+  border-color: var(--danger);
+}
+.CreateIncidentModal_selectError__BkO79:focus {
+  border-color: var(--danger);
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.12);
+}
+
+/* ─── Error ────────────────────────────── */
 .CreateIncidentModal_error__yg_kz {
   margin: 0;
   font-size: 0.75rem;
   color: var(--danger);
+  font-weight: 500;
 }
 
-.CreateIncidentModal_row2__8qRtR {
+/* ─── Coord row ────────────────────────── */
+.CreateIncidentModal_coordRow__eI4_8 {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 0.75rem;
+  gap: 0.75rem;
+}
+@media (max-width: 640px) {
+  .CreateIncidentModal_coordRow__eI4_8 {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ─── People grid ──────────────────────── */
+.CreateIncidentModal_peopleGrid__0lmSF {
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-gap: 1rem;
   gap: 1rem;
 }
-@media (max-width: 520px) {
-  .CreateIncidentModal_row2__8qRtR {
-    grid-template-columns: 1fr;
-  }
-}
-
-.CreateIncidentModal_row4__4pxeC {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
-  grid-gap: 0.75rem;
-  gap: 0.75rem;
-}
 @media (max-width: 640px) {
-  .CreateIncidentModal_row4__4pxeC {
-    grid-template-columns: 1fr 1fr;
-  }
-}
-@media (max-width: 420px) {
-  .CreateIncidentModal_row4__4pxeC {
+  .CreateIncidentModal_peopleGrid__0lmSF {
     grid-template-columns: 1fr;
   }
 }
 
 .CreateIncidentModal_fieldset__rnA_i {
-  border: 1px solid var(--gray-200);
-  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  border-radius: 10px;
   padding: 0.75rem 1rem;
+  transition: border-color 0.2s ease;
 }
 .CreateIncidentModal_fieldset__rnA_i > .CreateIncidentModal_label__ps6Ev {
   padding: 0 0.375rem;
@@ -479,8 +927,8 @@
 .CreateIncidentModal_checkboxGrid__svWBp {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  grid-gap: 0.375rem;
-  gap: 0.375rem;
+  grid-gap: 0.25rem;
+  gap: 0.25rem;
   margin-top: 0.5rem;
 }
 @media (max-width: 420px) {
@@ -497,21 +945,21 @@
   color: var(--gray-700);
   cursor: pointer;
   padding: 0.25rem 0.375rem;
-  border-radius: 4px;
-  transition: background 0.1s;
+  border-radius: 6px;
+  transition: background 0.15s;
 }
 .CreateIncidentModal_checkbox__bOk2b:hover {
   background: var(--gray-50);
 }
 .CreateIncidentModal_checkbox__bOk2b input {
-  accent-color: var(--yellow);
+  accent-color: var(--primary);
 }
 
+/* ─── Tags ─────────────────────────────── */
 .CreateIncidentModal_tagGrid__3Emt1 {
   display: flex;
   flex-wrap: wrap;
   gap: 0.5rem;
-  margin-top: 0.5rem;
 }
 
 .CreateIncidentModal_tagCheckbox__xSKmq {
@@ -521,26 +969,36 @@
   font-size: 0.75rem;
   font-weight: 500;
   color: var(--tag-color, var(--gray-700));
-  padding: 0.25rem 0.625rem;
-  border-radius: var(--radius-full);
+  padding: 0.375rem 0.75rem;
+  border-radius: 9999px;
   border: 1px solid var(--tag-color, var(--gray-300));
   background: color-mix(in srgb, var(--tag-color, var(--gray-300)) 8%, transparent);
   cursor: pointer;
-  transition: opacity 0.1s;
+  transition: opacity 0.15s, transform 0.15s;
 }
 .CreateIncidentModal_tagCheckbox__xSKmq:hover {
   opacity: 0.8;
+  transform: translateY(-1px);
+}
+.CreateIncidentModal_tagCheckbox__xSKmq:has(input:checked) {
+  background: color-mix(in srgb, var(--tag-color, var(--gray-300)) 20%, transparent);
+  border-color: var(--tag-color, var(--gray-300));
 }
 .CreateIncidentModal_tagCheckbox__xSKmq input {
-  accent-color: var(--tag-color, var(--yellow));
+  accent-color: var(--tag-color, var(--primary));
 }
 
+/* ─── Footer ───────────────────────────── */
 .CreateIncidentModal_footer__pJ0qs {
   display: flex;
   justify-content: flex-end;
+  align-items: center;
   gap: 0.75rem;
-  padding: 1rem 1.5rem;
-  border-top: 1px solid var(--gray-200);
+  padding: 1rem 1.75rem;
+  background: var(--surface);
+  border-top: 1px solid var(--border);
+  border-radius: 0 0 20px 20px;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
 }
 @media (max-width: 520px) {
   .CreateIncidentModal_footer__pJ0qs {
@@ -556,23 +1014,27 @@
 
 .CreateIncidentModal_btnPrimary___n_z0,
 .CreateIncidentModal_btnSecondary__uRup8 {
-  padding: 0.5rem 1.25rem;
-  border-radius: var(--radius-sm);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.625rem 1.5rem;
+  border-radius: 10px;
   font-size: 0.875rem;
-  font-weight: 500;
+  font-weight: 600;
   font-family: inherit;
   cursor: pointer;
-  transition: background 0.15s, opacity 0.15s;
+  transition: background 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease;
 }
 
 .CreateIncidentModal_btnPrimary___n_z0 {
   border: none;
-  background: var(--yellow);
+  background: var(--primary);
   color: var(--dark);
-  font-weight: 600;
+  box-shadow: 0 1px 3px rgba(244, 196, 0, 0.3);
 }
 .CreateIncidentModal_btnPrimary___n_z0:hover:not(:disabled) {
   background: var(--yellow-hover);
+  box-shadow: 0 2px 8px rgba(244, 196, 0, 0.4);
 }
 .CreateIncidentModal_btnPrimary___n_z0:disabled {
   opacity: 0.6;
@@ -581,11 +1043,14 @@
 
 .CreateIncidentModal_btnSecondary__uRup8 {
   border: 1px solid var(--gray-300);
-  background: var(--white);
-  color: var(--gray-700);
+  background: var(--surface);
+  color: var(--text-primary);
+  font-weight: 500;
+  transition: background 0.15s, border-color 0.15s, color 0.15s;
 }
 .CreateIncidentModal_btnSecondary__uRup8:hover {
   background: var(--gray-100);
+  border-color: var(--gray-400);
 }
 /*!*********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[14].oneOf[7].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[14].oneOf[7].use[3]!./node_modules/next/dist/build/webpack/loaders/resolve-url-loader/index.js??ruleSet[1].rules[14].oneOf[7].use[4]!./node_modules/next/dist/compiled/sass-loader/cjs.js??ruleSet[1].rules[14].oneOf[7].use[5]!./src/components/ui/Tooltip.module.scss ***!
@@ -600,8 +1065,8 @@
   z-index: 50;
   padding: 0.25rem 0.5rem;
   border-radius: 6px;
-  background: #1f1f1f;
-  color: #fff;
+  background: var(--text-primary);
+  color: var(--surface);
   font-size: 0.6875rem;
   font-weight: 500;
   font-family: var(--font-family);
@@ -663,11 +1128,11 @@
   gap: 1rem;
   padding: 1.25rem 1.25rem 1.125rem;
   border-radius: var(--radius-md);
-  background: var(--white);
-  border: 1px solid rgba(0, 0, 0, 0.04);
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.03);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-sm);
   overflow: hidden;
-  transition: box-shadow 0.25s ease, transform 0.25s ease;
+  transition: box-shadow 0.25s ease, transform 0.25s ease, background-color 0.2s ease, border-color 0.2s ease;
   animation: KPICard_kpiEnter__FWbVu 0.4s ease-out both;
   /* Yellow accent bar — top border */
 }
@@ -682,7 +1147,7 @@
   transition: opacity 0.25s ease;
 }
 .KPICard_card__DEmYT:hover {
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.07), 0 2px 6px rgba(0, 0, 0, 0.04);
+  box-shadow: var(--shadow-lg);
   transform: translateY(-3px);
 }
 
@@ -699,6 +1164,8 @@
   height: 42px;
   border-radius: 10px;
   flex-shrink: 0;
+  color: var(--icon-card-color, inherit);
+  transition: color 0.2s ease;
 }
 
 .KPICard_large__YRSDC .KPICard_iconWrap__cAiRw {
@@ -718,10 +1185,11 @@
   font-size: 2rem;
   font-weight: 700;
   line-height: 1.1;
-  color: var(--dark);
+  color: var(--text-primary);
   letter-spacing: -0.02em;
   font-feature-settings: "tnum";
   font-variant-numeric: tabular-nums;
+  transition: color 0.2s ease;
 }
 
 .KPICard_large__YRSDC .KPICard_value__Z23CL {
@@ -730,11 +1198,12 @@
 
 .KPICard_label__z7buI {
   font-size: 0.8125rem;
-  color: var(--gray-500);
+  color: var(--text-secondary);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
   line-height: 1.4;
+  transition: color 0.2s ease;
 }
 
 .KPICard_trend__NFwU3 {
@@ -753,7 +1222,7 @@
 
 /* ─── Variants ──────────────────────────── */
 .KPICard_yellow__oIFTn::before {
-  background: var(--yellow);
+  background: var(--primary);
 }
 .KPICard_yellow__oIFTn .KPICard_iconWrap__cAiRw {
   background: var(--yellow-bg);
@@ -784,17 +1253,17 @@
 }
 
 .KPICard_purple__J7w_t::before {
-  background: #8B5CF6;
+  background: var(--purple, #8B5CF6);
 }
 .KPICard_purple__J7w_t .KPICard_iconWrap__cAiRw {
-  background: #F5F3FF;
+  background: var(--purple-bg, #F5F3FF);
 }
 
 .KPICard_orange__FKnDh::before {
-  background: #F97316;
+  background: var(--orange, #F97316);
 }
 .KPICard_orange__FKnDh .KPICard_iconWrap__cAiRw {
-  background: #FFF7ED;
+  background: var(--orange-bg, #FFF7ED);
 }
 
 @keyframes KPICard_kpiEnter__FWbVu {
@@ -836,11 +1305,11 @@
   !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[14].oneOf[7].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[14].oneOf[7].use[3]!./node_modules/next/dist/build/webpack/loaders/resolve-url-loader/index.js??ruleSet[1].rules[14].oneOf[7].use[4]!./node_modules/next/dist/compiled/sass-loader/cjs.js??ruleSet[1].rules[14].oneOf[7].use[5]!./src/components/dashboard/ChartCard.module.scss ***!
   \******************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
 .ChartCard_card__kWnCt {
-  background: var(--white);
+  background: var(--surface);
   border-radius: var(--radius-md);
   padding: 1.5rem;
-  box-shadow: var(--shadow-card);
-  transition: box-shadow 0.2s;
+  box-shadow: var(--shadow-sm);
+  transition: box-shadow 0.2s, background-color 0.2s ease;
   animation: ChartCard_chartEnter__n3U0H 0.5s ease-out both;
 }
 .ChartCard_card__kWnCt:hover {
@@ -855,7 +1324,8 @@
   margin: 0 0 1.25rem;
   font-size: 0.9375rem;
   font-weight: 600;
-  color: var(--gray-700);
+  color: var(--text-primary);
+  transition: color 0.2s ease;
 }
 
 .ChartCard_body__xsv1g {
@@ -1133,7 +1603,7 @@
   padding: 0.625rem 1.25rem;
   border: none;
   border-radius: 8px;
-  background: var(--yellow);
+  background: var(--primary);
   color: var(--dark);
   font-size: 0.8125rem;
   font-weight: 600;
@@ -1146,7 +1616,7 @@
   background: var(--yellow-hover);
 }
 .Dashboard_addBtn__x4u_o:focus-visible {
-  outline: 2px solid var(--yellow);
+  outline: 2px solid var(--primary);
   outline-offset: 2px;
 }
 @media (max-width: 640px) {
@@ -1214,9 +1684,10 @@
 .Dashboard_skelCard__Y1u6N {
   height: 148px;
   border-radius: var(--radius-md);
-  background: linear-gradient(90deg, #f0f0f0 25%, #f8f8f8 50%, #f0f0f0 75%);
+  background: linear-gradient(90deg, var(--skel-start) 25%, var(--skel-end) 50%, var(--skel-start) 75%);
   background-size: 400px 100%;
   animation: Dashboard_shimmer__7_VmV 1.8s ease-in-out infinite, Dashboard_pulse__LIsiO 1.8s ease-in-out infinite;
+  transition: background 0.2s ease;
 }
 
 .Dashboard_skelCharts__0BMKG {
@@ -1234,7 +1705,8 @@
 .Dashboard_skelChart__QAzRU {
   height: 340px;
   border-radius: var(--radius-md);
-  background: linear-gradient(90deg, #f0f0f0 25%, #f8f8f8 50%, #f0f0f0 75%);
+  background: linear-gradient(90deg, var(--skel-start) 25%, var(--skel-end) 50%, var(--skel-start) 75%);
   background-size: 400px 100%;
   animation: Dashboard_shimmer__7_VmV 1.8s ease-in-out infinite, Dashboard_pulse__LIsiO 1.8s ease-in-out infinite;
+  transition: background 0.2s ease;
 }

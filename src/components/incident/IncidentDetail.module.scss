@@ -161,11 +161,11 @@
   background: var(--white);
   border-radius: 16px;
   padding: 1.5rem 1.75rem;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04), 0 4px 16px rgba(0, 0, 0, 0.04);
-  transition: box-shadow 0.2s;
+  box-shadow: var(--shadow-md);
+  transition: background-color 0.2s ease, box-shadow 0.2s ease;
 
   &:hover {
-    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04), 0 8px 24px rgba(0, 0, 0, 0.06);
+    box-shadow: var(--shadow-lg);
   }
 }
 
@@ -242,7 +242,7 @@
 
 .badge--high { background: var(--danger-bg); color: var(--danger); }
 .badge--medium { background: var(--warning-bg); color: var(--warning); }
-.badge--low { background: #FFFBEB; color: #D97706; }
+.badge--low { background: var(--low-bg); color: var(--low-color); }
 .badge--open { background: var(--success-bg); color: var(--success); }
 .badge--on_pause { background: var(--warning-bg); color: var(--warning); }
 .badge--closed { background: var(--gray-100); color: var(--gray-500); }
@@ -476,7 +476,7 @@
   background: var(--white);
   outline: none;
   box-sizing: border-box;
-  transition: border-color 0.15s, box-shadow 0.15s;
+  transition: border-color 0.15s, box-shadow 0.15s, background-color 0.2s ease, color 0.2s ease;
 
   &::placeholder { color: var(--gray-400); }
 
@@ -497,7 +497,7 @@
   background: var(--white);
   outline: none;
   box-sizing: border-box;
-  transition: border-color 0.15s, box-shadow 0.15s;
+  transition: border-color 0.15s, box-shadow 0.15s, background-color 0.2s ease, color 0.2s ease;
 
   &::placeholder { color: var(--gray-400); }
 
@@ -516,12 +516,12 @@
   font-family: inherit;
   color: var(--dark);
   background: var(--white);
-  transition: border-color 0.15s, box-shadow 0.15s;
   outline: none;
   resize: vertical;
   min-height: 140px;
   line-height: 1.7;
   box-sizing: border-box;
+  transition: border-color 0.15s, box-shadow 0.15s, background-color 0.2s ease, color 0.2s ease;
 
   &::placeholder { color: var(--gray-400); }
 
@@ -542,7 +542,7 @@
   background: var(--white);
   outline: none;
   cursor: pointer;
-  transition: border-color 0.15s, box-shadow 0.15s;
+  transition: border-color 0.15s, box-shadow 0.15s, background-color 0.2s ease, color 0.2s ease;
 
   &:focus {
     border-color: var(--yellow);
@@ -567,8 +567,9 @@
   color: var(--gray-400);
   background: var(--white);
   border-radius: 16px;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04), 0 4px 16px rgba(0, 0, 0, 0.04);
+  box-shadow: var(--shadow-md);
   animation: pulse 1.5s ease-in-out infinite;
+  transition: background-color 0.2s ease;
 }
 
 @keyframes pulse {
@@ -585,8 +586,9 @@
   min-height: 400px;
   background: var(--white);
   border-radius: 16px;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04), 0 4px 16px rgba(0, 0, 0, 0.04);
+  box-shadow: var(--shadow-md);
   padding: 3rem 2rem;
+  transition: background-color 0.2s ease;
 }
 
 .notFoundIcon {

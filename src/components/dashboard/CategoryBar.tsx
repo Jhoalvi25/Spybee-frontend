@@ -10,6 +10,7 @@ import {
   ResponsiveContainer,
 } from 'recharts';
 import type { CategoryBarItem } from '@/hooks/useDashboardData';
+import { useTheme } from '@/domain/ui/hooks';
 import { ChartCard } from './ChartCard';
 
 type CategoryBarProps = { data: CategoryBarItem[] };
@@ -32,12 +33,14 @@ function CustomTooltip({ active, payload, label }: any) {
   );
 }
 
-const BAR_COLORS = [
-  '#F4C400', '#1F1F1F', '#22C55E', '#EF4444',
-  '#7C3AED', '#F59E0B', '#A3A3A3', '#0891B2',
-];
-
 export function CategoryBar({ data }: CategoryBarProps) {
+  const theme = useTheme();
+  const isDark = theme === 'dark';
+
+  const BAR_COLORS = isDark
+    ? ['#F4C400', '#E5E7EB', '#22C55E', '#EF4444', '#7C3AED', '#F59E0B', '#6B7280', '#06B6D4']
+    : ['#F4C400', '#1F1F1F', '#22C55E', '#EF4444', '#7C3AED', '#F59E0B', '#A3A3A3', '#0891B2'];
+
   return (
     <ChartCard title="Incidencias por categoría" fullWidth>
       <ResponsiveContainer width="100%" height={300}>
@@ -55,7 +58,7 @@ export function CategoryBar({ data }: CategoryBarProps) {
             allowDecimals={false}
           />
           <Tooltip content={<CustomTooltip />} cursor={{ fill: 'var(--gray-100)' }} />
-          <Bar dataKey="value" radius={[4, 4, 0, 0]} maxBarSize={48}>
+          <Bar key={theme} dataKey="value" radius={[4, 4, 0, 0]} maxBarSize={48}>
             {data.map((_, i) => (
               <Cell key={i} fill={BAR_COLORS[i % BAR_COLORS.length]} />
             ))}

@@ -18,17 +18,15 @@ $panel-closed: 36px;
   width: $panel-width;
   display: flex;
   flex-direction: column;
-  background: rgba(255, 255, 255, 0.85);
+  background: var(--glass-bg);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   border-radius: 14px;
-  border: 1px solid rgba(255, 255, 255, 0.5);
-  box-shadow:
-    0 4px 24px rgba(0, 0, 0, 0.06),
-    0 1px 4px rgba(0, 0, 0, 0.04);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--shadow-lg);
   overflow: hidden;
   pointer-events: auto;
-  transition: width 0.25s ease;
+  transition: width 0.25s ease, background-color 0.2s ease, border-color 0.2s ease;
   animation: panelEnter 0.35s ease-out both;
 
   @media (max-width: 768px) {
@@ -70,14 +68,14 @@ $panel-closed: 36px;
   border: none;
   border-radius: 6px;
   background: transparent;
-  color: var(--gray-500);
+  color: var(--gray-400);
   font-size: 0.75rem;
   cursor: pointer;
   transition: background 0.15s, color 0.15s;
 
   &:hover {
     background: var(--gray-100);
-    color: var(--gray-700);
+    color: var(--gray-600);
   }
 }
 
@@ -118,9 +116,10 @@ $panel-closed: 36px;
 .statValue {
   font-size: 1.25rem;
   font-weight: 700;
-  color: #111827;
+  color: var(--text-primary);
   line-height: 1.2;
   font-variant-numeric: tabular-nums;
+  transition: color 0.2s ease;
 }
 
 .statLabel {
@@ -134,8 +133,9 @@ $panel-closed: 36px;
 .statDivider {
   width: 1px;
   height: 28px;
-  background: rgba(0, 0, 0, 0.06);
+  background: var(--border);
   flex-shrink: 0;
+  transition: background 0.2s ease;
 }
 
 /* ─── System Status ─────────────────────── */
@@ -145,9 +145,10 @@ $panel-closed: 36px;
   align-items: center;
   gap: 0.375rem;
   padding: 0.5rem 1rem;
-  border-top: 1px solid rgba(0, 0, 0, 0.04);
-  border-bottom: 1px solid rgba(0, 0, 0, 0.04);
-  background: rgba(34, 197, 94, 0.03);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  background: var(--success-bg);
+  transition: background-color 0.2s ease, border-color 0.2s ease;
 }
 
 @keyframes statusPulse {
@@ -160,7 +161,7 @@ $panel-closed: 36px;
   width: 6px;
   height: 6px;
   border-radius: 50%;
-  background: #22c55e;
+  background: var(--success);
   animation: statusPulse 2s ease-in-out infinite;
   flex-shrink: 0;
 }
@@ -168,7 +169,7 @@ $panel-closed: 36px;
 .statusLabel {
   font-size: 0.6875rem;
   font-weight: 600;
-  color: #22c55e;
+  color: var(--success);
 }
 
 .statusSync {
@@ -185,7 +186,8 @@ $panel-closed: 36px;
   flex-direction: column;
   gap: 0.375rem;
   padding: 0.625rem 0.75rem;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+  border-bottom: 1px solid var(--border);
+  transition: border-color 0.2s ease;
 }
 
 .filterField {
@@ -226,12 +228,12 @@ $panel-closed: 36px;
   width: 100%;
   height: 36px;
   padding: 0 0.5rem 0 2rem;
-  border: 1px solid rgba(0, 0, 0, 0.06);
+  border: 1px solid var(--border);
   border-radius: 8px;
   font-size: 0.8125rem;
   font-family: inherit;
-  color: #111827;
-  background: rgba(255, 255, 255, 0.6);
+  color: var(--text-primary);
+  background: var(--glass-bg);
   outline: none;
   transition: border-color 0.15s, box-shadow 0.15s, background 0.15s;
 
@@ -240,8 +242,8 @@ $panel-closed: 36px;
   }
 
   &:focus {
-    border-color: var(--yellow);
-    background: #fff;
+    border-color: var(--primary);
+    background: var(--surface);
     box-shadow: 0 0 0 3px rgba(244, 196, 0, 0.12);
   }
 }
@@ -255,12 +257,12 @@ $panel-closed: 36px;
   flex: 1;
   height: 36px;
   padding: 0 0.5rem;
-  border: 1px solid rgba(0, 0, 0, 0.06);
+  border: 1px solid var(--border);
   border-radius: 8px;
   font-size: 0.8125rem;
   font-family: inherit;
-  color: #111827;
-  background: rgba(255, 255, 255, 0.6);
+  color: var(--text-primary);
+  background: var(--glass-bg);
   outline: none;
   cursor: pointer;
   transition: border-color 0.15s, box-shadow 0.15s, background 0.15s;
@@ -271,8 +273,8 @@ $panel-closed: 36px;
   padding-right: 1.75rem;
 
   &:focus {
-    border-color: var(--yellow);
-    background-color: #fff;
+    border-color: var(--primary);
+    background: var(--surface);
     box-shadow: 0 0 0 3px rgba(244, 196, 0, 0.12);
   }
 }
@@ -284,9 +286,9 @@ $panel-closed: 36px;
   gap: 0.375rem;
   height: 32px;
   padding: 0 0.75rem;
-  border: 1px solid rgba(0, 0, 0, 0.06);
+  border: 1px solid var(--border);
   border-radius: 8px;
-  background: rgba(255, 255, 255, 0.6);
+  background: var(--glass-bg);
   color: var(--gray-500);
   font-size: 0.75rem;
   font-family: inherit;
@@ -325,13 +327,13 @@ $panel-closed: 36px;
   flex-shrink: 0;
   width: 100%;
   padding: 0;
-  border: 1px solid rgba(0, 0, 0, 0.04);
+  border: 1px solid var(--border);
   border-radius: 10px;
-  background: #fff;
+  background: var(--surface);
   text-align: left;
   cursor: pointer;
   overflow: hidden;
-  transition: box-shadow 0.2s ease, transform 0.2s ease, border-color 0.2s ease;
+  transition: box-shadow 0.2s ease, transform 0.2s ease, border-color 0.2s ease, background-color 0.2s ease;
   animation: cardEnter 0.35s ease-out both;
   animation-delay: calc(var(--delay, 0s));
 
@@ -347,20 +349,20 @@ $panel-closed: 36px;
   }
 
   &:hover {
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+    box-shadow: var(--shadow-md);
     transform: translateY(-1px);
-    border-color: rgba(0, 0, 0, 0.08);
+    border-color: var(--border-secondary);
   }
 }
 
 .incidentCardActive {
-  border-color: var(--yellow);
+  border-color: var(--primary);
   box-shadow: 0 4px 12px rgba(244, 196, 0, 0.12);
-  background: #fffbeb;
+  background: var(--yellow-bg);
 
   &:hover {
-    border-color: var(--yellow);
-    background: #fffbeb;
+    border-color: var(--primary);
+    background: var(--yellow-bg);
   }
 }
 
@@ -374,11 +376,12 @@ $panel-closed: 36px;
   display: block;
   font-size: 0.8125rem;
   font-weight: 600;
-  color: #111827;
+  color: var(--text-primary);
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
   line-height: 1.4;
+  transition: color 0.2s ease;
 }
 
 .incidentMeta {
@@ -424,42 +427,43 @@ $panel-closed: 36px;
 .loading {
   font-size: 0.875rem;
   color: var(--gray-500);
-  background: rgba(255, 255, 255, 0.9);
+  background: var(--glass-bg-solid);
   backdrop-filter: blur(8px);
   padding: 0.75rem 1.5rem;
   border-radius: 10px;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  box-shadow: var(--shadow-lg);
 }
 
 .error {
   font-size: 0.875rem;
   color: var(--danger);
-  background: rgba(254, 242, 242, 0.95);
+  background: var(--danger-bg);
   backdrop-filter: blur(8px);
   padding: 0.75rem 1.5rem;
   border-radius: 10px;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  box-shadow: var(--shadow-lg);
   text-align: center;
   line-height: 1.5;
 }
 
 .stateCard {
-  background: rgba(255, 255, 255, 0.95);
+  background: var(--glass-bg-solid);
   backdrop-filter: blur(12px);
   border-radius: 12px;
   padding: 1.25rem 1.5rem;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+  box-shadow: var(--shadow-lg);
   pointer-events: auto;
   text-align: center;
   font-size: 0.875rem;
   color: var(--gray-600);
+  transition: background-color 0.2s ease;
 
   button {
     margin-top: 0.75rem;
     padding: 0.5rem 1rem;
     border: none;
     border-radius: 8px;
-    background: var(--yellow);
+    background: var(--primary);
     color: var(--dark);
     font-size: 0.8125rem;
     font-weight: 600;

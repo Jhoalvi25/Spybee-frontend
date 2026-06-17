@@ -12,6 +12,7 @@ import { useMapbox } from '@/hooks/useMapbox';
 import { MapContext } from './MapContext';
 import { IncidentMarker, IncidentPopup } from './IncidentMarker';
 import { MapControls } from './MapControls';
+import { useTheme } from '@/domain/ui/hooks';
 import {
   selectFilteredIncidents,
   useIncidents,
@@ -72,6 +73,22 @@ export function MapView() {
   useEffect(() => {
     loadIncidents();
   }, [loadIncidents]);
+
+  const theme = useTheme();
+
+  useEffect(() => {
+    if (!map || !isLoaded) return;
+    const styleUrl = theme === 'dark'
+      ? 'mapbox://styles/mapbox/dark-v11'
+      : 'mapbox://styles/mapbox/light-v11';
+    const center = map.getCenter();
+    const zoom = map.getZoom();
+    map.setStyle(styleUrl);
+    map.once('style.load', () => {
+      map.setCenter(center);
+      map.setZoom(zoom);
+    });
+  }, [theme, map, isLoaded]);
 
   const { label: syncLabel, touch: touchSync } = useLastSync();
 

@@ -3,9 +3,10 @@
 import { useState, useCallback } from 'react';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
-import { LayoutDashboard, Map, LogOut, ChevronLeft } from 'lucide-react';
+import { LayoutDashboard, Map, LogOut, ChevronLeft, Sun, Moon } from 'lucide-react';
 import { useAuthStore } from '@/domain/auth/store';
 import { useProjectStore } from '@/domain/project/store';
+import { useTheme, useToggleTheme } from '@/domain/ui/hooks';
 import { Tooltip } from '@/components/ui/Tooltip';
 import styles from './Sidebar.module.scss';
 
@@ -26,6 +27,8 @@ export function Sidebar({ mobileOpen, onMobileClose }: SidebarProps) {
   const user = useAuthStore((s) => s.user);
   const logout = useAuthStore((s) => s.logout);
   const selectedProject = useProjectStore((s) => s.selectedProject);
+  const theme = useTheme();
+  const toggleTheme = useToggleTheme();
 
   const toggleCollapse = useCallback(() => setCollapsed((c) => !c), []);
 
@@ -43,86 +46,120 @@ export function Sidebar({ mobileOpen, onMobileClose }: SidebarProps) {
       <aside
         className={`${styles.sidebar} ${collapsed ? styles.collapsed : ''} ${mobileOpen ? styles.mobileOpen : ''}`}
       >
-        <div className={styles.logo}>
-          <img
-            src="https://framerusercontent.com/images/KMIp6oxIY5aDYfDah2Rt0hoPC0.png?width=1818&height=900"
-            alt="Spybee"
-            className={styles.logoImg}
-          />
-        </div>
-
-        {!collapsed && selectedProject && (
-          <div className={styles.projectSection}>
-            <span className={styles.projectLabel}>Proyecto</span>
-            <p className={styles.projectName}>{selectedProject.name}</p>
-          </div>
-        )}
-
-        {!collapsed && (
-          <span className={styles.navSectionLabel}>Operaciones</span>
-        )}
-
-        <nav className={styles.nav}>
-          {NAV.map((item) => {
-            const isActive = pathname === item.href || pathname.startsWith(item.href + '/');
-            const Icon = item.icon;
-            const link = (
-              <Link
-                key={item.href}
-                href={item.href}
-                className={`${styles.link} ${isActive ? styles.active : ''}`}
-                onClick={onMobileClose}
-              >
-                <span className={styles.linkIcon}>
-                  <Icon size={18} />
-                </span>
-                {!collapsed && <span className={styles.linkLabel}>{item.label}</span>}
-                {isActive && !collapsed && <span className={styles.activePill} />}
-              </Link>
-            );
-            return collapsed ? (
-              <Tooltip key={item.href} label={item.label} position="right">
-                {link}
-              </Tooltip>
+        <div className={styles.sidebarInner}>
+          <div className={styles.logo}>
+            {collapsed ? (
+              <img
+                src="https://framerusercontent.com/images/ng1g558bNQCnMhtrERsEHMSofBU.png?width=985&height=900"
+                alt="Spybee"
+                className={styles.logoCollapsedImg}
+              />
             ) : (
-              link
-            );
-          })}
-        </nav>
+              <img
+                src={theme === 'dark'
+                  ? 'https://framerusercontent.com/images/TTtZTL2AMihMgjjJZiD92s2wS0Q.png?width=1818&height=900'
+                  : 'https://framerusercontent.com/images/KMIp6oxIY5aDYfDah2Rt0hoPC0.png?width=1818&height=900'
+                }
+                alt="Spybee"
+                className={styles.logoImg}
+              />
+            )}
+          </div>
 
-        <div className={styles.sidebarFooter}>
-          <div className={styles.footerDivider} />
-
-          {user && (
-            <div className={styles.userCard}>
-              <div className={styles.userAvatar}>
-                {user.name.charAt(0).toUpperCase()}
-              </div>
-              {!collapsed && (
-                <div className={styles.userInfo}>
-                  <span className={styles.userName}>{user.name}</span>
-                  <span className={styles.userRole}>Administrador</span>
-                  <span className={styles.userEmail}>{user.email}</span>
-                  <div className={styles.systemStatus}>
-                    <span className={styles.statusDot} />
-                    <span>Sistema operativo</span>
-                  </div>
-                </div>
-              )}
+          {!collapsed && selectedProject && (
+            <div className={styles.projectSection}>
+              <span className={styles.projectLabel}>Proyecto</span>
+              <p className={styles.projectName}>{selectedProject.name}</p>
             </div>
           )}
 
-          <button
-            type="button"
-            className={styles.logoutBtn}
-            onClick={handleLogout}
-            aria-label="Cerrar sesión"
-          >
-            <span className={styles.logoutIcon}>
-              <LogOut size={16} />
-            </span>
-            {!collapsed && <span className={styles.logoutLabel}>Cerrar sesión</span>}
-          </button>
+          {!collapsed && (
+            <span className={styles.navSectionLabel}>Operaciones</span>
+          )}
+
+          <nav className={styles.nav}>
+            {NAV.map((item) => {
+              const isActive = pathname === item.href || pathname.startsWith(item.href + '/');
+              const Icon = item.icon;
+              const link = (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className={`${styles.link} ${isActive ? styles.active : ''}`}
+                  onClick={onMobileClose}
+                >
+                  <span className={styles.linkIcon}>
+                    <Icon size={18} />
+                  </span>
+                  {!collapsed && <span className={styles.linkLabel}>{item.label}</span>}
+                  {isActive && !collapsed && <span className={styles.activePill} />}
+                </Link>
+              );
+              return collapsed ? (
+                <Tooltip key={item.href} label={item.label} position="right">
+                  {link}
+                </Tooltip>
+              ) : (
+                link
+              );
+            })}
+          </nav>
+
+          <div className={styles.sidebarFooter}>
+            <div className={styles.footerDivider} />
+
+            {!collapsed && (
+              <button
+                type="button"
+                className={styles.themeToggle}
+                onClick={toggleTheme}
+                aria-label={theme === 'light' ? 'Cambiar a modo oscuro' : 'Cambiar a modo claro'}
+              >
+                <span className={styles.themeIcon}>
+                  {theme === 'light' ? <Moon size={15} /> : <Sun size={15} />}
+                </span>
+                <span className={styles.themeLabel}>
+                  {theme === 'light' ? 'Tema oscuro' : 'Tema claro'}
+                </span>
+                <span className={styles.themeSwitch}>
+                  <span className={`${styles.themeThumb} ${theme === 'dark' ? styles.themeThumbDark : ''}`} />
+                </span>
+              </button>
+            )}
+
+            {user && (
+              <div className={styles.userCard}>
+                <div className={styles.userAvatar}>
+                  <span className={styles.userAvatarInner}>
+                    {user.name.charAt(0).toUpperCase()}
+                  </span>
+                </div>
+                {!collapsed && (
+                  <div className={styles.userInfo}>
+                    <span className={styles.userName}>{user.name}</span>
+                    <span className={styles.userRole}>Administrador</span>
+                    <span className={styles.userEmail}>{user.email}</span>
+                    <div className={styles.systemStatus}>
+                      <span className={styles.statusDot} />
+                      <span>Sistema operativo</span>
+                    </div>
+                  </div>
+                )}
+              </div>
+            )}
+
+            <button
+              type="button"
+              className={styles.logoutBtn}
+              onClick={handleLogout}
+              aria-label="Cerrar sesión"
+            >
+              <span className={styles.logoutIcon}>
+                <LogOut size={16} />
+              </span>
+              {!collapsed && <span className={styles.logoutLabel}>Cerrar sesión</span>}
+            </button>
+          </div>
         </div>
 
         <button

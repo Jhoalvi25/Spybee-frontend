@@ -1,9 +1,9 @@
 .card {
-  background: var(--white);
+  background: var(--surface);
   border-radius: var(--radius-md);
   padding: 1.5rem;
-  box-shadow: var(--shadow-card);
-  transition: box-shadow 0.2s;
+  box-shadow: var(--shadow-sm);
+  transition: box-shadow 0.2s, background-color 0.2s ease;
   animation: chartEnter 0.5s ease-out both;
 
   &:hover {
@@ -19,7 +19,8 @@
   margin: 0 0 1.25rem;
   font-size: 0.9375rem;
   font-weight: 600;
-  color: var(--gray-700);
+  color: var(--text-primary);
+  transition: color 0.2s ease;
 }
 
 .body {

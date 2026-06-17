@@ -5,11 +5,11 @@
   gap: 1rem;
   padding: 1.25rem 1.25rem 1.125rem;
   border-radius: var(--radius-md);
-  background: var(--white);
-  border: 1px solid rgba(0, 0, 0, 0.04);
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.03);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-sm);
   overflow: hidden;
-  transition: box-shadow 0.25s ease, transform 0.25s ease;
+  transition: box-shadow 0.25s ease, transform 0.25s ease, background-color 0.2s ease, border-color 0.2s ease;
   animation: kpiEnter 0.4s ease-out both;
 
   /* Yellow accent bar — top border */
@@ -25,7 +25,7 @@
   }
 
   &:hover {
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.07), 0 2px 6px rgba(0, 0, 0, 0.04);
+    box-shadow: var(--shadow-lg);
     transform: translateY(-3px);
   }
 }
@@ -43,6 +43,8 @@
   height: 42px;
   border-radius: 10px;
   flex-shrink: 0;
+  color: var(--icon-card-color, inherit);
+  transition: color 0.2s ease;
 }
 
 .large .iconWrap {
@@ -62,9 +64,10 @@
   font-size: 2rem;
   font-weight: 700;
   line-height: 1.1;
-  color: var(--dark);
+  color: var(--text-primary);
   letter-spacing: -0.02em;
   font-variant-numeric: tabular-nums;
+  transition: color 0.2s ease;
 }
 
 .large .value {
@@ -73,11 +76,12 @@
 
 .label {
   font-size: 0.8125rem;
-  color: var(--gray-500);
+  color: var(--text-secondary);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
   line-height: 1.4;
+  transition: color 0.2s ease;
 }
 
 .trend {
@@ -92,7 +96,7 @@
 /* ─── Variants ──────────────────────────── */
 
 .yellow {
-  &::before { background: var(--yellow); }
+  &::before { background: var(--primary); }
   .iconWrap { background: var(--yellow-bg); }
 }
 
@@ -113,13 +117,13 @@
 }
 
 .purple {
-  &::before { background: #8B5CF6; }
-  .iconWrap { background: #F5F3FF; }
+  &::before { background: var(--purple, #8B5CF6); }
+  .iconWrap { background: var(--purple-bg, #F5F3FF); }
 }
 
 .orange {
-  &::before { background: #F97316; }
-  .iconWrap { background: #FFF7ED; }
+  &::before { background: var(--orange, #F97316); }
+  .iconWrap { background: var(--orange-bg, #FFF7ED); }
 }
 
 @keyframes kpiEnter {
