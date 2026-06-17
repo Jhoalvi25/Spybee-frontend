@@ -588,6 +588,10 @@
   margin-top: 2px;
 }
 
+[data-theme='dark'] .CreateIncidentModal_headerIcon___V6q5 {
+  color: #ffffff;
+}
+
 .CreateIncidentModal_title__Sktcj {
   margin: 0;
   font-size: 1.125rem;

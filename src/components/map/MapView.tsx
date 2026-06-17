@@ -9,10 +9,13 @@ import {
   X,
 } from 'lucide-react';
 import { useMapbox } from '@/hooks/useMapbox';
+import { useMapAutoFit } from '@/hooks/useMapAutoFit';
+import { useMapClusters } from '@/hooks/useMapClusters';
 import { MapContext } from './MapContext';
-import { IncidentMarker, IncidentPopup } from './IncidentMarker';
+import { IncidentPopup } from './IncidentMarker';
 import { MapControls } from './MapControls';
-import { useTheme } from '@/domain/ui/hooks';
+import { useTheme, useMapStyle } from '@/domain/ui/hooks';
+import { MAP_STYLE_URLS } from '@/lib/constants';
 import {
   selectFilteredIncidents,
   useIncidents,
@@ -54,7 +57,11 @@ function useLastSync() {
 
 export function MapView() {
   const containerRef = useRef<HTMLDivElement>(null);
-  const { map, isLoaded, error: mapError } = useMapbox({ container: containerRef });
+  const mapStyle = useMapStyle();
+  const { map, isLoaded, error: mapError } = useMapbox({
+    container: containerRef,
+    style: MAP_STYLE_URLS[mapStyle],
+  });
   const prefix = useId();
 
   const allIncidents = useIncidents();
@@ -75,20 +82,6 @@ export function MapView() {
   }, [loadIncidents]);
 
   const theme = useTheme();
-
-  useEffect(() => {
-    if (!map || !isLoaded) return;
-    const styleUrl = theme === 'dark'
-      ? 'mapbox://styles/mapbox/dark-v11'
-      : 'mapbox://styles/mapbox/light-v11';
-    const center = map.getCenter();
-    const zoom = map.getZoom();
-    map.setStyle(styleUrl);
-    map.once('style.load', () => {
-      map.setCenter(center);
-      map.setZoom(zoom);
-    });
-  }, [theme, map, isLoaded]);
 
   const { label: syncLabel, touch: touchSync } = useLastSync();
 
@@ -127,6 +120,9 @@ export function MapView() {
   const handleFilterChange = useCallback((key: string, value: string) => {
     setFilters({ [key]: value || undefined } as any);
   }, [setFilters]);
+
+  useMapAutoFit({ map, isLoaded, incidents });
+  useMapClusters({ map, isLoaded, incidents, onSelect: handleMarkerClick });
 
   return (
     <MapContext.Provider value={map}>
@@ -307,15 +303,6 @@ export function MapView() {
             </div>
           </div>
         )}
-
-        {/* ─── Markers ──────────────────── */}
-        {incidents.map((incident) => (
-          <IncidentMarker
-            key={`${prefix}-marker-${incident.id}`}
-            incident={incident}
-            onSelect={handleMarkerClick}
-          />
-        ))}
 
         {popupIncident && (
           <IncidentPopup

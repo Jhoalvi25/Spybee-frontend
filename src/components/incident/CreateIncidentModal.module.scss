@@ -65,6 +65,10 @@
   margin-top: 2px;
 }
 
+:global([data-theme='dark']) .headerIcon {
+  color: #ffffff;
+}
+
 .title {
   margin: 0;
   font-size: 1.125rem;

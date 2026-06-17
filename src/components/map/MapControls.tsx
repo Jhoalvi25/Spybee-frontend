@@ -1,14 +1,17 @@
 'use client';
 
-import { useEffect, useRef, useState, useCallback } from 'react';
-import mapboxgl from 'mapbox-gl';
-import { Map, Layers, Satellite, ZoomIn, ZoomOut, RotateCw } from 'lucide-react';
+import { useCallback, useRef } from 'react';
+import type mapboxgl from 'mapbox-gl';
+import { Sun, Moon, Satellite, Mountain, ZoomIn, ZoomOut, RotateCw } from 'lucide-react';
+import { MAPBOX_DEFAULT_CENTER, MAPBOX_DEFAULT_ZOOM, MAP_STYLE_URLS } from '@/lib/constants';
+import { useMapStyle, useSetMapStyle } from '@/domain/ui/hooks';
 import styles from './MapControls.module.scss';
 
 const STYLE_OPTIONS = [
-  { id: 'streets', label: 'Calles', url: 'mapbox://styles/mapbox/streets-v12', icon: Map },
-  { id: 'light', label: 'Luz', url: 'mapbox://styles/mapbox/light-v11', icon: Layers },
-  { id: 'satellite', label: 'Satélite', url: 'mapbox://styles/mapbox/satellite-streets-v12', icon: Satellite },
+  { id: 'light', label: 'Claro', icon: Sun },
+  { id: 'dark', label: 'Oscuro', icon: Moon },
+  { id: 'satellite', label: 'Satélite', icon: Satellite },
+  { id: 'outdoors', label: 'Relieve', icon: Mountain },
 ] as const;
 
 const ZOOM_BUTTONS = [
@@ -23,28 +26,23 @@ type MapControlsProps = {
 };
 
 export function MapControls({ map, isLoaded }: MapControlsProps) {
-  const [activeStyle, setActiveStyle] = useState('light');
-  const [isSwitching, setIsSwitching] = useState(false);
-  const controlsAdded = useRef(false);
+  const activeStyle = useMapStyle();
+  const setMapStyle = useSetMapStyle();
+  const switching = useRef(false);
 
-  useEffect(() => {
-    if (!map || !isLoaded || controlsAdded.current) return;
-    controlsAdded.current = true;
-  }, [map, isLoaded]);
-
-  const handleStyleChange = useCallback((styleId: string, styleUrl: string) => {
-    if (styleId === activeStyle || !map || isSwitching) return;
-    setIsSwitching(true);
-    setActiveStyle(styleId);
-    map.setStyle(styleUrl);
-    map.once('style.load', () => setIsSwitching(false));
-  }, [activeStyle, isSwitching, map]);
+  const handleStyleChange = useCallback((styleId: string) => {
+    if (styleId === activeStyle || !map || switching.current) return;
+    switching.current = true;
+    setMapStyle(styleId as 'light' | 'dark' | 'satellite');
+    map.setStyle(MAP_STYLE_URLS[styleId]);
+    map.once('style.load', () => { switching.current = false; });
+  }, [activeStyle, map, setMapStyle]);
 
   const handleZoom = useCallback((action: 'zoomIn' | 'zoomOut' | 'reset') => {
     if (!map) return;
     if (action === 'zoomIn') map.zoomIn({ duration: 200 });
     else if (action === 'zoomOut') map.zoomOut({ duration: 200 });
-    else map.flyTo({ center: [-74.0721, 4.7110], zoom: 12, duration: 600 });
+    else map.flyTo({ center: [MAPBOX_DEFAULT_CENTER[1], MAPBOX_DEFAULT_CENTER[0]], zoom: MAPBOX_DEFAULT_ZOOM, duration: 600 });
   }, [map]);
 
   return (
@@ -60,8 +58,8 @@ export function MapControls({ map, isLoaded }: MapControlsProps) {
                 role="radio"
                 aria-checked={activeStyle === s.id}
                 className={`${styles.btn} ${activeStyle === s.id ? styles.btnActive : ''}`}
-                onClick={() => handleStyleChange(s.id, s.url)}
-                disabled={isSwitching}
+                onClick={() => handleStyleChange(s.id)}
+                disabled={switching.current}
                 title={s.label}
               >
               <Icon size={15} />
@@ -69,7 +67,7 @@ export function MapControls({ map, isLoaded }: MapControlsProps) {
             </button>
           );
         })}
-        {isSwitching && <span className={styles.spinner} />}
+        {switching.current && <span className={styles.spinner} />}
       </div>
 
       {/* Zoom controls */}

@@ -28,6 +28,13 @@ export const INCIDENT_TYPE_OPTIONS = Object.values(INCIDENT_TYPE_CATALOG).map((t
 export const MAPBOX_DEFAULT_CENTER: [number, number] = [-33.4489, -70.6693];
 export const MAPBOX_DEFAULT_ZOOM = 13;
 
+export const MAP_STYLE_URLS: Record<string, string> = {
+  light: 'mapbox://styles/mapbox/light-v11',
+  dark: 'mapbox://styles/mapbox/dark-v11',
+  satellite: 'mapbox://styles/mapbox/satellite-streets-v12',
+  outdoors: 'mapbox://styles/mapbox/outdoors-v12',
+};
+
 export const PROJECT_OPTIONS = [
   { value: '01', label: 'Edificio Torres del Parque' },
   { value: '02', label: 'Centro Comercial Los Dominicos' },

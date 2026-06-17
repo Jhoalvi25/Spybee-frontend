@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState, useCallback } from 'react';
 import mapboxgl from 'mapbox-gl';
+import { MAPBOX_DEFAULT_CENTER, MAPBOX_DEFAULT_ZOOM } from '@/lib/constants';
 
 const TOKEN = process.env.NEXT_PUBLIC_MAPBOX_TOKEN ?? '';
 const LOAD_TIMEOUT = 15_000;
@@ -15,8 +16,8 @@ export type UseMapboxOptions = {
 
 export function useMapbox({
   container,
-  center = [-74.0721, 4.7110],
-  zoom = 12,
+  center = [MAPBOX_DEFAULT_CENTER[1], MAPBOX_DEFAULT_CENTER[0]],
+  zoom = MAPBOX_DEFAULT_ZOOM,
   style = 'mapbox://styles/mapbox/light-v11',
 }: UseMapboxOptions) {
   const mapRef = useRef<mapboxgl.Map | null>(null);
@@ -72,6 +73,7 @@ export function useMapbox({
       cleanup();
       instance.remove();
       mapRef.current = null;
+      setMap(null);
       setIsLoaded(false);
       setError(null);
     };

@@ -12,17 +12,23 @@
       "static/css/app/(app)/layout.css",
       "static/chunks/app/(app)/layout.js"
     ],
+    "/(app)/map/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/css/app/(app)/map/page.css",
+      "static/chunks/app/(app)/map/page.js"
+    ],
     "/(app)/dashboard/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
       "static/css/app/(app)/dashboard/page.css",
       "static/chunks/app/(app)/dashboard/page.js"
     ],
-    "/(app)/map/page": [
+    "/(app)/incidents/[id]/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/css/app/(app)/map/page.css",
-      "static/chunks/app/(app)/map/page.js"
+      "static/css/app/(app)/incidents/[id]/page.css",
+      "static/chunks/app/(app)/incidents/[id]/page.js"
     ],
     "/(auth)/login/page": [
       "static/chunks/webpack.js",
