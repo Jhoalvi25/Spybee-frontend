@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState, useCallback } from 'react';
+import { useEffect, useState, useCallback, useRef } from 'react';
 import {
   Plus,
   ClipboardList,
@@ -35,6 +35,27 @@ const STATUS_BADGE: Record<string, { label: string; className: string }> = {
   on_hold: { label: 'En pausa', className: 'badgeHold' },
 };
 
+function useLastUpdate() {
+  const [label, setLabel] = useState('Hace unos segundos');
+  const tsRef = useRef(Date.now());
+
+  useEffect(() => {
+    tsRef.current = Date.now();
+    const tick = () => {
+      const elapsed = Math.floor((Date.now() - tsRef.current) / 1000);
+      if (elapsed < 5) setLabel('Hace unos segundos');
+      else if (elapsed < 60) setLabel(`Hace ${elapsed} segundos`);
+      else if (elapsed < 120) setLabel('Hace 1 minuto');
+      else setLabel(`Hace ${Math.floor(elapsed / 60)} minutos`);
+    };
+    tick();
+    const id = setInterval(tick, 5000);
+    return () => clearInterval(id);
+  }, []);
+
+  return label;
+}
+
 export function Dashboard() {
   const loadIncidents = useLoadIncidents();
   const isLoading = useIsLoading();
@@ -51,6 +72,8 @@ export function Dashboard() {
   useEffect(() => {
     loadIncidents();
   }, [loadIncidents]);
+
+  const lastUpdateLabel = useLastUpdate();
 
   const filtersActive =
     !!filters.status || !!filters.priority || !!filters.typeKey || !!filters.search || !!filters.projectId;
@@ -77,7 +100,12 @@ export function Dashboard() {
             <div className={styles.heroTop}>
               <span className={styles.heroEyebrow}>Supervisión inteligente de obra</span>
             </div>
-            <h1 className={styles.heroTitle}>Panel de control</h1>
+            <h1 className={styles.heroTitle}>Centro de Operaciones</h1>
+            <p className={styles.heroSub}>Monitoreo de incidencias en tiempo real</p>
+            <div className={styles.heroLive}>
+              <span className={styles.liveDot} />
+              <span>Monitoreo en tiempo real</span>
+            </div>
           </div>
         </div>
         <div className={styles.skeleton}>Cargando indicadores…</div>
@@ -93,7 +121,8 @@ export function Dashboard() {
             <div className={styles.heroTop}>
               <span className={styles.heroEyebrow}>Supervisión inteligente de obra</span>
             </div>
-            <h1 className={styles.heroTitle}>Panel de control</h1>
+            <h1 className={styles.heroTitle}>Centro de Operaciones</h1>
+            <p className={styles.heroSub}>Monitoreo de incidencias en tiempo real</p>
           </div>
         </div>
         <ErrorState message={error} onRetry={handleRetry} />
@@ -115,7 +144,7 @@ export function Dashboard() {
               )}
             </div>
             <h1 className={styles.heroTitle}>
-              {selectedProject ? selectedProject.name : 'Panel de control'}
+              {selectedProject ? selectedProject.name : 'Centro de Operaciones'}
             </h1>
             {selectedProject && (
               <p className={styles.heroMeta}>
@@ -123,6 +152,11 @@ export function Dashboard() {
                 {selectedProject.address}
               </p>
             )}
+            <p className={styles.heroSub}>Monitoreo de incidencias en tiempo real</p>
+            <div className={styles.heroLive}>
+              <span className={styles.liveDot} />
+              <span>Monitoreo en tiempo real</span>
+            </div>
           </div>
         </div>
         <EmptyState
@@ -150,7 +184,7 @@ export function Dashboard() {
               )}
             </div>
             <h1 className={styles.heroTitle}>
-              {selectedProject ? selectedProject.name : 'Panel de control'}
+              {selectedProject ? selectedProject.name : 'Centro de Operaciones'}
             </h1>
             {selectedProject && (
               <p className={styles.heroMeta}>
@@ -158,6 +192,11 @@ export function Dashboard() {
                 {selectedProject.address}
               </p>
             )}
+            <p className={styles.heroSub}>Monitoreo de incidencias en tiempo real</p>
+            <div className={styles.heroLive}>
+              <span className={styles.liveDot} />
+              <span>Monitoreo en tiempo real</span>
+            </div>
           </div>
         </div>
         <FilterBar />
@@ -173,7 +212,7 @@ export function Dashboard() {
 
   return (
       <div className={styles.page}>
-        {/* ─── Hero ─────────────────────────── */}
+        {/* ─── Hero: Centro de Operaciones ──── */}
         <div className={styles.hero}>
           <div className={styles.heroBody}>
             <div className={styles.heroTop}>
@@ -185,7 +224,7 @@ export function Dashboard() {
               )}
             </div>
             <h1 className={styles.heroTitle}>
-              {selectedProject ? selectedProject.name : 'Panel de control'}
+              {selectedProject ? selectedProject.name : 'Centro de Operaciones'}
             </h1>
             {selectedProject && (
               <p className={styles.heroMeta}>
@@ -193,6 +232,16 @@ export function Dashboard() {
                 {selectedProject.address}
               </p>
             )}
+            <p className={styles.heroSub}>
+              Monitoreo de incidencias en tiempo real
+            </p>
+            <div className={styles.heroLive}>
+              <span className={styles.liveDot} />
+              <span>Monitoreo en tiempo real</span>
+            </div>
+            <p className={styles.heroUpdated}>
+              Última actualización: {lastUpdateLabel}
+            </p>
           </div>
 
           <div className={styles.heroAside}>
@@ -200,10 +249,12 @@ export function Dashboard() {
               <span className={styles.heroQuickValue}>{data.total}</span>
               <span className={styles.heroQuickLabel}>Total</span>
             </div>
+            <div className={styles.heroQuickSep} />
             <div className={styles.heroQuickItem}>
               <span className={styles.heroQuickValue}>{data.open}</span>
               <span className={styles.heroQuickLabel}>Abiertas</span>
             </div>
+            <div className={styles.heroQuickSep} />
             <div className={styles.heroQuickItem}>
               <span className={styles.heroQuickValue}>{data.closed}</span>
               <span className={styles.heroQuickLabel}>Cerradas</span>

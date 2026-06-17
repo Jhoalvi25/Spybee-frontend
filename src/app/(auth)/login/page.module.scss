@@ -1,41 +1,255 @@
+// ─── Layout ─────────────────────────
+
 .page {
+  display: flex;
   min-height: 100dvh;
+  background: #fff;
+}
+
+// ─── Left hero ─────────────────────
+
+.hero {
+  flex: 3;
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 2rem 1.5rem;
+  padding: 3rem;
+  overflow: hidden;
+
+  background:
+    radial-gradient(circle at top right, rgba(242, 195, 0, 0.12), transparent 50%),
+    linear-gradient(135deg, #111111 0%, #1b1b1b 100%);
+
+  @media (max-width: 1024px) {
+    flex: 1;
+  }
+
+  @media (max-width: 768px) {
+    display: none;
+  }
+}
+
+.heroBg {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 60% 50% at 30% 20%, rgba(244, 196, 0, 0.05), transparent),
+    radial-gradient(ellipse 40% 40% at 70% 80%, rgba(244, 196, 0, 0.03), transparent);
+  pointer-events: none;
+}
+
+.heroInner {
+  position: relative;
+  max-width: 480px;
+  width: 100%;
+}
+
+.heroTag {
+  font-size: 0.6875rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--yellow);
+  margin-bottom: 1rem;
+}
+
+.heroTitle {
+  margin: 0 0 1rem;
+  font-size: 2.25rem;
+  font-weight: 700;
+  line-height: 1.15;
+  color: #fff;
+  letter-spacing: -0.02em;
+}
+
+.yellow {
+  color: var(--yellow);
+}
+
+.heroSub {
+  margin: 0 0 1.75rem;
+  font-size: 0.9375rem;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.55);
+}
+
+// ─── Bullets ───────────────────────
+
+.bullets {
+  list-style: none;
+  margin: 0 0 2.5rem;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.625rem;
+}
+
+.bullet {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+  font-size: 0.875rem;
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.bulletIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: rgba(244, 196, 0, 0.15);
+  color: var(--yellow);
+  flex-shrink: 0;
+}
+
+// ─── Mockup cards ──────────────────
+
+@keyframes floatCard1 {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+
+@keyframes floatCard2 {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+
+.mockups {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.mockupCard {
+  flex: 1;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  overflow: hidden;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+
+  &:first-child {
+    animation: floatCard1 4s ease-in-out infinite;
+  }
+
+  &:last-child {
+    position: relative;
+    animation: floatCard2 4s ease-in-out infinite 1s;
+  }
+}
+
+.mockupCardHeader {
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+  padding: 0.5rem 0.75rem;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.5);
+  background: rgba(255, 255, 255, 0.03);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.mockupBars {
+  display: flex;
+  align-items: flex-end;
+  gap: 4px;
+  height: 56px;
+  padding: 0.75rem;
+}
+
+.mockupBar {
+  flex: 1;
+  border-radius: 2px 2px 0 0;
+  background: linear-gradient(to top, rgba(244, 196, 0, 0.5), rgba(244, 196, 0, 0.2));
+  min-height: 4px;
+}
+
+.mockupMapGrid {
+  height: 64px;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+  background-size: 16px 16px;
+}
+
+.mockupPin {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--yellow);
+  transform: translate(-50%, -50%);
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.3);
+
+  &:nth-child(3) {
+    background: #22C55E;
+  }
+
+  &:nth-child(4) {
+    background: #EF4444;
+  }
+}
+
+// ─── Right: Login section ──────────
+
+.loginSection {
+  flex: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
   background: var(--bg);
+
+  @media (max-width: 1024px) {
+    flex: 1;
+  }
 }
 
 .card {
   width: 100%;
-  max-width: 400px;
+  max-width: 420px;
   background: var(--white);
-  border-radius: var(--radius-lg);
-  padding: 2.5rem 2rem;
-  box-shadow: var(--shadow-xl);
+  border-radius: 24px;
+  padding: 2.5rem 2.25rem;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06), 0 1px 4px rgba(0, 0, 0, 0.04);
+}
+
+.cardHeader {
   text-align: center;
+  margin-bottom: 2rem;
 }
 
 .logo {
   display: block;
-  height: 72px;
+  height: 52px;
   width: auto;
-  margin: 0 auto 0.5rem;
+  margin: 0 auto 1.25rem;
   object-fit: contain;
 }
 
-.subtitle {
-  margin: 0.375rem 0 2rem;
-  font-size: 0.9375rem;
+.cardTitle {
+  margin: 0 0 0.375rem;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--dark);
+  letter-spacing: -0.01em;
+}
+
+.cardSub {
+  margin: 0;
+  font-size: 0.875rem;
   color: var(--gray-500);
 }
+
+// ─── Form ─────────────────────────
 
 .form {
   display: flex;
   flex-direction: column;
   gap: 1.25rem;
-  text-align: left;
 }
 
 .field {
@@ -50,16 +264,34 @@
   color: var(--gray-700);
 }
 
+.inputWrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.inputIcon {
+  position: absolute;
+  left: 0.75rem;
+  color: var(--gray-400);
+  pointer-events: none;
+  transition: color 0.2s ease;
+}
+
+.inputWrapper:focus-within .inputIcon {
+  color: var(--yellow);
+}
+
 .input {
   width: 100%;
-  padding: 0.625rem 0.75rem;
-  border: 1px solid var(--gray-300);
-  border-radius: var(--radius-sm);
+  padding: 0.625rem 0.75rem 0.625rem 2.25rem;
+  border: 1px solid var(--gray-200);
+  border-radius: 10px;
   font-size: 0.875rem;
   font-family: inherit;
   color: var(--dark);
   background: var(--white);
-  transition: border-color 0.15s, box-shadow 0.15s;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
   outline: none;
   box-sizing: border-box;
 
@@ -71,6 +303,19 @@
     border-color: var(--yellow);
     box-shadow: 0 0 0 3px rgba(244, 196, 0, 0.12);
   }
+}
+
+.inputError {
+  border-color: var(--danger);
+
+  &:focus {
+    border-color: var(--danger);
+    box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.12);
+  }
+}
+
+.inputError ~ .inputIcon {
+  color: var(--danger);
 }
 
 .error {
@@ -86,25 +331,26 @@
   text-align: center;
   padding: 0.5rem 0.75rem;
   background: var(--danger-bg);
-  border-radius: var(--radius-sm);
+  border-radius: 10px;
 }
 
 .submit {
   width: 100%;
-  padding: 0.625rem 1.5rem;
+  padding: 0.75rem 1.5rem;
   border: none;
-  border-radius: var(--radius-sm);
+  border-radius: 10px;
   background: var(--yellow);
   color: var(--dark);
   font-size: 0.9375rem;
   font-weight: 600;
   font-family: inherit;
   cursor: pointer;
-  transition: background 0.15s, opacity 0.15s;
-  margin-top: 0.5rem;
+  transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
 
   &:hover:not(:disabled) {
     background: var(--yellow-hover);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 16px rgba(244, 196, 0, 0.3);
   }
 
   &:disabled {
@@ -113,19 +359,54 @@
   }
 }
 
+// ─── Hint ─────────────────────────
+
 .hint {
-  margin: 1.5rem 0 0;
-  font-size: 0.75rem;
-  color: var(--gray-400);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.375rem;
+  margin-top: 1.5rem;
+  padding: 0.75rem 1rem;
+  border-radius: 10px;
+  background: var(--gray-50);
 }
 
+.hintLabel {
+  font-size: 0.6875rem;
+  font-weight: 600;
+  color: var(--gray-400);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-right: 0.25rem;
+}
+
+.hintCode {
+  font-size: 0.75rem;
+  font-family: var(--font-mono);
+  color: var(--gray-600);
+  background: var(--gray-100);
+  padding: 0.125rem 0.375rem;
+  border-radius: 4px;
+}
+
+.hintSep {
+  font-size: 0.75rem;
+  color: var(--gray-300);
+}
+
+// ─── Back link ─────────────────────
+
 .backLink {
-  display: inline-block;
-  margin-top: 0.75rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  margin-top: 1.25rem;
   font-size: 0.8125rem;
-  color: var(--gray-500);
+  color: var(--gray-400);
   text-decoration: none;
-  transition: color 0.15s;
+  transition: color 0.2s ease;
 
   &:hover {
     color: var(--yellow);
