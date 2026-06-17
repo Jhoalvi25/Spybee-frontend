@@ -18,11 +18,29 @@
       "static/css/app/(app)/map/page.css",
       "static/chunks/app/(app)/map/page.js"
     ],
+    "/(app)/incidents/[id]/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/css/app/(app)/incidents/[id]/page.css",
+      "static/chunks/app/(app)/incidents/[id]/page.js"
+    ],
     "/(app)/dashboard/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
       "static/css/app/(app)/dashboard/page.css",
       "static/chunks/app/(app)/dashboard/page.js"
+    ],
+    "/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/css/app/page.css",
+      "static/chunks/app/page.js"
+    ],
+    "/(auth)/login/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/css/app/(auth)/login/page.css",
+      "static/chunks/app/(auth)/login/page.js"
     ]
   }
 }

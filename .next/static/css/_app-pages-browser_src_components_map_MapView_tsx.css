@@ -149,6 +149,7 @@
   overflow: hidden;
   pointer-events: auto;
   transition: width 0.25s ease;
+  animation: MapView_panelEnter__johht 0.35s ease-out both;
 }
 @media (max-width: 768px) {
   .MapView_sidePanel__0sB_L {
@@ -158,6 +159,16 @@
   }
 }
 
+@keyframes MapView_panelEnter__johht {
+  0% {
+    opacity: 0;
+    transform: translateX(-8px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
 .MapView_sidePanelOpen__p_N1s {
   width: 320px;
 }
@@ -449,6 +460,8 @@
   cursor: pointer;
   overflow: hidden;
   transition: box-shadow 0.2s ease, transform 0.2s ease, border-color 0.2s ease;
+  animation: MapView_cardEnter__kCkvp 0.35s ease-out both;
+  animation-delay: calc(var(--delay, 0s));
 }
 .MapView_incidentCard__NH0hc::before {
   content: "";
@@ -516,6 +529,16 @@
   flex-shrink: 0;
 }
 
+@keyframes MapView_cardEnter__kCkvp {
+  0% {
+    opacity: 0;
+    transform: translateY(8px) scale(0.98);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
 /* ─── Overlay states ────────────────────── */
 .MapView_overlay__w6uas {
   position: absolute;

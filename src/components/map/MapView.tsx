@@ -220,7 +220,7 @@ export function MapView() {
                 {incidents.length === 0 && (
                   <p className={styles.emptyList}>Sin incidencias</p>
                 )}
-                {incidents.slice(0, 20).map((inc) => {
+                {incidents.slice(0, 20).map((inc, i) => {
                   const dotColor =
                     inc.status === 'closed' ? '#22C55E' :
                     inc.priority === 'high' ? '#EF4444' : '#F4C400';
@@ -229,7 +229,7 @@ export function MapView() {
                       key={inc.id}
                       type="button"
                       className={`${styles.incidentCard} ${popupIncident?.id === inc.id ? styles.incidentCardActive : ''}`}
-                      style={{ '--bar-color': dotColor } as React.CSSProperties}
+                      style={{ '--bar-color': dotColor, '--delay': `${i * 0.04}s` } as React.CSSProperties}
                       onClick={() => handleMarkerClick(inc.id)}
                     >
                       <div className={styles.incidentBody}>

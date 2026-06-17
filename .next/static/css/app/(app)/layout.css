@@ -1,3 +1,68 @@
+/*!*********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[14].oneOf[7].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[14].oneOf[7].use[3]!./node_modules/next/dist/build/webpack/loaders/resolve-url-loader/index.js??ruleSet[1].rules[14].oneOf[7].use[4]!./node_modules/next/dist/compiled/sass-loader/cjs.js??ruleSet[1].rules[14].oneOf[7].use[5]!./src/components/ui/Tooltip.module.scss ***!
+  \*********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+.Tooltip_wrapper__PcC50 {
+  position: relative;
+  display: inline-flex;
+}
+.Tooltip_wrapper__PcC50::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  z-index: 50;
+  padding: 0.25rem 0.5rem;
+  border-radius: 6px;
+  background: #1f1f1f;
+  color: #fff;
+  font-size: 0.6875rem;
+  font-weight: 500;
+  font-family: var(--font-family);
+  line-height: 1.4;
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  transform: translateY(4px);
+  transition: opacity 0.15s ease, transform 0.15s ease;
+}
+.Tooltip_wrapper__PcC50:hover::after {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.Tooltip_top__UfpL5::after {
+  bottom: calc(100% + 6px);
+  left: 50%;
+  transform: translateX(-50%) translateY(4px);
+}
+.Tooltip_top__UfpL5:hover::after {
+  transform: translateX(-50%) translateY(0);
+}
+
+.Tooltip_bottom__09oT_::after {
+  top: calc(100% + 6px);
+  left: 50%;
+  transform: translateX(-50%) translateY(-4px);
+}
+.Tooltip_bottom__09oT_:hover::after {
+  transform: translateX(-50%) translateY(0);
+}
+
+.Tooltip_left__hDhxw::after {
+  right: calc(100% + 8px);
+  top: 50%;
+  transform: translateY(-50%) translateX(4px);
+}
+.Tooltip_left__hDhxw:hover::after {
+  transform: translateY(-50%) translateX(0);
+}
+
+.Tooltip_right__lAbWK::after {
+  left: calc(100% + 8px);
+  top: 50%;
+  transform: translateY(-50%) translateX(-4px);
+}
+.Tooltip_right__lAbWK:hover::after {
+  transform: translateY(-50%) translateX(0);
+}
 /*!*************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[14].oneOf[7].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[14].oneOf[7].use[3]!./node_modules/next/dist/build/webpack/loaders/resolve-url-loader/index.js??ruleSet[1].rules[14].oneOf[7].use[4]!./node_modules/next/dist/compiled/sass-loader/cjs.js??ruleSet[1].rules[14].oneOf[7].use[5]!./src/components/layout/Sidebar.module.scss ***!
   \*************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/

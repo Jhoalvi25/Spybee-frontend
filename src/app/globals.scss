@@ -200,3 +200,43 @@ body {
     background: var(--yellow-hover);
   }
 }
+
+/* ─── Shared Keyframes ─────────────────── */
+
+@keyframes fadeUp {
+  0% { opacity: 0; transform: translateY(12px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideUp {
+  0% { opacity: 0; transform: translateY(8px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+@keyframes scaleIn {
+  0% { opacity: 0; transform: scale(0.95); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+/* ─── Shared animation utility classes ─── */
+
+.animateFadeUp {
+  animation: fadeUp 0.4s ease-out both;
+}
+
+.animateSlideUp {
+  animation: slideUp 0.3s ease-out both;
+}
+
+.animateFadeIn {
+  animation: fadeIn 0.2s ease-out both;
+}
+
+.animateScaleIn {
+  animation: scaleIn 0.2s ease-out both;
+}

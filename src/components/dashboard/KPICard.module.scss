@@ -10,6 +10,7 @@
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.03);
   overflow: hidden;
   transition: box-shadow 0.25s ease, transform 0.25s ease;
+  animation: kpiEnter 0.4s ease-out both;
 
   /* Yellow accent bar — top border */
   &::before {
@@ -119,4 +120,9 @@
 .orange {
   &::before { background: #F97316; }
   .iconWrap { background: #FFF7ED; }
+}
+
+@keyframes kpiEnter {
+  0% { opacity: 0; transform: translateY(16px) scale(0.97); }
+  100% { opacity: 1; transform: translateY(0) scale(1); }
 }

@@ -6,6 +6,7 @@ import { usePathname, useRouter } from 'next/navigation';
 import { LayoutDashboard, Map, LogOut, ChevronLeft } from 'lucide-react';
 import { useAuthStore } from '@/domain/auth/store';
 import { useProjectStore } from '@/domain/project/store';
+import { Tooltip } from '@/components/ui/Tooltip';
 import styles from './Sidebar.module.scss';
 
 const NAV = [
@@ -65,7 +66,7 @@ export function Sidebar({ mobileOpen, onMobileClose }: SidebarProps) {
           {NAV.map((item) => {
             const isActive = pathname === item.href || pathname.startsWith(item.href + '/');
             const Icon = item.icon;
-            return (
+            const link = (
               <Link
                 key={item.href}
                 href={item.href}
@@ -78,6 +79,13 @@ export function Sidebar({ mobileOpen, onMobileClose }: SidebarProps) {
                 {!collapsed && <span className={styles.linkLabel}>{item.label}</span>}
                 {isActive && !collapsed && <span className={styles.activePill} />}
               </Link>
+            );
+            return collapsed ? (
+              <Tooltip key={item.href} label={item.label} position="right">
+                {link}
+              </Tooltip>
+            ) : (
+              link
             );
           })}
         </nav>

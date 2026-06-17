@@ -87,8 +87,19 @@
   background: var(--white);
   border-radius: var(--radius-md);
   box-shadow: var(--shadow-card);
+  animation: EmptyState_fadeUp___Fgu1 0.4s ease-out both;
 }
 
+@keyframes EmptyState_fadeUp___Fgu1 {
+  0% {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
 .EmptyState_icon__bz0JH {
   font-size: 2.5rem;
   margin-bottom: 1rem;
@@ -576,6 +587,71 @@
 .CreateIncidentModal_btnSecondary__uRup8:hover {
   background: var(--gray-100);
 }
+/*!*********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[14].oneOf[7].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[14].oneOf[7].use[3]!./node_modules/next/dist/build/webpack/loaders/resolve-url-loader/index.js??ruleSet[1].rules[14].oneOf[7].use[4]!./node_modules/next/dist/compiled/sass-loader/cjs.js??ruleSet[1].rules[14].oneOf[7].use[5]!./src/components/ui/Tooltip.module.scss ***!
+  \*********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+.Tooltip_wrapper__PcC50 {
+  position: relative;
+  display: inline-flex;
+}
+.Tooltip_wrapper__PcC50::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  z-index: 50;
+  padding: 0.25rem 0.5rem;
+  border-radius: 6px;
+  background: #1f1f1f;
+  color: #fff;
+  font-size: 0.6875rem;
+  font-weight: 500;
+  font-family: var(--font-family);
+  line-height: 1.4;
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  transform: translateY(4px);
+  transition: opacity 0.15s ease, transform 0.15s ease;
+}
+.Tooltip_wrapper__PcC50:hover::after {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.Tooltip_top__UfpL5::after {
+  bottom: calc(100% + 6px);
+  left: 50%;
+  transform: translateX(-50%) translateY(4px);
+}
+.Tooltip_top__UfpL5:hover::after {
+  transform: translateX(-50%) translateY(0);
+}
+
+.Tooltip_bottom__09oT_::after {
+  top: calc(100% + 6px);
+  left: 50%;
+  transform: translateX(-50%) translateY(-4px);
+}
+.Tooltip_bottom__09oT_:hover::after {
+  transform: translateX(-50%) translateY(0);
+}
+
+.Tooltip_left__hDhxw::after {
+  right: calc(100% + 8px);
+  top: 50%;
+  transform: translateY(-50%) translateX(4px);
+}
+.Tooltip_left__hDhxw:hover::after {
+  transform: translateY(-50%) translateX(0);
+}
+
+.Tooltip_right__lAbWK::after {
+  left: calc(100% + 8px);
+  top: 50%;
+  transform: translateY(-50%) translateX(-4px);
+}
+.Tooltip_right__lAbWK:hover::after {
+  transform: translateY(-50%) translateX(0);
+}
 /*!****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[14].oneOf[7].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[14].oneOf[7].use[3]!./node_modules/next/dist/build/webpack/loaders/resolve-url-loader/index.js??ruleSet[1].rules[14].oneOf[7].use[4]!./node_modules/next/dist/compiled/sass-loader/cjs.js??ruleSet[1].rules[14].oneOf[7].use[5]!./src/components/dashboard/KPICard.module.scss ***!
   \****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
@@ -592,6 +668,7 @@
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.03);
   overflow: hidden;
   transition: box-shadow 0.25s ease, transform 0.25s ease;
+  animation: KPICard_kpiEnter__FWbVu 0.4s ease-out both;
   /* Yellow accent bar — top border */
 }
 .KPICard_card__DEmYT::before {
@@ -719,6 +796,17 @@
 .KPICard_orange__FKnDh .KPICard_iconWrap__cAiRw {
   background: #FFF7ED;
 }
+
+@keyframes KPICard_kpiEnter__FWbVu {
+  0% {
+    opacity: 0;
+    transform: translateY(16px) scale(0.97);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
 /*!****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[14].oneOf[7].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[14].oneOf[7].use[3]!./node_modules/next/dist/build/webpack/loaders/resolve-url-loader/index.js??ruleSet[1].rules[14].oneOf[7].use[4]!./node_modules/next/dist/compiled/sass-loader/cjs.js??ruleSet[1].rules[14].oneOf[7].use[5]!./src/components/dashboard/KPIGrid.module.scss ***!
   \****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
@@ -753,6 +841,7 @@
   padding: 1.5rem;
   box-shadow: var(--shadow-card);
   transition: box-shadow 0.2s;
+  animation: ChartCard_chartEnter__n3U0H 0.5s ease-out both;
 }
 .ChartCard_card__kWnCt:hover {
   box-shadow: var(--shadow-lg);
@@ -771,6 +860,17 @@
 
 .ChartCard_body__xsv1g {
   width: 100%;
+}
+
+@keyframes ChartCard_chartEnter__n3U0H {
+  0% {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 /*!******************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[14].oneOf[7].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[14].oneOf[7].use[3]!./node_modules/next/dist/build/webpack/loaders/resolve-url-loader/index.js??ruleSet[1].rules[14].oneOf[7].use[4]!./node_modules/next/dist/compiled/sass-loader/cjs.js??ruleSet[1].rules[14].oneOf[7].use[5]!./src/components/dashboard/Dashboard.module.scss ***!
@@ -1072,19 +1172,14 @@
 }
 
 /* ─── Skeleton ──────────────────────────── */
-.Dashboard_skeleton__CA_oE {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 300px;
-  font-size: 0.9375rem;
-  color: var(--gray-400);
-  background: var(--white);
-  border-radius: 12px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06), 0 1px 2px rgba(0, 0, 0, 0.04);
-  animation: Dashboard_pulse__LIsiO 1.5s ease-in-out infinite;
+@keyframes Dashboard_shimmer__7_VmV {
+  0% {
+    background-position: -400px 0;
+  }
+  100% {
+    background-position: 400px 0;
+  }
 }
-
 @keyframes Dashboard_pulse__LIsiO {
   0%, 100% {
     opacity: 1;
@@ -1092,4 +1187,54 @@
   50% {
     opacity: 0.5;
   }
+}
+.Dashboard_skeletonGrid__EI0Yi {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
+  grid-gap: 1rem;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+@media (max-width: 1024px) {
+  .Dashboard_skeletonGrid__EI0Yi {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+@media (max-width: 640px) {
+  .Dashboard_skeletonGrid__EI0Yi {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+@media (max-width: 400px) {
+  .Dashboard_skeletonGrid__EI0Yi {
+    grid-template-columns: 1fr;
+  }
+}
+
+.Dashboard_skelCard__Y1u6N {
+  height: 148px;
+  border-radius: var(--radius-md);
+  background: linear-gradient(90deg, #f0f0f0 25%, #f8f8f8 50%, #f0f0f0 75%);
+  background-size: 400px 100%;
+  animation: Dashboard_shimmer__7_VmV 1.8s ease-in-out infinite, Dashboard_pulse__LIsiO 1.8s ease-in-out infinite;
+}
+
+.Dashboard_skelCharts__0BMKG {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 1.5rem;
+  gap: 1.5rem;
+}
+@media (max-width: 1024px) {
+  .Dashboard_skelCharts__0BMKG {
+    grid-template-columns: 1fr;
+  }
+}
+
+.Dashboard_skelChart__QAzRU {
+  height: 340px;
+  border-radius: var(--radius-md);
+  background: linear-gradient(90deg, #f0f0f0 25%, #f8f8f8 50%, #f0f0f0 75%);
+  background-size: 400px 100%;
+  animation: Dashboard_shimmer__7_VmV 1.8s ease-in-out infinite, Dashboard_pulse__LIsiO 1.8s ease-in-out infinite;
 }

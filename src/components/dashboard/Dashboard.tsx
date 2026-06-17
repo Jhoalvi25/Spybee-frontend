@@ -108,7 +108,17 @@ export function Dashboard() {
             </div>
           </div>
         </div>
-        <div className={styles.skeleton}>Cargando indicadores…</div>
+        <div className={styles.skeletonGrid}>
+          <div className={styles.skelCard} style={{ animationDelay: '0s' }} />
+          <div className={styles.skelCard} style={{ animationDelay: '0.06s' }} />
+          <div className={styles.skelCard} style={{ animationDelay: '0.12s' }} />
+          <div className={styles.skelCard} style={{ animationDelay: '0.18s' }} />
+          <div className={styles.skelCard} style={{ animationDelay: '0.24s' }} />
+        </div>
+        <div className={styles.skelCharts}>
+          <div className={styles.skelChart} />
+          <div className={styles.skelChart} />
+        </div>
       </div>
     );
   }

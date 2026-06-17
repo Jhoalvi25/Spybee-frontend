@@ -1,4 +1,5 @@
 import type { LucideIcon } from 'lucide-react';
+import { Tooltip } from '@/components/ui/Tooltip';
 import styles from './KPICard.module.scss';
 
 type KPICardProps = {
@@ -8,11 +9,16 @@ type KPICardProps = {
   icon?: LucideIcon;
   trend?: { value: string; positive: boolean };
   large?: boolean;
+  tooltip?: string;
+  delay?: number;
 };
 
-export function KPICard({ label, value, variant = 'yellow', icon: Icon, trend, large }: KPICardProps) {
-  return (
-    <article className={`${styles.card} ${styles[variant]} ${large ? styles.large : ''}`}>
+export function KPICard({ label, value, variant = 'yellow', icon: Icon, trend, large, tooltip, delay }: KPICardProps) {
+  const card = (
+    <article
+      className={`${styles.card} ${styles[variant]} ${large ? styles.large : ''}`}
+      style={delay !== undefined ? { animationDelay: `${delay}s` } : undefined}
+    >
       {Icon && (
         <div className={styles.iconWrap}>
           <Icon size={large ? 22 : 18} />
@@ -29,4 +35,10 @@ export function KPICard({ label, value, variant = 'yellow', icon: Icon, trend, l
       </div>
     </article>
   );
+
+  if (tooltip) {
+    return <Tooltip label={tooltip}>{card}</Tooltip>;
+  }
+
+  return card;
 }

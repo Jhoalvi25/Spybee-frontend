@@ -54,15 +54,16 @@ export function MapControls({ map, isLoaded }: MapControlsProps) {
         {STYLE_OPTIONS.map((s) => {
           const Icon = s.icon;
           return (
-            <button
-              key={s.id}
-              type="button"
-              role="radio"
-              aria-checked={activeStyle === s.id}
-              className={`${styles.btn} ${activeStyle === s.id ? styles.btnActive : ''}`}
-              onClick={() => handleStyleChange(s.id, s.url)}
-              disabled={isSwitching}
-            >
+              <button
+                key={s.id}
+                type="button"
+                role="radio"
+                aria-checked={activeStyle === s.id}
+                className={`${styles.btn} ${activeStyle === s.id ? styles.btnActive : ''}`}
+                onClick={() => handleStyleChange(s.id, s.url)}
+                disabled={isSwitching}
+                title={s.label}
+              >
               <Icon size={15} />
               <span>{s.label}</span>
             </button>
@@ -82,6 +83,7 @@ export function MapControls({ map, isLoaded }: MapControlsProps) {
                 type="button"
                 className={styles.btn}
                 onClick={() => handleZoom(z.action)}
+                title={z.label}
               >
                 <Icon size={15} />
                 <span>{z.label}</span>

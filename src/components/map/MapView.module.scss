@@ -29,12 +29,18 @@ $panel-closed: 36px;
   overflow: hidden;
   pointer-events: auto;
   transition: width 0.25s ease;
+  animation: panelEnter 0.35s ease-out both;
 
   @media (max-width: 768px) {
     top: 4.25rem;
     bottom: 0.75rem;
     left: 0.75rem;
   }
+}
+
+@keyframes panelEnter {
+  0% { opacity: 0; transform: translateX(-8px); }
+  100% { opacity: 1; transform: translateX(0); }
 }
 
 .sidePanelOpen {
@@ -326,6 +332,8 @@ $panel-closed: 36px;
   cursor: pointer;
   overflow: hidden;
   transition: box-shadow 0.2s ease, transform 0.2s ease, border-color 0.2s ease;
+  animation: cardEnter 0.35s ease-out both;
+  animation-delay: calc(var(--delay, 0s));
 
   &::before {
     content: '';
@@ -394,6 +402,11 @@ $panel-closed: 36px;
   color: var(--gray-400);
   font-family: var(--font-mono, monospace);
   flex-shrink: 0;
+}
+
+@keyframes cardEnter {
+  0% { opacity: 0; transform: translateY(8px) scale(0.98); }
+  100% { opacity: 1; transform: translateY(0) scale(1); }
 }
 
 /* ─── Overlay states ────────────────────── */
