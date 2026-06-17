@@ -15,11 +15,11 @@ export function KPICard({ label, value, variant = 'yellow', icon: Icon, trend, l
     <article className={`${styles.card} ${styles[variant]} ${large ? styles.large : ''}`}>
       {Icon && (
         <div className={styles.iconWrap}>
-          <Icon size={large ? 24 : 20} />
+          <Icon size={large ? 22 : 18} />
         </div>
       )}
       <div className={styles.body}>
-        <span className={`${styles.value} ${large ? styles.valueLarge : ''}`}>{value}</span>
+        <span className={styles.value}>{value}</span>
         <span className={styles.label}>{label}</span>
         {trend && (
           <span className={`${styles.trend} ${trend.positive ? styles.trendUp : styles.trendDown}`}>

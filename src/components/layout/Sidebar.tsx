@@ -57,6 +57,10 @@ export function Sidebar({ mobileOpen, onMobileClose }: SidebarProps) {
           </div>
         )}
 
+        {!collapsed && (
+          <span className={styles.navSectionLabel}>Operaciones</span>
+        )}
+
         <nav className={styles.nav}>
           {NAV.map((item) => {
             const isActive = pathname === item.href || pathname.startsWith(item.href + '/');
@@ -72,6 +76,7 @@ export function Sidebar({ mobileOpen, onMobileClose }: SidebarProps) {
                   <Icon size={18} />
                 </span>
                 {!collapsed && <span className={styles.linkLabel}>{item.label}</span>}
+                {isActive && !collapsed && <span className={styles.activePill} />}
               </Link>
             );
           })}
@@ -90,6 +95,10 @@ export function Sidebar({ mobileOpen, onMobileClose }: SidebarProps) {
                   <span className={styles.userName}>{user.name}</span>
                   <span className={styles.userRole}>Administrador</span>
                   <span className={styles.userEmail}>{user.email}</span>
+                  <div className={styles.systemStatus}>
+                    <span className={styles.statusDot} />
+                    <span>Sistema operativo</span>
+                  </div>
                 </div>
               )}
             </div>

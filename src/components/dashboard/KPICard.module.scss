@@ -1,56 +1,73 @@
 .card {
+  position: relative;
   display: flex;
-  align-items: center;
+  flex-direction: column;
   gap: 1rem;
-  padding: 1.25rem;
+  padding: 1.25rem 1.25rem 1.125rem;
   border-radius: var(--radius-md);
   background: var(--white);
-  box-shadow: var(--shadow-card);
-  transition: box-shadow 0.2s, transform 0.2s;
+  border: 1px solid rgba(0, 0, 0, 0.04);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.03);
+  overflow: hidden;
+  transition: box-shadow 0.25s ease, transform 0.25s ease;
+
+  /* Yellow accent bar — top border */
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    border-radius: var(--radius-md) var(--radius-md) 0 0;
+    transition: opacity 0.25s ease;
+  }
 
   &:hover {
-    box-shadow: var(--shadow-lg);
-    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.07), 0 2px 6px rgba(0, 0, 0, 0.04);
+    transform: translateY(-3px);
   }
 }
 
 .large {
-  padding: 1.5rem;
-  gap: 1.25rem;
+  padding: 1.5rem 1.5rem 1.375rem;
+  gap: 1.125rem;
 }
 
 .iconWrap {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 48px;
-  height: 48px;
-  border-radius: 12px;
+  width: 42px;
+  height: 42px;
+  border-radius: 10px;
   flex-shrink: 0;
 }
 
 .large .iconWrap {
-  width: 56px;
-  height: 56px;
-  border-radius: 14px;
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
 }
 
 .body {
   display: flex;
   flex-direction: column;
-  gap: 0.125rem;
+  gap: 0.25rem;
   min-width: 0;
 }
 
 .value {
-  font-size: 1.75rem;
+  font-size: 2rem;
   font-weight: 700;
-  line-height: 1.15;
+  line-height: 1.1;
   color: var(--dark);
+  letter-spacing: -0.02em;
+  font-variant-numeric: tabular-nums;
 }
 
-.valueLarge {
-  font-size: 2.25rem;
+.large .value {
+  font-size: 2.5rem;
 }
 
 .label {
@@ -59,12 +76,13 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  line-height: 1.4;
 }
 
 .trend {
   font-size: 0.6875rem;
   font-weight: 600;
-  margin-top: 0.125rem;
+  margin-top: 0.25rem;
 }
 
 .trendUp { color: var(--success); }
@@ -73,26 +91,32 @@
 /* ─── Variants ──────────────────────────── */
 
 .yellow {
+  &::before { background: var(--yellow); }
   .iconWrap { background: var(--yellow-bg); }
 }
 
 .green {
+  &::before { background: var(--success); }
   .iconWrap { background: var(--success-bg); }
 }
 
 .gray {
+  &::before { background: var(--gray-300); }
   .iconWrap { background: var(--gray-100); }
   .value { color: var(--gray-600); }
 }
 
 .red {
+  &::before { background: var(--danger); }
   .iconWrap { background: var(--danger-bg); }
 }
 
 .purple {
+  &::before { background: #8B5CF6; }
   .iconWrap { background: #F5F3FF; }
 }
 
 .orange {
+  &::before { background: #F97316; }
   .iconWrap { background: #FFF7ED; }
 }
