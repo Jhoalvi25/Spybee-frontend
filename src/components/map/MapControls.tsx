@@ -2,7 +2,7 @@
 
 import { useCallback, useRef } from 'react';
 import type mapboxgl from 'mapbox-gl';
-import { Sun, Moon, Satellite, Mountain, ZoomIn, ZoomOut, RotateCw } from 'lucide-react';
+import { Sun, Moon, Satellite, Mountain, ZoomIn, ZoomOut, RotateCw, Plus } from 'lucide-react';
 import { MAPBOX_DEFAULT_CENTER, MAPBOX_DEFAULT_ZOOM, MAP_STYLE_URLS } from '@/lib/constants';
 import { useMapStyle, useSetMapStyle } from '@/domain/ui/hooks';
 import styles from './MapControls.module.scss';
@@ -23,9 +23,10 @@ const ZOOM_BUTTONS = [
 type MapControlsProps = {
   map: mapboxgl.Map | null;
   isLoaded: boolean;
+  onReport?: () => void;
 };
 
-export function MapControls({ map, isLoaded }: MapControlsProps) {
+export function MapControls({ map, isLoaded, onReport }: MapControlsProps) {
   const activeStyle = useMapStyle();
   const setMapStyle = useSetMapStyle();
   const switching = useRef(false);
@@ -47,7 +48,6 @@ export function MapControls({ map, isLoaded }: MapControlsProps) {
 
   return (
     <div className={styles.controls}>
-      {/* Style switcher */}
       <div className={styles.card} role="radiogroup" aria-label="Estilo de mapa">
         {STYLE_OPTIONS.map((s) => {
           const Icon = s.icon;
@@ -70,7 +70,6 @@ export function MapControls({ map, isLoaded }: MapControlsProps) {
         {switching.current && <span className={styles.spinner} />}
       </div>
 
-      {/* Zoom controls */}
       <div className={styles.card}>
         {ZOOM_BUTTONS.map((z, i) => {
           const Icon = z.icon;
@@ -90,6 +89,19 @@ export function MapControls({ map, isLoaded }: MapControlsProps) {
           );
         })}
       </div>
+
+      {/* Report FAB — desktop only inside controls column */}
+      {onReport && (
+        <button
+          type="button"
+          className={styles.fab}
+          onClick={onReport}
+          aria-label="Reportar nueva incidencia"
+          title="Reportar incidencia"
+        >
+          <Plus size={20} />
+        </button>
+      )}
     </div>
   );
 }

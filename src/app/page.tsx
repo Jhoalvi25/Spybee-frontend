@@ -63,7 +63,6 @@ export default function Home() {
 
   return (
     <div className={styles.page}>
-      {/* ─── Navbar ─────────────────────── */}
       <header className={`${styles.navbar} ${scrolled ? styles.navbarScrolled : ''}`}>
         <div className={styles.navInner}>
           <Link href="/" className={styles.navLogo}>
@@ -99,7 +98,6 @@ export default function Home() {
         </div>
       </header>
 
-      {/* ─── Hero ───────────────────────── */}
       <section className={styles.hero}>
         <div className={styles.heroBg} />
         <div className={styles.heroContent}>
@@ -181,7 +179,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ─── Capabilities ───────────────── */}
       <section className={styles.capabilities}>
         <div className={styles.sectionInner}>
           <AnimatedSection>
@@ -234,7 +231,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ─── Metrics ────────────────────── */}
       <section className={styles.metrics}>
         <div className={styles.sectionInner}>
           <div className={styles.metricsGrid}>
@@ -258,7 +254,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ─── Footer ─────────────────────── */}
       <footer className={styles.footer}>
         <div className={styles.sectionInner}>
           <div className={styles.footerContent}>

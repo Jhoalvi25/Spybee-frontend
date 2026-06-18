@@ -4,8 +4,10 @@ import { useEffect, useRef, useCallback } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
+import { useRouter } from 'next/navigation';
 import { Bug } from 'lucide-react';
 import { useCreateIncident } from '@/domain/incident/hooks';
+import { useToastStore } from '@/domain/ui/toastStore';
 import { MiniMapPicker } from '@/components/ui/MiniMapPicker';
 import {
   PROJECT_OPTIONS,
@@ -73,13 +75,24 @@ function focusTrapCleanup(element: HTMLElement, previous: HTMLElement | null): (
 type CreateIncidentModalProps = {
   open: boolean;
   onClose: () => void;
+  initialLat?: number;
+  initialLng?: number;
+  initialMapStyle?: string;
 };
 
-export function CreateIncidentModal({ open, onClose }: CreateIncidentModalProps) {
+export function CreateIncidentModal({ open, onClose, initialLat, initialLng, initialMapStyle }: CreateIncidentModalProps) {
   const overlayRef = useRef<HTMLDivElement>(null);
   const previousFocus = useRef<HTMLElement | null>(null);
   const cleanupTrap = useRef<(() => void) | null>(null);
   const createIncident = useCreateIncident();
+  const addToast = useToastStore((s) => s.addToast);
+  const router = useRouter();
+
+  const miniMapStyle = initialMapStyle === 'satellite'
+    ? 'satellite'
+    : initialMapStyle === 'outdoors'
+      ? 'streets'
+      : 'streets';
 
   const {
     register,
@@ -103,8 +116,8 @@ export function CreateIncidentModal({ open, onClose }: CreateIncidentModalProps)
       observerIds: [],
       tagIds: [],
       locationDescription: '',
-      lat: MAPBOX_DEFAULT_CENTER[0],
-      lng: MAPBOX_DEFAULT_CENTER[1],
+      lat: initialLat ?? MAPBOX_DEFAULT_CENTER[0],
+      lng: initialLng ?? MAPBOX_DEFAULT_CENTER[1],
       mediaUrls: '',
     },
   });
@@ -113,7 +126,7 @@ export function CreateIncidentModal({ open, onClose }: CreateIncidentModalProps)
   const lng = watch('lng');
   const descLength = (watch('description') ?? '').length;
 
-  // Modal open/close side effects
+  // Lock scroll when modal opens
   useEffect(() => {
     if (open) {
       previousFocus.current = document.activeElement as HTMLElement;
@@ -131,7 +144,6 @@ export function CreateIncidentModal({ open, onClose }: CreateIncidentModalProps)
   // Focus trap — stored in ref so it runs after the DOM paints
   const modalRef = useCallback(
     (el: HTMLDivElement | null) => {
-      // Cleanup previous trap
       if (cleanupTrap.current) {
         cleanupTrap.current();
         cleanupTrap.current = null;
@@ -166,35 +178,55 @@ export function CreateIncidentModal({ open, onClose }: CreateIncidentModalProps)
 
   const onSubmit = useCallback(
     (data: FormValues) => {
-      const dto: CreateIncidentDTO = {
-        title: data.title,
-        description: data.description,
-        typeKey: data.typeKey,
-        priority: data.priority,
-        projectId: data.projectId,
-        status: data.status,
-        ownerId: data.ownerId || undefined,
-        assigneeIds: data.assigneeIds,
-        observerIds: data.observerIds,
-        tagIds: data.tagIds,
-        lat: data.lat,
-        lng: data.lng,
-        locationDescription: data.locationDescription ?? '',
-        dueDate: data.dueDate || undefined,
-        media: data.mediaUrls
-          ? data.mediaUrls
-              .split(',')
-              .map((s) => s.trim())
-              .filter(Boolean)
-              .map((url) => ({ name: url.split('/').pop() ?? url, url }))
-          : undefined,
-      };
+      try {
+        const dto: CreateIncidentDTO = {
+          title: data.title,
+          description: data.description,
+          typeKey: data.typeKey,
+          priority: data.priority,
+          projectId: data.projectId,
+          status: data.status,
+          ownerId: data.ownerId || undefined,
+          assigneeIds: data.assigneeIds,
+          observerIds: data.observerIds,
+          tagIds: data.tagIds,
+          lat: data.lat,
+          lng: data.lng,
+          locationDescription: data.locationDescription ?? '',
+          dueDate: data.dueDate || undefined,
+          media: data.mediaUrls
+            ? data.mediaUrls
+                .split(',')
+                .map((s) => s.trim())
+                .filter(Boolean)
+                .map((url) => ({ name: url.split('/').pop() ?? url, url }))
+            : undefined,
+        };
 
-      createIncident(dto);
-      reset();
-      onClose();
+        const created = createIncident(dto);
+        const incidentId = created.id;
+
+        addToast({
+          type: 'success',
+          title: 'Incidencia creada',
+          message: 'La incidencia fue registrada correctamente.',
+          action: {
+            label: 'Ver detalle',
+            onClick: () => router.push(`/incidents/${incidentId}`),
+          },
+        });
+
+        reset();
+        onClose();
+      } catch {
+        addToast({
+          type: 'error',
+          title: 'No fue posible crear la incidencia',
+          message: 'Intenta nuevamente.',
+        });
+      }
     },
-    [createIncident, reset, onClose]
+    [createIncident, reset, onClose, addToast, router]
   );
 
   const handleCancel = useCallback(() => {
@@ -239,7 +271,6 @@ export function CreateIncidentModal({ open, onClose }: CreateIncidentModalProps)
 
         <form onSubmit={handleSubmit(onSubmit)} noValidate>
           <div className={styles.body}>
-            {/* ── Información General ── */}
             <section className={styles.section}>
               <div className={styles.sectionHead}>
                 <h3 className={styles.sectionTitle}>Información General</h3>
@@ -280,7 +311,6 @@ export function CreateIncidentModal({ open, onClose }: CreateIncidentModalProps)
               </div>
             </section>
 
-            {/* ── Clasificación ── */}
             <section className={styles.section}>
               <div className={styles.sectionHead}>
                 <h3 className={styles.sectionTitle}>Clasificación</h3>
@@ -344,7 +374,6 @@ export function CreateIncidentModal({ open, onClose }: CreateIncidentModalProps)
               </div>
             </section>
 
-            {/* ── Planificación ── */}
             <section className={styles.section}>
               <div className={styles.sectionHead}>
                 <h3 className={styles.sectionTitle}>Planificación</h3>
@@ -385,7 +414,6 @@ export function CreateIncidentModal({ open, onClose }: CreateIncidentModalProps)
               </div>
             </section>
 
-            {/* ── Ubicación ── */}
             <section className={styles.section}>
               <div className={styles.sectionHead}>
                 <h3 className={styles.sectionTitle}>Ubicación</h3>
@@ -393,7 +421,7 @@ export function CreateIncidentModal({ open, onClose }: CreateIncidentModalProps)
               </div>
               <div className={styles.sectionBody}>
                 <div className={styles.field}>
-                  <MiniMapPicker lat={lat} lng={lng} onChange={handleMapChange} />
+                  <MiniMapPicker lat={lat} lng={lng} onChange={handleMapChange} initialStyle={miniMapStyle} />
                 </div>
 
                 <div className={styles.coordRow}>
@@ -441,7 +469,6 @@ export function CreateIncidentModal({ open, onClose }: CreateIncidentModalProps)
               </div>
             </section>
 
-            {/* ── Responsable y equipo ── */}
             <section className={styles.section}>
               <div className={styles.sectionHead}>
                 <h3 className={styles.sectionTitle}>Equipo</h3>

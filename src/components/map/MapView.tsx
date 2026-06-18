@@ -31,6 +31,7 @@ import {
   INCIDENT_STATUS_LABELS,
   INCIDENT_PRIORITY_LABELS,
 } from '@/lib/constants';
+import { CreateIncidentModal } from '@/components/incident/CreateIncidentModal';
 import type { Incident } from '@/domain/incident/types';
 import styles from './MapView.module.scss';
 
@@ -87,6 +88,8 @@ export function MapView() {
 
   const [popupIncident, setPopupIncident] = useState<Incident | null>(null);
   const [sideOpen, setSideOpen] = useState(true);
+  const [createOpen, setCreateOpen] = useState(false);
+  const [createCoords, setCreateCoords] = useState<[number, number] | null>(null);
 
   const filtersActive =
     !!filters.status || !!filters.priority || !!filters.typeKey || !!filters.search || !!filters.projectId;
@@ -117,6 +120,23 @@ export function MapView() {
     resetFilters();
   }, [resetFilters]);
 
+  const handleOpenCreate = useCallback(() => {
+    if (popupIncident) {
+      setCreateCoords([popupIncident.coordinates.lat, popupIncident.coordinates.lng]);
+    } else if (map) {
+      const center = map.getCenter();
+      setCreateCoords([center.lat, center.lng]);
+    } else {
+      setCreateCoords(null);
+    }
+    setCreateOpen(true);
+  }, [map, popupIncident]);
+
+  const handleCloseCreate = useCallback(() => {
+    setCreateOpen(false);
+    setCreateCoords(null);
+  }, []);
+
   const handleFilterChange = useCallback((key: string, value: string) => {
     setFilters({ [key]: value || undefined } as any);
   }, [setFilters]);
@@ -127,7 +147,6 @@ export function MapView() {
   return (
     <MapContext.Provider value={map}>
       <div ref={containerRef} className={styles.map}>
-        {/* ─── Floating Side Panel ─────────── */}
         <aside className={`${styles.sidePanel} ${sideOpen ? styles.sidePanelOpen : styles.sidePanelClosed}`}>
           <button
             type="button"
@@ -140,12 +159,10 @@ export function MapView() {
 
           {sideOpen && (
             <>
-              {/* Section header */}
               <div className={styles.panelHeader}>
                 <span className={styles.panelTitle}>Incidencias</span>
               </div>
 
-              {/* Stats */}
               <div className={styles.statsRow}>
                 <div className={styles.statItem}>
                   <span className={styles.statValue}>{allIncidents.length}</span>
@@ -163,14 +180,12 @@ export function MapView() {
                 </div>
               </div>
 
-              {/* System status */}
               <div className={styles.systemStatus}>
                 <span className={styles.statusDot} />
                 <span className={styles.statusLabel}>Monitoreo activo</span>
                 <span className={styles.statusSync}>{syncLabel}</span>
               </div>
 
-              {/* Filters */}
               <div className={styles.filtersSection}>
                 <div className={styles.filterField}>
                   <Search size={14} className={styles.filterIcon} />
@@ -228,7 +243,6 @@ export function MapView() {
                 )}
               </div>
 
-              {/* Incident list */}
               <div className={styles.incidentList}>
                 {incidents.length === 0 && (
                   <p className={styles.emptyList}>Sin incidencias</p>
@@ -260,10 +274,7 @@ export function MapView() {
           )}
         </aside>
 
-        {/* ─── Map Controls ──────────────── */}
-        {isLoaded && <MapControls map={map} isLoaded={isLoaded} />}
-
-        {/* ─── Error / Loading States ────── */}
+        {isLoaded && <MapControls map={map} isLoaded={isLoaded} onReport={handleOpenCreate} />}
         {mapError && <div className={styles.overlay}><span className={styles.error}>{mapError}</span></div>}
 
         {!isLoaded && !mapError && (
@@ -309,6 +320,16 @@ export function MapView() {
             key={`${prefix}-popup-${popupIncident.id}`}
             incident={popupIncident}
             onClose={handlePopupClose}
+          />
+        )}
+
+        {createOpen && (
+          <CreateIncidentModal
+            open={createOpen}
+            onClose={handleCloseCreate}
+            initialLat={createCoords?.[0]}
+            initialLng={createCoords?.[1]}
+            initialMapStyle={mapStyle}
           />
         )}
       </div>

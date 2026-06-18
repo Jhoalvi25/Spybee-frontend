@@ -53,7 +53,6 @@ export default function LoginPage() {
 
   return (
     <div className={styles.page}>
-      {/* ─── Left: Hero ─────────────────── */}
       <section className={styles.hero}>
         <div className={styles.heroBg} />
         <div className={styles.heroInner}>
@@ -105,7 +104,6 @@ export default function LoginPage() {
         </div>
       </section>
 
-      {/* ─── Right: Login ────────────────── */}
       <section className={styles.loginSection}>
         <div className={styles.card}>
           <div className={styles.cardHeader}>

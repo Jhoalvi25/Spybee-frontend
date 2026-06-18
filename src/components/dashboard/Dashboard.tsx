@@ -222,7 +222,6 @@ export function Dashboard() {
 
   return (
       <div className={styles.page}>
-        {/* ─── Hero: Centro de Operaciones ──── */}
         <div className={styles.hero}>
           <div className={styles.heroBody}>
             <div className={styles.heroTop}>
@@ -272,7 +271,6 @@ export function Dashboard() {
           </div>
         </div>
 
-      {/* ─── Toolbar ──────────────────────── */}
       <div className={styles.toolbar}>
         <FilterBar />
         <button type="button" className={styles.addBtn} onClick={handleCreate}>
@@ -281,10 +279,8 @@ export function Dashboard() {
         </button>
       </div>
 
-      {/* ─── KPI Grid ─────────────────────── */}
       <KPIGrid data={data} />
 
-      {/* ─── Charts ───────────────────────── */}
       <section className={styles.charts}>
         <StatusDonut data={data.statusData} />
         <PriorityDonut data={data.priorityData} />

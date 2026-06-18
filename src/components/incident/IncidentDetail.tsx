@@ -26,7 +26,7 @@ import {
 } from 'lucide-react';
 import { useIncidents, useLoadIncidents, useIsLoading, useUpdateIncident } from '@/domain/incident/hooks';
 import { INCIDENT_STATUS_LABELS, INCIDENT_PRIORITY_LABELS } from '@/lib/constants';
-import { formatDate } from '@/lib/utils';
+import { formatDate } from '@/lib/formatDate';
 import type { Incident, UpdateIncidentDTO, IncidentStatus, IncidentPriority } from '@/domain/incident/types';
 import styles from './IncidentDetail.module.scss';
 
@@ -209,7 +209,6 @@ export function IncidentDetail({ id }: IncidentDetailProps) {
       </Link>
 
       <form onSubmit={handleSubmit(onSubmit)} noValidate>
-        {/* ─── Header ─────────────────────────── */}
         <div className={styles.header}>
           <div className={styles.headerTitleRow}>
             {isEditing ? (
@@ -249,11 +248,8 @@ export function IncidentDetail({ id }: IncidentDetailProps) {
           </div>
         </div>
 
-        {/* ─── 2-column content ──────────────── */}
         <div className={styles.content}>
-          {/* ─── Left column ─────────────────── */}
           <div className={styles.main}>
-            {/* Description */}
             <section className={styles.card}>
               <div className={styles.cardHeader}>
                 <FileText size={16} />
@@ -275,7 +271,6 @@ export function IncidentDetail({ id }: IncidentDetailProps) {
               )}
             </section>
 
-            {/* Location */}
             <section className={styles.card}>
               <div className={styles.cardHeader}>
                 <MapPin size={16} />
@@ -290,8 +285,6 @@ export function IncidentDetail({ id }: IncidentDetailProps) {
                 </p>
               )}
             </section>
-
-            {/* Tags */}
             {incident.tags.length > 0 && (
               <section className={styles.card}>
                 <div className={styles.cardHeader}>
@@ -312,7 +305,6 @@ export function IncidentDetail({ id }: IncidentDetailProps) {
               </section>
             )}
 
-            {/* Media */}
             <section className={styles.card}>
               <div className={styles.cardHeader}>
                 <FolderOpen size={16} />
@@ -322,9 +314,7 @@ export function IncidentDetail({ id }: IncidentDetailProps) {
             </section>
           </div>
 
-          {/* ─── Right column ────────────────── */}
           <aside className={styles.sidebar}>
-            {/* Status & Priority */}
             <section className={styles.card}>
               <div className={styles.metaGrid}>
                 <div className={styles.metaItem}>
@@ -371,7 +361,6 @@ export function IncidentDetail({ id }: IncidentDetailProps) {
               </div>
             </section>
 
-            {/* Due date */}
             <section className={styles.card}>
               <div className={styles.metaRow}>
                 <Calendar size={14} />
@@ -387,7 +376,6 @@ export function IncidentDetail({ id }: IncidentDetailProps) {
               </div>
             </section>
 
-            {/* Owner */}
             <section className={styles.card}>
               <div className={styles.cardHeader}>
                 <User size={16} />
@@ -396,7 +384,6 @@ export function IncidentDetail({ id }: IncidentDetailProps) {
               <PeopleList people={incident.owner ? [incident.owner] : []} empty="Sin responsable" icon={User} />
             </section>
 
-            {/* Assignees */}
             <section className={styles.card}>
               <div className={styles.cardHeader}>
                 <Users size={16} />
@@ -405,7 +392,6 @@ export function IncidentDetail({ id }: IncidentDetailProps) {
               <PeopleList people={incident.assignees} empty="Sin asignados" icon={Users} />
             </section>
 
-            {/* Observers */}
             {incident.observers.length > 0 && (
               <section className={styles.card}>
                 <div className={styles.cardHeader}>
@@ -416,7 +402,6 @@ export function IncidentDetail({ id }: IncidentDetailProps) {
               </section>
             )}
 
-            {/* Project & Category */}
             <section className={styles.card}>
               <div className={styles.metaRow}>
                 <FolderOpen size={14} />
@@ -430,7 +415,6 @@ export function IncidentDetail({ id }: IncidentDetailProps) {
               </div>
             </section>
 
-            {/* Timeline */}
             <section className={styles.card}>
               <div className={styles.cardHeader}>
                 <Clock size={16} />

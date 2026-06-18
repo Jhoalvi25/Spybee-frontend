@@ -12,31 +12,35 @@ const STYLES = [
   { id: 'hybrid', label: 'Híbrido', url: 'mapbox://styles/mapbox/satellite-streets-v12' },
 ] as const;
 
+function resolveStyleUrl(styleId?: string): string {
+  if (styleId === 'satellite') return STYLES[1].url;
+  return STYLES[2].url;
+}
+
 type MiniMapPickerProps = {
   lat: number;
   lng: number;
   onChange: (lat: number, lng: number) => void;
+  initialStyle?: string;
 };
 
-export function MiniMapPicker({ lat, lng, onChange }: MiniMapPickerProps) {
+export function MiniMapPicker({ lat, lng, onChange, initialStyle }: MiniMapPickerProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const markerRef = useRef<mapboxgl.Marker | null>(null);
   const coordsRef = useRef({ lat, lng });
   const lastCoordsRef = useRef({ lat, lng });
-  const [activeStyle, setActiveStyle] = useState('hybrid');
+  const [activeStyle, setActiveStyle] = useState(initialStyle ?? 'hybrid');
   const [isReady, setIsReady] = useState(false);
 
   const { map, isLoaded, error } = useMapbox({
     container: containerRef,
     center: [lng, lat],
     zoom: 14,
-    style: 'mapbox://styles/mapbox/satellite-streets-v12',
+    style: resolveStyleUrl(initialStyle),
   });
 
-  // Keep coordsRef in sync with props
   coordsRef.current = { lat, lng };
 
-  /* ── Build marker element ── */
   const buildMarkerEl = useCallback(() => {
     const el = document.createElement('div');
     el.style.cssText = 'width:24px; height:24px; position:relative;';
@@ -62,7 +66,6 @@ export function MiniMapPicker({ lat, lng, onChange }: MiniMapPickerProps) {
     return el;
   }, []);
 
-  /* ── Create marker ── */
   const createMarker = useCallback((m: mapboxgl.Map, latlng: [number, number]) => {
     if (markerRef.current) {
       markerRef.current.remove();
@@ -84,7 +87,6 @@ export function MiniMapPicker({ lat, lng, onChange }: MiniMapPickerProps) {
     markerRef.current = marker;
   }, [buildMarkerEl, onChange]);
 
-  /* ── Init effect ── */
   useEffect(() => {
     if (!map || !isLoaded) return;
 
@@ -106,7 +108,6 @@ export function MiniMapPicker({ lat, lng, onChange }: MiniMapPickerProps) {
     map.on('click', handleClick);
     map.on('style.load', handleStyleLoad);
 
-    // Init marker
     createMarker(map, [lng, lat]);
     lastCoordsRef.current = { lat, lng };
     setIsReady(true);
@@ -121,7 +122,7 @@ export function MiniMapPicker({ lat, lng, onChange }: MiniMapPickerProps) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [map, isLoaded]);
 
-  /* ── Sync marker position when lat/lng change externally ── */
+  // Sync marker when lat/lng change externally
   useEffect(() => {
     if (!markerRef.current || !map || !isReady) return;
 
@@ -133,13 +134,11 @@ export function MiniMapPicker({ lat, lng, onChange }: MiniMapPickerProps) {
     lastCoordsRef.current = { lat, lng };
   }, [lat, lng, map, isReady]);
 
-  /* ── Style switcher ── */
   const handleStyleChange = useCallback((styleUrl: string) => {
     if (!map) return;
     map.setStyle(styleUrl);
   }, [map]);
 
-  /* ── Zoom / Center ── */
   const handleZoomIn = useCallback(() => map?.zoomIn({ duration: 200 }), [map]);
   const handleZoomOut = useCallback(() => map?.zoomOut({ duration: 200 }), [map]);
   const handleRecenter = useCallback(() => {
@@ -147,7 +146,6 @@ export function MiniMapPicker({ lat, lng, onChange }: MiniMapPickerProps) {
     map.flyTo({ center: [lng, lat], zoom: 16, duration: 600 });
   }, [map, lng, lat]);
 
-  /* ── Coordinate editing ── */
   const handleLatChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
     const v = parseFloat(e.target.value);
     if (!isNaN(v)) onChange(v, lng);

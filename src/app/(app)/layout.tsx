@@ -3,6 +3,7 @@
 import { useState, useCallback } from 'react';
 import { Sidebar } from '@/components/layout/Sidebar';
 import { AuthGuard } from '@/components/layout/AuthGuard';
+import { Toast } from '@/components/ui/Toast';
 import { useTheme } from '@/domain/ui/hooks';
 import styles from './layout.module.scss';
 
@@ -17,6 +18,7 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
     <AuthGuard>
       <div className={styles.layout} data-theme={theme}>
         <Sidebar mobileOpen={mobileOpen} onMobileClose={closeMobile} />
+        <Toast />
 
         <div className={styles.content}>
           <button
